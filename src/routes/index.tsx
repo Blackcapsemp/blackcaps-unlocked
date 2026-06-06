@@ -129,7 +129,7 @@ function Home() {
                 </div>
                 <div className="mt-10">
                   <h3 className="display text-sm group-hover:text-bcaps-green transition-colors">{s.t}</h3>
-                  <p className="mt-3 text-bone/70 text-sm leading-relaxed">{s.d}</p>
+                  <p className="mt-3 text-bone/70 text-sm leading-relaxed text-sm">{s.d}</p>
                 </div>
               </div>
             ))}
