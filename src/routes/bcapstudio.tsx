@@ -70,7 +70,7 @@ function BcapPage() {
 
         <div className="relative mx-auto max-w-[1600px]">
           <span className="sticker mb-6">Sello creativo 360º</span>
-          <h1 className="display md:text-[11vw] leading-[0.85] mt-4 text-sm">
+          <h1 className="display text-5xl sm:text-6xl md:text-[9vw] leading-[0.85] mt-4 break-words">
             BCAPSTUDIO<span className="text-bcaps-orange">.EMP</span>
           </h1>
           <p className="display text-2xl md:text-4xl mt-6 text-gradient-bcaps">Música · Audiovisual · Estrategia digital</p>
