@@ -123,7 +123,7 @@ function BcapPage() {
             {PLANS.map((p) => (
               <div key={p.t} className={`relative rounded-3xl p-8 border ${p.feat ? "border-bcaps-violet bg-bcaps-violet/10 glow-green" : "border-white/15 bg-card/60"}`}>
                 {p.feat && <span className="absolute -top-3 left-6 stamp text-bcaps-violet bg-ink">Más popular</span>}
-                <h3 className="display text-3xl">{p.t}</h3>
+                <h3 className="display text-2xl">{p.t}</h3>
                 <p className="text-bone/75 mt-3">{p.p}</p>
                 <ul className="mt-6 space-y-2 text-sm">
                   {p.items.map((i) => <li key={i} className="flex gap-2"><span className="text-bcaps-cyan">●</span>{i}</li>)}
