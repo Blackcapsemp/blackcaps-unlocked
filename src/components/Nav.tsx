@@ -46,7 +46,7 @@ export function Nav() {
       {open && (
         <div className="md:hidden bg-ink border-t border-white/10 px-6 py-6 flex flex-col gap-4">
           {links.map((l) => (
-            <Link key={l.to} to={l.to} onClick={() => setOpen(false)} className="display text-2xl" activeProps={{ className: "display active text-2xl" }}>
+            <Link key={l.to} to={l.to} onClick={() => setOpen(false)} className="display text-sm" activeProps={{ className: "display active text-sm" }}>
               {l.label}
             </Link>
           ))}
