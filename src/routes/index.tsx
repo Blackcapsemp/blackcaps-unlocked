@@ -58,7 +58,7 @@ function Home() {
           <div className="mt-10 grid md:grid-cols-3 gap-6 items-end">
             <p className="md:col-span-2 text-lg md:text-xl text-bone/85 max-w-2xl">
               Producción audiovisual · Servicios técnicos · Booking artístico · Soluciones digitales.
-              <span className="block mt-3 text-bcaps-green text-2xl md:text-3xl display">Tu marca, tu sonido, tu historia: lo creamos todo.</span>
+              <span className="block mt-3 text-bcaps-green text-2xl display">Tu marca, tu sonido, tu historia: lo creamos todo.</span>
             </p>
             <div className="flex flex-wrap gap-3 md:justify-end">
               <Link to="/servicios" className="btn btn-primary">Ver servicios</Link>
@@ -128,7 +128,7 @@ function Home() {
                   <span className="opacity-0 group-hover:opacity-100 transition text-bcaps-green">↗</span>
                 </div>
                 <div className="mt-10">
-                  <h3 className="display text-2xl md:text-3xl group-hover:text-bcaps-green transition-colors">{s.t}</h3>
+                  <h3 className="display text-2xl group-hover:text-bcaps-green transition-colors">{s.t}</h3>
                   <p className="mt-3 text-bone/70 text-sm leading-relaxed">{s.d}</p>
                 </div>
               </div>
@@ -214,7 +214,7 @@ function Home() {
             ].map((x) => (
               <div key={x.n} className="border-t border-white/15 pt-6">
                 <span className="num-3d text-4xl">{x.n}</span>
-                <h3 className="display text-3xl mt-4">{x.t}</h3>
+                <h3 className="display text-2xl mt-4">{x.t}</h3>
                 <p className="mt-3 text-bone/70">{x.d}</p>
               </div>
             ))}
