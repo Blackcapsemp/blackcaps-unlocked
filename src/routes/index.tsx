@@ -128,7 +128,7 @@ function Home() {
                   <span className="opacity-0 group-hover:opacity-100 transition text-bcaps-green">↗</span>
                 </div>
                 <div className="mt-10">
-                  <h3 className="display text-2xl group-hover:text-bcaps-green transition-colors">{s.t}</h3>
+                  <h3 className="display text-sm group-hover:text-bcaps-green transition-colors">{s.t}</h3>
                   <p className="mt-3 text-bone/70 text-sm leading-relaxed">{s.d}</p>
                 </div>
               </div>
@@ -159,7 +159,7 @@ function Home() {
           <div className="relative">
             <img src={artist} alt="Artist" width={1024} height={1280} loading="lazy" className="rounded-3xl w-full h-[32rem] object-cover" />
             <div className="absolute -bottom-4 -left-4 bg-bone text-ink p-5 rounded-2xl max-w-[14rem] rotate-[-3deg]">
-              <p className="display text-2xl leading-tight">FESTIVAL POSTER ENERGY</p>
+              <p className="display text-sm leading-tight">FESTIVAL POSTER ENERGY</p>
               <p className="text-[10px] mt-2 uppercase tracking-[0.18em]">Live · 2026</p>
             </div>
           </div>
@@ -214,7 +214,7 @@ function Home() {
             ].map((x) => (
               <div key={x.n} className="border-t border-white/15 pt-6">
                 <span className="num-3d text-4xl">{x.n}</span>
-                <h3 className="display text-2xl mt-4">{x.t}</h3>
+                <h3 className="display text-sm mt-4">{x.t}</h3>
                 <p className="mt-3 text-bone/70">{x.d}</p>
               </div>
             ))}
