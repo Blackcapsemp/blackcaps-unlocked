@@ -87,7 +87,7 @@ function ServiciosPage() {
                 {s.items.map((it) => (
                   <li key={it} className="flex items-start gap-3 text-bone/85">
                     <span className="mt-2 w-1.5 h-1.5 rounded-full bg-bcaps-green shrink-0" />
-                    <span>{it}</span>
+                    <span className="text-sm">{it}</span>
                   </li>
                 ))}
               </ul>
