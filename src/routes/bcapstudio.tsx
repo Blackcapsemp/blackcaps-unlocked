@@ -107,7 +107,7 @@ function BcapPage() {
                 <div key={s.n} className="relative">
                   <div className="w-12 h-12 rounded-full bg-ink border border-bone grid place-items-center display text-sm">{s.n}</div>
                   <h3 className="display text-lg mt-5 leading-tight">{s.t}</h3>
-                  <p className="text-bone/65 text-xs mt-2 leading-relaxed">{s.d}</p>
+                  <p className="text-bone/65 text-sm mt-2 leading-relaxed">{s.d}</p>
                 </div>
               ))}
             </div>
@@ -126,7 +126,7 @@ function BcapPage() {
                 <h3 className="display text-sm">{p.t}</h3>
                 <p className="text-bone/75 mt-3">{p.p}</p>
                 <ul className="mt-6 space-y-2 text-sm">
-                  {p.items.map((i) => <li key={i} className="flex gap-2"><span className="text-bcaps-cyan">●</span>{i}</li>)}
+                  {p.items.map((i) => <li key={i} className="flex gap-2 text-sm"><span className="text-bcaps-cyan">●</span>{i}</li>)}
                 </ul>
                 <Link to="/contacto" className="btn btn-ghost mt-8 w-full justify-center">{p.cta}</Link>
               </div>

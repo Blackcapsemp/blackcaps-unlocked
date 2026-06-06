@@ -129,7 +129,7 @@ function Home() {
                 </div>
                 <div className="mt-10">
                   <h3 className="display text-sm group-hover:text-bcaps-green transition-colors">{s.t}</h3>
-                  <p className="mt-3 text-bone/70 text-sm leading-relaxed">{s.d}</p>
+                  <p className="mt-3 text-bone/70 text-sm leading-relaxed text-sm">{s.d}</p>
                 </div>
               </div>
             ))}
@@ -215,7 +215,7 @@ function Home() {
               <div key={x.n} className="border-t border-white/15 pt-6">
                 <span className="num-3d text-4xl">{x.n}</span>
                 <h3 className="display text-sm mt-4">{x.t}</h3>
-                <p className="mt-3 text-bone/70">{x.d}</p>
+                <p className="mt-3 text-bone/70 text-sm">{x.d}</p>
               </div>
             ))}
           </div>
