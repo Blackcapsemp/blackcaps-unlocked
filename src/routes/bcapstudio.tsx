@@ -107,7 +107,7 @@ function BcapPage() {
                 <div key={s.n} className="relative">
                   <div className="w-12 h-12 rounded-full bg-ink border border-bone grid place-items-center display text-sm">{s.n}</div>
                   <h3 className="display text-lg mt-5 leading-tight">{s.t}</h3>
-                  <p className="text-bone/65 text-xs mt-2 leading-relaxed">{s.d}</p>
+                  <p className="text-bone/65 text-sm mt-2 leading-relaxed">{s.d}</p>
                 </div>
               ))}
             </div>
