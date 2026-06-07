@@ -130,6 +130,8 @@ function RootComponent() {
         <Outlet />
       </main>
       <Footer />
+      <Toaster />
     </QueryClientProvider>
+
   );
 }
