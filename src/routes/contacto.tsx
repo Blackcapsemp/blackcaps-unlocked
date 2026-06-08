@@ -346,7 +346,7 @@ function TextareaField({
       <textarea
         name={name}
         rows={rows}
-        className={`w-full bg-transparent border rounded-xl px-4 py-3 mt-2 outline-none resize-none transition-colors ${error ? "border-destructive focus:border-destructive" : "border-white/20 focus:border-bcaps-green"}`}
+        className={`w-full bg-white/[0.03] border rounded-lg px-4 py-3 mt-2 text-bone placeholder:text-bone/30 outline-none resize-none transition-all focus:bg-white/[0.06] focus:ring-2 focus:ring-bcaps-green/20 ${error ? "border-destructive" : "border-white/10 focus:border-bcaps-green/60"}`}
       />
       <FieldError msg={error} />
     </label>
