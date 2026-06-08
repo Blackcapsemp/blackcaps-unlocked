@@ -100,68 +100,96 @@ function ContactoPage() {
     (e.target as HTMLFormElement).reset();
   }
 
+  const currentTab = TABS.find((t) => t.id === type)!;
+  const stepIndex = TABS.findIndex((t) => t.id === type) + 1;
+
   return (
     <>
-      <section className="relative pt-44 pb-12 px-4 md:px-8">
-        <div className="mx-auto max-w-[1600px]">
-          <span className="sticker mb-6">Contacto · B2B & Artists</span>
-          <h1 className="display text-[16vw] md:text-[12vw] leading-[0.85] mt-4">
-            ¿CREAMOS<br /><span className="text-gradient-bcaps">ALGO JUNTOS?</span>
+      <section className="relative pt-40 pb-10 px-4 md:px-8 overflow-hidden">
+        <div className="absolute inset-0 -z-10 opacity-60"
+             style={{ backgroundImage: "radial-gradient(900px 380px at 75% 10%, oklch(0.74 0.18 152 / 0.10), transparent 60%), radial-gradient(700px 320px at 5% 90%, oklch(0.58 0.22 265 / 0.10), transparent 60%)" }} />
+        <div className="mx-auto max-w-[1400px]">
+          <div className="flex items-center gap-3 mb-6 flex-wrap">
+            <span className="sticker">Contacto</span>
+            <span className="sticker" style={{ borderColor: "var(--bcaps-green)", color: "var(--bcaps-green)" }}>B2B · Booking · Artists</span>
+            <span className="text-xs uppercase tracking-[0.2em] text-bone/50">Respuesta &lt; 48h</span>
+          </div>
+          <h1 className="display text-[12vw] md:text-[8.5vw] leading-[0.88] mt-2 max-w-[14ch]">
+            Hablemos de <span className="text-gradient-bcaps">tu próximo</span> proyecto.
           </h1>
-          <p className="mt-8 max-w-2xl text-lg text-bone/85">
-            Elige el tipo de solicitud y cuéntanos los detalles. Te respondemos en menos de 48h hábiles.
+          <p className="mt-6 max-w-xl text-base md:text-lg text-bone/75 leading-relaxed">
+            Cuéntanos qué necesitas y te respondemos en menos de 48h hábiles desde nuestra oficina central.
           </p>
         </div>
       </section>
 
       <section className="pb-24 px-4 md:px-8">
-        <div className="mx-auto max-w-[1600px] grid lg:grid-cols-12 gap-10">
+        <div className="mx-auto max-w-[1400px] grid lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Sidebar info */}
-          <aside className="lg:col-span-4 space-y-8">
-            <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-bcaps-green">Email</p>
-              <a href="mailto:info@blackcaps.es" className="display text-2xl md:text-3xl block mt-2 hover:text-bcaps-green transition">info@blackcaps.es</a>
-            </div>
-            <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-bcaps-green">Instagram</p>
-              <a href="https://instagram.com/Blackcaps.emp" className="display text-2xl md:text-3xl block mt-2 hover:text-bcaps-green transition">@Blackcaps.emp</a>
-            </div>
-            <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-bcaps-green">Teléfono</p>
-              <p className="display text-xl mt-2">686 06 88 968</p>
-              <p className="display text-xl">722 12 99 48</p>
-            </div>
-            <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-bcaps-green">Ubicación</p>
-              <p className="display text-xl mt-2">Madrid · Valencia<br />Barcelona · España</p>
+          <aside className="lg:col-span-4">
+            <div className="rounded-2xl border border-white/10 bg-card/60 backdrop-blur p-6 md:p-7 space-y-7 sticky top-28">
+              <div>
+                <p className="display text-base text-bone/90">Contacto directo</p>
+                <div className="h-px bg-white/10 mt-3" />
+              </div>
+
+              <ContactItem label="Email" value="info@blackcaps.es" href="mailto:info@blackcaps.es" />
+              <ContactItem label="Instagram" value="@Blackcaps.emp" href="https://instagram.com/Blackcaps.emp" />
+
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.22em] text-bcaps-green">Teléfono</p>
+                <p className="mt-2 text-bone text-lg tabular-nums">686 06 88 968</p>
+                <p className="text-bone/80 text-lg tabular-nums">722 12 99 48</p>
+              </div>
+
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.22em] text-bcaps-green">Oficinas</p>
+                <p className="mt-2 text-bone/90 leading-relaxed">Madrid · Valencia<br />Barcelona · España</p>
+              </div>
+
+              <div className="pt-2">
+                <p className="text-[10px] uppercase tracking-[0.22em] text-bone/50 mb-2">Horario</p>
+                <p className="text-sm text-bone/75">Lun – Vie · 10:00 – 19:00 CET</p>
+              </div>
             </div>
           </aside>
 
           {/* Form */}
           <div className="lg:col-span-8">
+            {/* Step indicator */}
+            <div className="flex items-center gap-3 mb-4 text-[10px] uppercase tracking-[0.22em] text-bone/55">
+              <span>Paso 01</span>
+              <span className="h-px flex-1 bg-white/10" />
+              <span>Tipo de solicitud · {String(stepIndex).padStart(2, "0")}/03</span>
+            </div>
+
             {/* Tabs */}
-            <div className="grid sm:grid-cols-3 gap-2 mb-6">
-              {TABS.map((t) => {
+            <div className="grid sm:grid-cols-3 gap-2 mb-8">
+              {TABS.map((t, i) => {
                 const active = t.id === type;
                 return (
                   <button
                     key={t.id}
                     type="button"
                     onClick={() => { setType(t.id); setErrors({}); setSent(false); }}
-                    className={`text-left rounded-2xl border p-4 transition-all duration-300 hover:-translate-y-0.5 ${active ? "border-bcaps-green bg-bcaps-green/10 glow-green" : "border-white/15 bg-card hover:border-white/30"}`}
+                    className={`group relative text-left rounded-xl border p-4 transition-all duration-300 hover:-translate-y-0.5 ${active ? "border-bcaps-green bg-bcaps-green/[0.07] glow-green" : "border-white/10 bg-card/60 hover:border-white/25"}`}
                   >
-                    <p className={`display text-sm md:text-base ${active ? "text-bcaps-green" : "text-bone"}`}>{t.label}</p>
-                    <p className="text-[11px] uppercase tracking-[0.18em] text-bone/60 mt-1">{t.sub}</p>
+                    <div className="flex items-center justify-between mb-3">
+                      <span className={`text-[10px] tabular-nums tracking-[0.2em] ${active ? "text-bcaps-green" : "text-bone/40"}`}>0{i + 1}</span>
+                      <span className={`w-1.5 h-1.5 rounded-full ${active ? "bg-bcaps-green" : "bg-bone/20"}`} />
+                    </div>
+                    <p className={`text-sm md:text-[15px] font-semibold leading-snug ${active ? "text-bone" : "text-bone/90"}`}>{t.label}</p>
+                    <p className="text-[10px] uppercase tracking-[0.18em] text-bone/55 mt-2">{t.sub}</p>
                   </button>
                 );
               })}
             </div>
 
             {sent ? (
-              <div className="rounded-3xl border border-bcaps-green/40 bg-bcaps-green/5 p-10 text-center glow-green">
+              <div className="rounded-2xl border border-bcaps-green/40 bg-bcaps-green/[0.06] p-10 text-center glow-green">
                 <span className="stamp">Recibido</span>
                 <h2 className="display text-3xl md:text-5xl mt-6">¡Mensaje en camino!</h2>
-                <p className="mt-4 text-bone/80 max-w-md mx-auto">
+                <p className="mt-4 text-bone/80 max-w-md mx-auto leading-relaxed">
                   Hemos guardado tu solicitud. Te responderemos en menos de 48h hábiles desde info@blackcaps.es.
                 </p>
                 <button onClick={() => setSent(false)} className="btn btn-ghost mt-8">Enviar otra solicitud →</button>
@@ -170,64 +198,73 @@ function ContactoPage() {
               <form
                 key={type}
                 onSubmit={handleSubmit}
-                className="rounded-3xl border border-white/15 bg-card p-6 md:p-10 grid md:grid-cols-2 gap-5"
+                className="rounded-2xl border border-white/10 bg-card/60 backdrop-blur p-6 md:p-9"
               >
-                <Field label="Nombre*" name="name" error={errors.name} />
-                <Field label="Email*" name="email" type="email" error={errors.email} />
-                <Field label="Teléfono*" name="phone" error={errors.phone} />
-                <Field label="Ciudad*" name="city" error={errors.city} />
+                <FormSection step="02" title="Tus datos" subtitle="Cómo te localizamos">
+                  <Field label="Nombre*" name="name" error={errors.name} />
+                  <Field label="Email*" name="email" type="email" error={errors.email} />
+                  <Field label="Teléfono*" name="phone" error={errors.phone} />
+                  <Field label="Ciudad*" name="city" error={errors.city} />
+                </FormSection>
 
-                {type === "general" && (
-                  <>
-                    <Field label="Empresa*" name="company" error={errors.company} />
-                    <SelectField
-                      label="Servicio interesado*"
-                      name="service"
-                      error={errors.service}
-                      options={["Producción audiovisual", "Servicios técnicos", "Desarrollo web", "Branding", "Empresa Amiga / partner", "Otro"]}
-                    />
-                    <Field label="Fecha aproximada" name="date" placeholder="MM/AAAA" />
-                    <Field label="Presupuesto" name="budget" placeholder="€" />
-                  </>
-                )}
+                <FormSection step="03" title={`Detalles · ${currentTab.label}`} subtitle={currentTab.sub}>
+                  {type === "general" && (
+                    <>
+                      <Field label="Empresa*" name="company" error={errors.company} />
+                      <SelectField
+                        label="Servicio interesado*"
+                        name="service"
+                        error={errors.service}
+                        options={["Producción audiovisual", "Servicios técnicos", "Desarrollo web", "Branding", "Empresa Amiga / partner", "Otro"]}
+                      />
+                      <Field label="Fecha aproximada" name="date" placeholder="MM/AAAA" />
+                      <Field label="Presupuesto" name="budget" placeholder="€" />
+                    </>
+                  )}
 
-                {type === "booking" && (
-                  <>
-                    <Field label="Tipo de evento*" name="eventType" placeholder="Festival, club, privado…" error={errors.eventType} />
-                    <Field label="Fecha del evento*" name="eventDate" placeholder="DD/MM/AAAA" error={errors.eventDate} />
-                    <Field label="Ciudad del evento*" name="eventCity" error={errors.eventCity} />
-                    <Field label="Nº de asistentes*" name="attendees" placeholder="500" error={errors.attendees} />
-                    <Field label="Tipo de artista*" name="artistType" placeholder="DJ, banda, solista…" error={errors.artistType} />
-                    <Field label="Presupuesto*" name="budget" placeholder="€" error={errors.budget} />
-                    <TextareaField label="Necesidades técnicas" name="technicalNeeds" rows={4} full />
-                  </>
-                )}
+                  {type === "booking" && (
+                    <>
+                      <Field label="Tipo de evento*" name="eventType" placeholder="Festival, club, privado…" error={errors.eventType} />
+                      <Field label="Fecha del evento*" name="eventDate" placeholder="DD/MM/AAAA" error={errors.eventDate} />
+                      <Field label="Ciudad del evento*" name="eventCity" error={errors.eventCity} />
+                      <Field label="Nº de asistentes*" name="attendees" placeholder="500" error={errors.attendees} />
+                      <Field label="Tipo de artista*" name="artistType" placeholder="DJ, banda, solista…" error={errors.artistType} />
+                      <Field label="Presupuesto*" name="budget" placeholder="€" error={errors.budget} />
+                      <TextareaField label="Necesidades técnicas" name="technicalNeeds" rows={4} full />
+                    </>
+                  )}
 
-                {type === "artist" && (
-                  <>
-                    <Field label="Nombre artístico*" name="artistName" error={errors.artistName} />
-                    <Field label="Redes sociales*" name="socials" placeholder="@instagram, @tiktok…" error={errors.socials} />
-                    <Field label="Links de música*" name="musicLinks" placeholder="Spotify, SoundCloud, YouTube…" full error={errors.musicLinks} />
-                    <Field label="Tipo de proyecto*" name="projectType" placeholder="EP, single, álbum, live…" error={errors.projectType} />
-                    <SelectField
-                      label="Servicio solicitado*"
-                      name="serviceRequested"
-                      error={errors.serviceRequested}
-                      options={["Sello discográfico (BCAPSTUDIO)", "Management", "Producción musical", "Distribución", "Booking", "Otro"]}
-                    />
-                  </>
-                )}
+                  {type === "artist" && (
+                    <>
+                      <Field label="Nombre artístico*" name="artistName" error={errors.artistName} />
+                      <Field label="Redes sociales*" name="socials" placeholder="@instagram, @tiktok…" error={errors.socials} />
+                      <Field label="Links de música*" name="musicLinks" placeholder="Spotify, SoundCloud, YouTube…" full error={errors.musicLinks} />
+                      <Field label="Tipo de proyecto*" name="projectType" placeholder="EP, single, álbum, live…" error={errors.projectType} />
+                      <SelectField
+                        label="Servicio solicitado*"
+                        name="serviceRequested"
+                        error={errors.serviceRequested}
+                        options={["Sello discográfico (BCAPSTUDIO)", "Management", "Producción musical", "Distribución", "Booking", "Otro"]}
+                      />
+                    </>
+                  )}
+                </FormSection>
 
-                <TextareaField label="Mensaje*" name="message" rows={5} full error={errors.message} />
+                <FormSection step="04" title="Tu mensaje" subtitle="Cuanto más detalle, mejor propuesta" last>
+                  <TextareaField label="Mensaje*" name="message" rows={5} full error={errors.message} />
+                </FormSection>
 
-                <div className="md:col-span-2 flex items-center justify-between gap-4 flex-wrap pt-2">
-                  <p className="text-xs text-bone/60">Te respondemos en menos de 48h hábiles.</p>
+                <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between gap-4 flex-wrap">
+                  <p className="text-xs text-bone/55 max-w-xs leading-relaxed">
+                    Al enviar aceptas que tratemos tus datos para responderte. Te respondemos en &lt; 48h hábiles.
+                  </p>
                   <button
                     type="submit"
                     disabled={sending}
-                    className="btn btn-accent disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="btn btn-accent disabled:opacity-60 disabled:cursor-not-allowed group"
                   >
-                    {sending ? "Enviando…" : "Enviar propuesta →"}
+                    {sending ? "Enviando…" : "Enviar propuesta"}
+                    <span className="transition-transform group-hover:translate-x-1">→</span>
                   </button>
                 </div>
               </form>
@@ -236,6 +273,39 @@ function ContactoPage() {
         </div>
       </section>
     </>
+  );
+}
+
+/* ---------- Sidebar item ---------- */
+
+function ContactItem({ label, value, href }: { label: string; value: string; href: string }) {
+  return (
+    <div>
+      <p className="text-[10px] uppercase tracking-[0.22em] text-bcaps-green">{label}</p>
+      <a href={href} className="mt-2 inline-flex items-center gap-2 text-bone text-lg hover:text-bcaps-green transition-colors group">
+        {value}
+        <span className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all">→</span>
+      </a>
+    </div>
+  );
+}
+
+/* ---------- Form section ---------- */
+
+function FormSection({
+  step, title, subtitle, children, last,
+}: { step: string; title: string; subtitle?: string; children: React.ReactNode; last?: boolean }) {
+  return (
+    <div className={last ? "" : "pb-7 mb-7 border-b border-white/10"}>
+      <div className="flex items-baseline gap-3 mb-5">
+        <span className="text-[10px] tabular-nums tracking-[0.22em] text-bcaps-green">{step}</span>
+        <div>
+          <p className="display text-base md:text-lg text-bone">{title}</p>
+          {subtitle && <p className="text-[11px] uppercase tracking-[0.18em] text-bone/50 mt-1">{subtitle}</p>}
+        </div>
+      </div>
+      <div className="grid md:grid-cols-2 gap-4 md:gap-5">{children}</div>
+    </div>
   );
 }
 
