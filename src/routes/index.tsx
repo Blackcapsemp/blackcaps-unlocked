@@ -200,7 +200,7 @@ function Home() {
       <section className="relative py-24 md:py-36 px-4 md:px-8">
         <div className="mx-auto max-w-[1600px]">
           <span className="sticker">05 — Nuestra visión</span>
-          <h2 className="display text-5xl md:text-8xl mt-6 max-w-5xl">
+          <h2 className="display text-2xl md:text-4xl lg:text-5xl mt-6 max-w-4xl leading-tight">
             CREEMOS QUE EL FUTURO DE LOS <span className="text-bcaps-green">EVENTOS, LA MÚSICA Y LA CULTURA</span> PASA POR UNIR CREATIVIDAD, TECNOLOGÍA Y COMUNIDAD.
           </h2>
           <div className="mt-16 grid md:grid-cols-3 gap-8">
