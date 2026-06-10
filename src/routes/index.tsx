@@ -44,9 +44,6 @@ function Home() {
           <span className="stamp text-xs">B2B · Audiovisual · Events</span>
         </div>
 
-        <div className="vertical-text absolute right-4 md:right-8 top-1/3 z-10 text-bone/70">
-          SINCE 2020 — EVENTS · EXPERIENCE · BOOKING
-        </div>
 
         <div className="relative z-10 mx-auto max-w-[1600px] px-4 md:px-8 pt-44 md:pt-56 pb-24">
           <h1 className="display text-[18vw] md:text-[14vw] leading-[0.85]">
