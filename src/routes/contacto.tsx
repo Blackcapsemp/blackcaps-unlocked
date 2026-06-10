@@ -114,11 +114,11 @@ function ContactoPage() {
             <span className="sticker" style={{ borderColor: "var(--bcaps-green)", color: "var(--bcaps-green)" }}>B2B · Booking · Artists</span>
             <span className="text-xs uppercase tracking-[0.2em] text-bone/50">Respuesta &lt; 48h</span>
           </div>
-          <h1 className="display text-[12vw] md:text-[8.5vw] leading-[0.88] mt-2 max-w-[14ch]">
+          <h1 className="display text-[9vw] md:text-[8.5vw] leading-[0.9] mt-2 max-w-[14ch]">
             Hablemos de <span className="text-gradient-bcaps">tu próximo</span> proyecto.
           </h1>
-          <p className="mt-6 max-w-xl text-base md:text-lg text-bone/75 leading-relaxed">
-            Cuéntanos qué necesitas y te respondemos en menos de 48h hábiles desde nuestra oficina central.
+          <p className="mt-6 max-w-xl text-sm md:text-lg text-bone/75 leading-relaxed">
+            Cuéntanos qué necesitas — propuesta creativa o petición de presupuesto — y te respondemos en menos de 48h hábiles.
           </p>
         </div>
       </section>
@@ -156,12 +156,6 @@ function ContactoPage() {
 
           {/* Form */}
           <div className="lg:col-span-8">
-            {/* Step indicator */}
-            <div className="flex items-center gap-3 mb-4 text-[10px] uppercase tracking-[0.22em] text-bone/55">
-              <span>Paso 01</span>
-              <span className="h-px flex-1 bg-white/10" />
-              <span>Tipo de solicitud · {String(stepIndex).padStart(2, "0")}/03</span>
-            </div>
 
             {/* Tabs */}
             <div className="grid sm:grid-cols-3 gap-2 mb-8">
@@ -174,12 +168,11 @@ function ContactoPage() {
                     onClick={() => { setType(t.id); setErrors({}); setSent(false); }}
                     className={`group relative text-left rounded-xl border p-4 transition-all duration-300 hover:-translate-y-0.5 ${active ? "border-bcaps-green bg-bcaps-green/[0.07] glow-green" : "border-white/10 bg-card/60 hover:border-white/25"}`}
                   >
-                    <div className="flex items-center justify-between mb-3">
-                      <span className={`text-[10px] tabular-nums tracking-[0.2em] ${active ? "text-bcaps-green" : "text-bone/40"}`}>0{i + 1}</span>
+                    <div className="flex items-center mb-3">
                       <span className={`w-1.5 h-1.5 rounded-full ${active ? "bg-bcaps-green" : "bg-bone/20"}`} />
                     </div>
-                    <p className={`text-sm md:text-[15px] font-semibold leading-snug ${active ? "text-bone" : "text-bone/90"}`}>{t.label}</p>
-                    <p className="text-[10px] uppercase tracking-[0.18em] text-bone/55 mt-2">{t.sub}</p>
+                    <p className={`text-[13px] md:text-[15px] font-semibold leading-snug ${active ? "text-bone" : "text-bone/90"}`}>{t.label}</p>
+                    <p className="text-[9px] md:text-[10px] uppercase tracking-[0.18em] text-bone/55 mt-2">{t.sub}</p>
                   </button>
                 );
               })}
@@ -256,14 +249,14 @@ function ContactoPage() {
 
                 <div className="mt-8 pt-6 border-t border-white/10 flex items-center justify-between gap-4 flex-wrap">
                   <p className="text-xs text-bone/55 max-w-xs leading-relaxed">
-                    Al enviar aceptas que tratemos tus datos para responderte. Te respondemos en &lt; 48h hábiles.
+                    Envíanos tu propuesta o pide un presupuesto sin compromiso. Respondemos en &lt; 48h hábiles.
                   </p>
                   <button
                     type="submit"
                     disabled={sending}
                     className="btn btn-accent disabled:opacity-60 disabled:cursor-not-allowed group"
                   >
-                    {sending ? "Enviando…" : "Enviar propuesta"}
+                    {sending ? "Enviando…" : "Enviar propuesta / pedir presupuesto"}
                     <span className="transition-transform group-hover:translate-x-1">→</span>
                   </button>
                 </div>
