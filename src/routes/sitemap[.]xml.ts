@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
 
-const BASE_URL = "https://blackcaps-unlocked.lovable.app";
+const BASE_URL = "https://blackcaps.es";
 
 interface SitemapEntry {
   path: string;
@@ -16,10 +16,12 @@ export const Route = createFileRoute("/sitemap.xml")({
         const entries: SitemapEntry[] = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/servicios", changefreq: "monthly", priority: "0.8" },
-          { path: "/servicios/video-corporativo", changefreq: "monthly", priority: "0.8" },
-          { path: "/booking", changefreq: "monthly", priority: "0.8" },
-          { path: "/bcapstudio", changefreq: "monthly", priority: "0.8" },
+          { path: "/sobre-nosotros", changefreq: "monthly", priority: "0.8" },
+          { path: "/produccion-audiovisual", changefreq: "monthly", priority: "0.8" },
           { path: "/contacto", changefreq: "monthly", priority: "0.6" },
+          { path: "/bcapstudio", changefreq: "monthly", priority: "0.8" },
+          { path: "/booking", changefreq: "monthly", priority: "0.7" },
+          { path: "/servicios/video-corporativo", changefreq: "monthly", priority: "0.7" },
         ];
 
         const urls = entries.map((e) =>

@@ -12,7 +12,11 @@ export const Route = createFileRoute("/booking")({
       { name: "description", content: "Booking de artistas para eventos, festivales, showcases y marcas. Urbano, electrónica, DJ, rap, pop, live set y experimental." },
       { property: "og:title", content: "Booking — BLACKCAPS EXPERIENCE" },
       { property: "og:description", content: "Conectamos artistas, marcas, festivales y experiencias culturales." },
+      { property: "og:url", content: "https://blackcaps.es/booking" },
       { property: "og:image", content: crowd },
+    ],
+    links: [
+      { rel: "canonical", href: "https://blackcaps.es/booking" },
     ],
   }),
   component: BookingPage,
