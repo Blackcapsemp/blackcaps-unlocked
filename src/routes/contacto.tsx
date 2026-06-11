@@ -354,6 +354,7 @@ function SelectField({
       <Label>{label}</Label>
       <select
         name={name}
+        aria-label={label}
         defaultValue=""
         className={`w-full bg-white/[0.03] border rounded-lg px-4 py-3 mt-2 text-bone outline-none transition-all focus:bg-white/[0.06] focus:ring-2 focus:ring-bcaps-green/20 ${error ? "border-destructive" : "border-white/10 focus:border-bcaps-green/60"}`}
       >
