@@ -11,10 +11,10 @@ export const Route = createFileRoute("/contacto")({
       { name: "description", content: "Contacta con Blackcaps Experience: contacto general, booking de artistas o aplicación a BCAPSTUDIO. Madrid · Valencia · Barcelona." },
       { property: "og:title", content: "Contacto — BLACKCAPS EXPERIENCE" },
       { property: "og:description", content: "¿Creamos algo juntos? Cuéntanos qué necesitas." },
-      { property: "og:url", content: "https://blackcaps-unlocked.lovable.app/contacto" },
+      { property: "og:url", content: "https://blackcaps.es/contacto" },
     ],
     links: [
-      { rel: "canonical", href: "https://blackcaps-unlocked.lovable.app/contacto" },
+      { rel: "canonical", href: "https://blackcaps.es/contacto" },
     ],
     scripts: [
       {
@@ -23,7 +23,7 @@ export const Route = createFileRoute("/contacto")({
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
           name: "BLACKCAPS EXPERIENCE",
-          url: "https://blackcaps-unlocked.lovable.app/contacto",
+          url: "https://blackcaps.es/contacto",
           email: "info@blackcaps.es",
           telephone: ["+34686068968", "+34722129948"],
           areaServed: ["Madrid", "Valencia", "Barcelona", "España"],

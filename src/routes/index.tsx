@@ -13,10 +13,10 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Productora creativa B2B en Madrid, Valencia y Barcelona. Audiovisual, técnica de eventos, booking artístico, digital y sello BCAPSTUDIO.EMP." },
       { property: "og:title", content: "BLACKCAPS EXPERIENCE — Productora audiovisual y eventos" },
       { property: "og:description", content: "Productora creativa B2B en Madrid, Valencia y Barcelona. Audiovisual, eventos, booking y sello BCAPSTUDIO.EMP." },
-      { property: "og:url", content: "https://blackcaps-unlocked.lovable.app/" },
+      { property: "og:url", content: "https://blackcaps.es/" },
     ],
     links: [
-      { rel: "canonical", href: "https://blackcaps-unlocked.lovable.app/" },
+      { rel: "canonical", href: "https://blackcaps.es/" },
     ],
   }),
   component: Home,

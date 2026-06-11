@@ -8,10 +8,10 @@ export const Route = createFileRoute("/servicios/video-corporativo")({
       { name: "description", content: "Producción de vídeos corporativos para empresas en Madrid: storytelling de marca, vídeos institucionales, casos de éxito, recruitment y campañas con calidad técnica de cine." },
       { property: "og:title", content: "Vídeos corporativos en Madrid — BLACKCAPS EXPERIENCE" },
       { property: "og:description", content: "Productora audiovisual especializada en vídeos corporativos para empresas. Storytelling, calidad técnica y entrega 360º." },
-      { property: "og:url", content: "https://blackcaps-unlocked.lovable.app/servicios/video-corporativo" },
+      { property: "og:url", content: "https://blackcaps.es/servicios/video-corporativo" },
     ],
     links: [
-      { rel: "canonical", href: "https://blackcaps-unlocked.lovable.app/servicios/video-corporativo" },
+      { rel: "canonical", href: "https://blackcaps.es/servicios/video-corporativo" },
     ],
     scripts: [
       {
@@ -24,7 +24,7 @@ export const Route = createFileRoute("/servicios/video-corporativo")({
           provider: {
             "@type": "Organization",
             name: "BLACKCAPS EXPERIENCE",
-            url: "https://blackcaps-unlocked.lovable.app",
+            url: "https://blackcaps.es",
           },
           areaServed: [
             { "@type": "City", name: "Madrid" },
