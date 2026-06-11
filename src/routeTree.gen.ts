@@ -15,6 +15,7 @@ import { Route as ContactoRouteImport } from './routes/contacto'
 import { Route as BookingRouteImport } from './routes/booking'
 import { Route as BcapstudioRouteImport } from './routes/bcapstudio'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServiciosVideoCorporativoRouteImport } from './routes/servicios.video-corporativo'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -46,22 +47,30 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServiciosVideoCorporativoRoute =
+  ServiciosVideoCorporativoRouteImport.update({
+    id: '/video-corporativo',
+    path: '/video-corporativo',
+    getParentRoute: () => ServiciosRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/bcapstudio': typeof BcapstudioRoute
   '/booking': typeof BookingRoute
   '/contacto': typeof ContactoRoute
-  '/servicios': typeof ServiciosRoute
+  '/servicios': typeof ServiciosRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/servicios/video-corporativo': typeof ServiciosVideoCorporativoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/bcapstudio': typeof BcapstudioRoute
   '/booking': typeof BookingRoute
   '/contacto': typeof ContactoRoute
-  '/servicios': typeof ServiciosRoute
+  '/servicios': typeof ServiciosRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/servicios/video-corporativo': typeof ServiciosVideoCorporativoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -69,8 +78,9 @@ export interface FileRoutesById {
   '/bcapstudio': typeof BcapstudioRoute
   '/booking': typeof BookingRoute
   '/contacto': typeof ContactoRoute
-  '/servicios': typeof ServiciosRoute
+  '/servicios': typeof ServiciosRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/servicios/video-corporativo': typeof ServiciosVideoCorporativoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,6 +91,7 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/servicios'
     | '/sitemap.xml'
+    | '/servicios/video-corporativo'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -89,6 +100,7 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/servicios'
     | '/sitemap.xml'
+    | '/servicios/video-corporativo'
   id:
     | '__root__'
     | '/'
@@ -97,6 +109,7 @@ export interface FileRouteTypes {
     | '/contacto'
     | '/servicios'
     | '/sitemap.xml'
+    | '/servicios/video-corporativo'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -104,7 +117,7 @@ export interface RootRouteChildren {
   BcapstudioRoute: typeof BcapstudioRoute
   BookingRoute: typeof BookingRoute
   ContactoRoute: typeof ContactoRoute
-  ServiciosRoute: typeof ServiciosRoute
+  ServiciosRoute: typeof ServiciosRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
@@ -152,15 +165,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/servicios/video-corporativo': {
+      id: '/servicios/video-corporativo'
+      path: '/video-corporativo'
+      fullPath: '/servicios/video-corporativo'
+      preLoaderRoute: typeof ServiciosVideoCorporativoRouteImport
+      parentRoute: typeof ServiciosRoute
+    }
   }
 }
+
+interface ServiciosRouteChildren {
+  ServiciosVideoCorporativoRoute: typeof ServiciosVideoCorporativoRoute
+}
+
+const ServiciosRouteChildren: ServiciosRouteChildren = {
+  ServiciosVideoCorporativoRoute: ServiciosVideoCorporativoRoute,
+}
+
+const ServiciosRouteWithChildren = ServiciosRoute._addFileChildren(
+  ServiciosRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BcapstudioRoute: BcapstudioRoute,
   BookingRoute: BookingRoute,
   ContactoRoute: ContactoRoute,
-  ServiciosRoute: ServiciosRoute,
+  ServiciosRoute: ServiciosRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
