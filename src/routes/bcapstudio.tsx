@@ -8,7 +8,11 @@ export const Route = createFileRoute("/bcapstudio")({
       { name: "description", content: "Sello creativo 360º de Blackcaps. Distribución digital, branding, videoclips, estrategia TikTok/IG, royalties y desarrollo completo de artistas." },
       { property: "og:title", content: "BCAPSTUDIO.EMP" },
       { property: "og:description", content: "Sello creativo 360º para artistas, lanzamientos y estrategia digital." },
+      { property: "og:url", content: "https://blackcaps.es/bcapstudio" },
       { property: "og:image", content: bg },
+    ],
+    links: [
+      { rel: "canonical", href: "https://blackcaps.es/bcapstudio" },
     ],
   }),
   component: BcapPage,
