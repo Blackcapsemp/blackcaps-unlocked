@@ -9,6 +9,33 @@ export const Route = createFileRoute("/servicios")({
       { name: "description", content: "Producción audiovisual, servicios técnicos para eventos, visuales, booking, desarrollo web y colaboraciones B2B para agencias e instituciones." },
       { property: "og:title", content: "Servicios — BLACKCAPS EXPERIENCE" },
       { property: "og:description", content: "Servicios modulares para eventos, marcas, artistas y proyectos culturales." },
+      { property: "og:url", content: "https://blackcaps-unlocked.lovable.app/servicios" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://blackcaps-unlocked.lovable.app/servicios" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          itemListElement: [
+            "Producción audiovisual",
+            "Servicios técnicos para eventos",
+            "Visuales y contenido creativo",
+            "Booking y apoyo a artistas",
+            "Desarrollo web y soluciones digitales",
+            "Colaboraciones para agencias",
+          ].map((name, i) => ({
+            "@type": "Service",
+            position: i + 1,
+            name,
+            provider: { "@type": "Organization", name: "BLACKCAPS EXPERIENCE" },
+            areaServed: "ES",
+          })),
+        }),
+      },
     ],
   }),
   component: ServiciosPage,

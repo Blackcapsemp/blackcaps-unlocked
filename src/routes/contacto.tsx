@@ -11,6 +11,31 @@ export const Route = createFileRoute("/contacto")({
       { name: "description", content: "Contacta con Blackcaps Experience: contacto general, booking de artistas o aplicación a BCAPSTUDIO. Madrid · Valencia · Barcelona." },
       { property: "og:title", content: "Contacto — BLACKCAPS EXPERIENCE" },
       { property: "og:description", content: "¿Creamos algo juntos? Cuéntanos qué necesitas." },
+      { property: "og:url", content: "https://blackcaps-unlocked.lovable.app/contacto" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://blackcaps-unlocked.lovable.app/contacto" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "BLACKCAPS EXPERIENCE",
+          url: "https://blackcaps-unlocked.lovable.app/contacto",
+          email: "info@blackcaps.es",
+          telephone: ["+34686068968", "+34722129948"],
+          areaServed: ["Madrid", "Valencia", "Barcelona", "España"],
+          address: [
+            { "@type": "PostalAddress", addressLocality: "Madrid", addressCountry: "ES" },
+            { "@type": "PostalAddress", addressLocality: "Valencia", addressCountry: "ES" },
+            { "@type": "PostalAddress", addressLocality: "Barcelona", addressCountry: "ES" },
+          ],
+          openingHours: "Mo-Fr 10:00-19:00",
+          sameAs: ["https://instagram.com/Blackcaps.emp"],
+        }),
+      },
     ],
   }),
   component: ContactoPage,
@@ -354,6 +379,7 @@ function SelectField({
       <Label>{label}</Label>
       <select
         name={name}
+        aria-label={label}
         defaultValue=""
         className={`w-full bg-white/[0.03] border rounded-lg px-4 py-3 mt-2 text-bone outline-none transition-all focus:bg-white/[0.06] focus:ring-2 focus:ring-bcaps-green/20 ${error ? "border-destructive" : "border-white/10 focus:border-bcaps-green/60"}`}
       >

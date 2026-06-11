@@ -9,8 +9,14 @@ import { Marquee } from "@/components/Marquee";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "BLACKCAPS EXPERIENCE — Productora audiovisual, eventos y sello musical" },
-      { name: "description", content: "Productora creativa B2B con sede en Madrid, Valencia y Barcelona. Producción audiovisual, servicios técnicos para eventos, booking artístico, soluciones digitales y sello discográfico 360º BCAPSTUDIO.EMP." },
+      { title: "Inicio — BLACKCAPS EXPERIENCE · Audiovisual & eventos" },
+      { name: "description", content: "Productora creativa B2B en Madrid, Valencia y Barcelona. Audiovisual, técnica de eventos, booking artístico, digital y sello BCAPSTUDIO.EMP." },
+      { property: "og:title", content: "BLACKCAPS EXPERIENCE — Productora audiovisual y eventos" },
+      { property: "og:description", content: "Productora creativa B2B en Madrid, Valencia y Barcelona. Audiovisual, eventos, booking y sello BCAPSTUDIO.EMP." },
+      { property: "og:url", content: "https://blackcaps-unlocked.lovable.app/" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://blackcaps-unlocked.lovable.app/" },
     ],
   }),
   component: Home,
@@ -50,6 +56,7 @@ function Home() {
             <span className="reveal-mask"><span>BLACK</span></span>
             <span className="reveal-mask block stroke-text glitch" style={{ animationDelay: "200ms" }}><span>CAPS</span></span>
             <span className="reveal-mask block text-gradient-bcaps" style={{ animationDelay: "400ms" }}><span>EXPERIENCE</span></span>
+            <span className="sr-only"> — Productora Audiovisual y Eventos</span>
           </h1>
 
           <div className="mt-10 grid md:grid-cols-3 gap-6 items-end">
@@ -89,9 +96,9 @@ function Home() {
 
           <div className="md:col-span-7 relative">
             <div className="grid grid-cols-2 gap-4">
-              <img src={djBooth} alt="DJ booth" width={1200} height={1500} loading="lazy" className="rounded-2xl object-cover w-full h-72 md:h-96" />
-              <img src={camera} alt="Camera detail" width={1200} height={1500} loading="lazy" className="rounded-2xl object-cover w-full h-72 md:h-96 mt-12" />
-              <img src={artist} alt="Artist portrait" width={1024} height={1280} loading="lazy" className="col-span-2 rounded-2xl object-cover w-full h-72 md:h-[28rem]" />
+              <img src={djBooth} alt="Cabina de DJ Blackcaps en directo" width={1200} height={1500} loading="lazy" className="rounded-2xl object-cover w-full h-72 md:h-96" />
+              <img src={camera} alt="Detalle de cámara durante rodaje audiovisual" width={1200} height={1500} loading="lazy" className="rounded-2xl object-cover w-full h-72 md:h-96 mt-12" />
+              <img src={artist} alt="Retrato de artista musical en escenario" width={1024} height={1280} loading="lazy" className="col-span-2 rounded-2xl object-cover w-full h-72 md:h-[28rem]" />
             </div>
             <div className="absolute -top-6 -right-2 stamp text-bcaps-green rotate-6">Since 2020</div>
           </div>
@@ -154,7 +161,7 @@ function Home() {
             </div>
           </div>
           <div className="relative">
-            <img src={artist} alt="Artist" width={1024} height={1280} loading="lazy" className="rounded-3xl w-full h-[32rem] object-cover" />
+            <img src={artist} alt="Retrato de artista musical" width={1024} height={1280} loading="lazy" className="rounded-3xl w-full h-[32rem] object-cover" />
             <div className="absolute -bottom-4 -left-4 bg-bone text-ink p-5 rounded-2xl max-w-[14rem] rotate-[-3deg]">
               <p className="display text-sm leading-tight">FESTIVAL POSTER ENERGY</p>
               <p className="text-[10px] mt-2 uppercase tracking-[0.18em]">Live · 2026</p>

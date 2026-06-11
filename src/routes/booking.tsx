@@ -90,7 +90,7 @@ function BookingPage() {
           <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
             {list.map((a) => (
               <article key={a.name} className="group relative overflow-hidden rounded-2xl bg-card aspect-[4/5]">
-                <img src={a.img} alt={a.name} width={1024} height={1280} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <img src={a.img} alt={`Perfil de ${a.name} — artista de ${a.style} en ${a.city}`} width={1024} height={1280} loading="lazy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-transparent" />
                 <div className="absolute top-3 left-3 sticker">{a.style}</div>
                 <div className="absolute inset-x-4 bottom-4">
