@@ -35,7 +35,7 @@ function SobreNosotrosPage() {
         <div className="relative mx-auto max-w-[1600px]">
           <span className="sticker mb-6">Quiénes somos</span>
           <h1 className="display text-6xl md:text-[10rem] leading-[0.85] mt-6">
-            SOBRE<br /><span className="stroke-text">NOSOTROS</span>
+            SOBRE<br />NOSOTROS
           </h1>
           <p className="mt-8 max-w-2xl text-lg text-bone/80">
             BLACKCAPS EXPERIENCE es una productora creativa B2B fundada en 2020. Trabajamos desde Madrid, Valencia y Barcelona uniendo audiovisual, técnica de eventos, booking artístico y soluciones digitales.
