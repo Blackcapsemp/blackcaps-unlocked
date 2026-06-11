@@ -6,6 +6,7 @@
 
 - [Inicio](/): Visión general de la productora y líneas de negocio.
 - [Servicios](/servicios): Audiovisual, técnica de eventos, visuales, booking, desarrollo web y programa Empresa Amiga.
+- [Vídeos corporativos](/servicios/video-corporativo): Producción de vídeos corporativos para empresas en Madrid.
 - [Booking](/booking): Booking de artistas para festivales, showcases, eventos privados y marcas.
 - [BCAPSTUDIO.EMP](/bcapstudio): Sello creativo 360º — distribución, branding, videoclips y estrategia digital.
 - [Contacto](/contacto): Contacto general, booking y aplicación al sello.
