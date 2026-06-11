@@ -20,7 +20,7 @@ export function Footer() {
           <ul className="space-y-2 text-sm">
             <li>info@blackcaps.es</li>
             <li>@Blackcaps.emp</li>
-            <li>www.blackcaps.es</li>
+            <li>blackcaps.es</li>
             <li>686 06 88 968 · 722 12 99 48</li>
           </ul>
         </div>
