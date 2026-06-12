@@ -17,13 +17,13 @@ export function Nav() {
   return (
     <header className="fixed top-0 inset-x-0 z-50">
       <div className="mx-auto max-w-[1600px] px-4 md:px-8 py-4 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-3 group" aria-label="BLACKCAPS Experience — Inicio">
+        <Link to="/" className="flex items-center group -my-2" aria-label="BLACKCAPS Experience — Inicio">
           <img
             src={bcapsLogo.url}
             alt="BLACKCAPS Experience logo"
-            width={160}
-            height={46}
-            className="h-9 md:h-10 w-auto object-contain"
+            width={320}
+            height={92}
+            className="h-14 md:h-20 lg:h-24 w-auto object-contain"
           />
         </Link>
 
