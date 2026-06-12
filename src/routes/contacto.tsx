@@ -300,6 +300,79 @@ function ContactoPage() {
                 </p>
                 <button onClick={() => setSent(false)} className="btn btn-ghost mt-8">Enviar otra solicitud →</button>
               </div>
+            ) : !type ? (
+              <div className="mt-10 rounded-2xl border border-white/10 bg-card/40 backdrop-blur p-6 md:p-8">
+                <div className="flex items-baseline gap-3 mb-5">
+                  <span className="text-[10px] tabular-nums tracking-[0.22em] text-bcaps-green">02</span>
+                  <div>
+                    <p className="display text-base md:text-lg text-bone">¿Prefieres un mensaje rápido?</p>
+                    <p className="text-[11px] uppercase tracking-[0.18em] text-bone/50 mt-1">Formulario general · sin elegir categoría</p>
+                  </div>
+                </div>
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    setErrors({});
+                    const fd = new FormData(e.currentTarget);
+                    const raw = Object.fromEntries(fd.entries()) as Record<string, string>;
+                    const quickSchema = baseSchema.pick({ name: true, email: true, phone: true, city: true, message: true });
+                    const parsed = quickSchema.safeParse(raw);
+                    if (!parsed.success) {
+                      const errs: Record<string, string> = {};
+                      for (const issue of parsed.error.issues) {
+                        const k = String(issue.path[0] ?? "");
+                        if (k && !errs[k]) errs[k] = issue.message;
+                      }
+                      setErrors(errs);
+                      toast.error("Revisa los campos marcados");
+                      return;
+                    }
+                    setSending(true);
+                    supabase.functions.invoke("send-contact-email", {
+                      body: {
+                        name: parsed.data.name,
+                        email: parsed.data.email,
+                        phone: parsed.data.phone,
+                        service: "Contacto rápido",
+                        message: parsed.data.message,
+                        page: typeof window !== "undefined" ? window.location.pathname : "/contacto",
+                        request_type: "general",
+                        city: parsed.data.city,
+                        extra: {},
+                      },
+                    }).then(({ data, error }) => {
+                      setSending(false);
+                      if (error || !data?.success) {
+                        toast.error(`Error: ${error?.message ?? data?.error ?? "respuesta inválida"}`);
+                        return;
+                      }
+                      setSent(true);
+                      toast.success("Solicitud enviada. Te respondemos en <48h.");
+                      (e.target as HTMLFormElement).reset();
+                    }).catch((err) => {
+                      setSending(false);
+                      toast.error(`Error: ${err instanceof Error ? err.message : String(err)}`);
+                    });
+                  }}
+                >
+                  <div className="grid md:grid-cols-2 gap-4 md:gap-5">
+                    <Field label="Nombre*" name="name" error={errors.name} />
+                    <Field label="Email*" name="email" type="email" error={errors.email} />
+                    <Field label="Teléfono*" name="phone" error={errors.phone} />
+                    <Field label="Ciudad*" name="city" error={errors.city} />
+                    <TextareaField label="Mensaje*" name="message" rows={4} full error={errors.message} />
+                  </div>
+                  <div className="mt-6 pt-5 border-t border-white/10 flex items-center justify-between gap-4 flex-wrap">
+                    <p className="text-xs text-bone/55 max-w-xs leading-relaxed">
+                      ¿Necesitas más detalle? Elige una categoría arriba para un formulario específico.
+                    </p>
+                    <button type="submit" disabled={sending} className="btn btn-accent disabled:opacity-60 disabled:cursor-not-allowed group">
+                      {sending ? "Enviando…" : "Enviar mensaje"}
+                      <span className="transition-transform group-hover:translate-x-1">→</span>
+                    </button>
+                  </div>
+                </form>
+              </div>
             ) : (
               <form
                 key={type}
