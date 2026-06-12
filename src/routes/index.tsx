@@ -17,6 +17,7 @@ export const Route = createFileRoute("/")({
     ],
     links: [
       { rel: "canonical", href: "https://blackcaps.es/" },
+      { rel: "preload", as: "image", href: heroStage, fetchpriority: "high" },
     ],
   }),
   component: Home,
