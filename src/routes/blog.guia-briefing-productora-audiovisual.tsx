@@ -14,6 +14,9 @@ export const Route = createFileRoute("/blog/guia-briefing-productora-audiovisual
       { property: "og:description", content: DESC },
       { property: "og:url", content: URL },
       { property: "og:type", content: "article" },
+      { property: "og:image", content: OG_IMAGE },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: OG_IMAGE },
     ],
     links: [{ rel: "canonical", href: URL }],
     scripts: [
