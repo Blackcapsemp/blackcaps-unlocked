@@ -5,7 +5,7 @@ export const Route = createFileRoute("/servicios/video-corporativo")({
   head: () => ({
     meta: [
       { title: "Vídeos corporativos en Madrid — BLACKCAPS EXPERIENCE" },
-      { name: "description", content: "Producción de vídeos corporativos para empresas en Madrid: storytelling de marca, vídeos institucionales, casos de éxito, recruitment y campañas con calidad técnica de cine." },
+      { name: "description", content: "Vídeos corporativos en Madrid: storytelling de marca, vídeos institucionales, casos de éxito, recruitment y campañas con calidad técnica de cine." },
       { property: "og:title", content: "Vídeos corporativos en Madrid — BLACKCAPS EXPERIENCE" },
       { property: "og:description", content: "Productora audiovisual especializada en vídeos corporativos para empresas. Storytelling, calidad técnica y entrega 360º." },
       { property: "og:url", content: "https://blackcaps.es/servicios/video-corporativo" },
