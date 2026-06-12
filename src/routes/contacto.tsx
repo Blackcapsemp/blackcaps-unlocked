@@ -108,21 +108,38 @@ function ContactoPage() {
     }
 
     const { name, email, phone, city, message, ...rest } = parsed.data as Record<string, string>;
+    const service =
+      (rest as Record<string, string>).service ||
+      (rest as Record<string, string>).serviceRequested ||
+      (rest as Record<string, string>).artistType ||
+      "";
     setSending(true);
-    const { error } = await supabase.from("contact_submissions").insert({
-      request_type: type,
-      name, email, phone, city, message,
-      payload: rest,
-    });
-    setSending(false);
-
-    if (error) {
+    try {
+      const { data, error } = await supabase.functions.invoke("send-contact-email", {
+        body: {
+          request_type: type,
+          name,
+          email,
+          phone,
+          city,
+          message,
+          service,
+          page: typeof window !== "undefined" ? window.location.pathname : "/contacto",
+          extra: rest,
+        },
+      });
+      setSending(false);
+      if (error || !data?.success) {
+        toast.error("No se pudo enviar. Inténtalo de nuevo.");
+        return;
+      }
+      setSent(true);
+      toast.success("Solicitud enviada. Te respondemos en <48h.");
+      (e.target as HTMLFormElement).reset();
+    } catch {
+      setSending(false);
       toast.error("No se pudo enviar. Inténtalo de nuevo.");
-      return;
     }
-    setSent(true);
-    toast.success("Solicitud enviada. Te respondemos en <48h.");
-    (e.target as HTMLFormElement).reset();
   }
 
   const currentTab = TABS.find((t) => t.id === type)!;
