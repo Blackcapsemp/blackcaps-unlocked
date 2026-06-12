@@ -288,7 +288,7 @@ function ContactoPage() {
                   <Field label="Ciudad*" name="city" error={errors.city} />
                 </FormSection>
 
-                <FormSection step="03" title={`Detalles · ${currentTab.label}`} subtitle={currentTab.sub}>
+                <FormSection step="03" title={`Detalles · ${currentTab?.label ?? ""}`} subtitle={currentTab?.sub}>
                   {type === "general" && (
                     <>
                       <Field label="Empresa*" name="company" error={errors.company} />
