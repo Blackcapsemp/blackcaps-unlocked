@@ -11,6 +11,9 @@ export const Route = createFileRoute("/sobre-nosotros")({
       { property: "og:description", content: "Productora creativa B2B. Conoce nuestro equipo, misión y forma de trabajar." },
       { property: "og:url", content: "https://blackcaps.es/sobre-nosotros" },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://blackcaps.es/og/sobre-nosotros.jpg" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "https://blackcaps.es/og/sobre-nosotros.jpg" },
     ],
     links: [
       { rel: "canonical", href: "https://blackcaps.es/sobre-nosotros" },

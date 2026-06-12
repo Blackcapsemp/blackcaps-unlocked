@@ -10,6 +10,9 @@ export const Route = createFileRoute("/produccion-audiovisual")({
       { property: "og:description", content: "Aftermovies, videoclips, branded content, entrevistas y campañas audiovisuales con calidad técnica de cine." },
       { property: "og:url", content: "https://blackcaps.es/produccion-audiovisual" },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://blackcaps.es/og/produccion-audiovisual.jpg" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "https://blackcaps.es/og/produccion-audiovisual.jpg" },
     ],
     links: [
       { rel: "canonical", href: "https://blackcaps.es/produccion-audiovisual" },
