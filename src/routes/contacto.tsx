@@ -160,8 +160,7 @@ function ContactoPage() {
     }
   }
 
-  const currentTab = TABS.find((t) => t.id === type)!;
-  const stepIndex = TABS.findIndex((t) => t.id === type) + 1;
+  const currentTab = TABS.find((t) => t.id === type);
 
   return (
     <>
