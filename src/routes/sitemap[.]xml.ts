@@ -22,6 +22,7 @@ export const Route = createFileRoute("/sitemap.xml")({
           { path: "/bcapstudio", changefreq: "monthly", priority: "0.8" },
           { path: "/booking", changefreq: "monthly", priority: "0.7" },
           { path: "/servicios/video-corporativo", changefreq: "monthly", priority: "0.7" },
+          { path: "/blog/guia-briefing-productora-audiovisual", changefreq: "monthly", priority: "0.7" },
         ];
 
         const urls = entries.map((e) =>
