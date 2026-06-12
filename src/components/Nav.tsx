@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
+import bcapsLogo from "@/assets/bcaps-logo.png.asset.json";
 
 const links = [
   { to: "/", label: "Inicio" },
