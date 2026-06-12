@@ -91,6 +91,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "BLACKCAPS EXPERIENCE — Productora audiovisual" },
       { name: "twitter:description", content: "Productora creativa B2B: audiovisual, técnica de eventos, booking artístico, digital y sello BCAPSTUDIO.EMP." },
+      { name: "google-site-verification", content: "VXYAYo0Ele4lSo31PvtYzfwMsQ3pYTk3uSrRUXYmsYY" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
