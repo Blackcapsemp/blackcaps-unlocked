@@ -27,19 +27,20 @@ export function Nav() {
           />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-1 rounded-full border border-white/15 backdrop-blur-md bg-black/30 px-2 py-1.5 min-w-0 overflow-x-auto">
+        <nav className="hidden md:flex items-center gap-0.5 lg:gap-1 rounded-full border border-white/15 backdrop-blur-md bg-black/30 px-1.5 lg:px-2 py-1.5">
           {links.map((l) => (
             <Link
               key={l.to}
               to={l.to}
-              className="px-4 py-2 text-[11px] uppercase tracking-[0.18em] font-semibold rounded-full transition-colors hover:bg-bone hover:text-ink"
-              activeProps={{ className: "px-4 py-2 text-[11px] uppercase tracking-[0.18em] font-semibold rounded-full bg-bone text-ink" }}
+              className="px-2.5 lg:px-4 py-2 text-[10px] lg:text-[11px] uppercase tracking-[0.12em] lg:tracking-[0.18em] font-semibold rounded-full transition-colors hover:bg-bone hover:text-ink whitespace-nowrap"
+              activeProps={{ className: "px-2.5 lg:px-4 py-2 text-[10px] lg:text-[11px] uppercase tracking-[0.12em] lg:tracking-[0.18em] font-semibold rounded-full bg-bone text-ink whitespace-nowrap" }}
               activeOptions={{ exact: true }}
             >
               {l.label}
             </Link>
           ))}
         </nav>
+
 
         <Link
           to="/contacto"
