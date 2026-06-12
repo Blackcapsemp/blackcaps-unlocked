@@ -41,6 +41,8 @@ function Home() {
           alt="Concierto Blackcaps con pantallas LED"
           width={1920}
           height={1080}
+          fetchPriority="high"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-cover opacity-50"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/40 to-ink" />
