@@ -44,7 +44,8 @@ export function Nav() {
 
         <Link
           to="/contacto"
-          className="hidden md:inline-flex btn text-[10px] py-2.5 px-4 text-ink font-semibold transition-transform hover:-translate-y-0.5"
+          className="hidden lg:inline-flex btn text-[10px] py-2.5 px-4 text-ink font-semibold transition-transform hover:-translate-y-0.5 shrink-0"
+
           style={{ background: "var(--bcaps-signal)" }}
         >
           Trabaja con nosotros →
