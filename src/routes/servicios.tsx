@@ -10,6 +10,9 @@ export const Route = createFileRoute("/servicios")({
       { property: "og:title", content: "Servicios — BLACKCAPS EXPERIENCE" },
       { property: "og:description", content: "Servicios modulares para eventos, marcas, artistas y proyectos culturales." },
       { property: "og:url", content: "https://blackcaps.es/servicios" },
+      { property: "og:image", content: "https://blackcaps.es/og/servicios.jpg" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: "https://blackcaps.es/og/servicios.jpg" },
     ],
     links: [
       { rel: "canonical", href: "https://blackcaps.es/servicios" },
