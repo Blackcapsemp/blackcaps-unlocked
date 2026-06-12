@@ -83,7 +83,7 @@ const TABS: { id: RequestType; label: string; sub: string }[] = [
 ];
 
 function ContactoPage() {
-  const [type, setType] = useState<RequestType>("general");
+  const [type, setType] = useState<RequestType | null>(null);
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
