@@ -16,14 +16,14 @@ export function Nav() {
   const [open, setOpen] = useState(false);
   return (
     <header className="fixed top-0 inset-x-0 z-50">
-      <div className="mx-auto max-w-[1600px] px-4 md:px-8 py-2 flex items-center justify-between min-h-[88px] md:min-h-[112px] lg:min-h-[128px]">
+      <div className="mx-auto max-w-[1600px] px-4 md:px-8 py-3 flex items-center justify-between min-h-[64px] md:min-h-[72px]">
         <Link to="/" className="flex items-center group" aria-label="BLACKCAPS Experience — Inicio">
           <img
             src={bcapsLogo.url}
             alt="BLACKCAPS Experience logo"
-            width={480}
-            height={138}
-            className="h-20 md:h-28 lg:h-32 w-auto object-contain"
+            width={1220}
+            height={351}
+            className="h-10 md:h-12 lg:h-14 w-auto object-contain"
           />
         </Link>
 
