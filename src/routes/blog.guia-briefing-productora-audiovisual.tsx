@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
-const URL = "https://blackcaps-es.lovable.app/blog/guia-briefing-productora-audiovisual";
+const URL = "https://blackcaps.es/blog/guia-briefing-productora-audiovisual";
+const OG_IMAGE = "https://blackcaps.es/og/blog-briefing.jpg";
 const TITLE = "Cómo hacer un briefing para una productora audiovisual";
 const DESC = "Guía B2B para preparar un briefing claro y obtener un presupuesto preciso de tu productora audiovisual: objetivos, públicos, formatos, plazos y entregables.";
 
