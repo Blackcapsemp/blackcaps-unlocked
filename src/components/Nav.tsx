@@ -17,23 +17,23 @@ export function Nav() {
   return (
     <header className="fixed top-0 inset-x-0 z-50">
       <div className="mx-auto max-w-[1600px] px-4 md:px-8 py-3 flex items-center justify-between min-h-[64px] md:min-h-[72px]">
-        <Link to="/" className="flex items-center group" aria-label="BLACKCAPS Experience — Inicio">
+        <Link to="/" className="flex items-center group shrink-0 mr-4" aria-label="BLACKCAPS Experience — Inicio">
           <img
             src={bcapsLogo.url}
             alt="BLACKCAPS Experience logo"
             width={1220}
             height={351}
-            className="h-10 md:h-12 lg:h-14 w-auto object-contain"
+            className="h-10 md:h-12 lg:h-14 w-auto max-w-none object-contain shrink-0"
           />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-1 rounded-full border border-white/15 backdrop-blur-md bg-black/30 px-2 py-1.5">
+        <nav className="hidden md:flex items-center gap-0.5 lg:gap-1 rounded-full border border-white/15 backdrop-blur-md bg-black/30 px-1.5 lg:px-2 py-1.5">
           {links.map((l) => (
             <Link
               key={l.to}
               to={l.to}
-              className="px-4 py-2 text-[11px] uppercase tracking-[0.18em] font-semibold rounded-full transition-colors hover:bg-bone hover:text-ink"
-              activeProps={{ className: "px-4 py-2 text-[11px] uppercase tracking-[0.18em] font-semibold rounded-full bg-bone text-ink" }}
+              className="px-2.5 lg:px-4 py-2 text-[10px] lg:text-[11px] uppercase tracking-[0.12em] lg:tracking-[0.18em] font-semibold rounded-full transition-colors hover:bg-bone hover:text-ink whitespace-nowrap"
+              activeProps={{ className: "px-2.5 lg:px-4 py-2 text-[10px] lg:text-[11px] uppercase tracking-[0.12em] lg:tracking-[0.18em] font-semibold rounded-full bg-bone text-ink whitespace-nowrap" }}
               activeOptions={{ exact: true }}
             >
               {l.label}
@@ -41,9 +41,11 @@ export function Nav() {
           ))}
         </nav>
 
+
         <Link
           to="/contacto"
-          className="hidden md:inline-flex btn text-[10px] py-2.5 px-4 text-ink font-semibold transition-transform hover:-translate-y-0.5"
+          className="hidden xl:inline-flex btn text-[10px] py-2.5 px-4 text-ink font-semibold transition-transform hover:-translate-y-0.5 shrink-0"
+
           style={{ background: "var(--bcaps-signal)" }}
         >
           Trabaja con nosotros →
