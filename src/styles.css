@@ -66,7 +66,7 @@
   --secondary: oklch(0.22 0 0);
   --secondary-foreground: var(--bone);
   --muted: oklch(0.2 0 0);
-  --muted-foreground: oklch(0.65 0.005 90);
+  --muted-foreground: oklch(0.78 0.005 90);
   --accent: var(--bcaps-blue);
   --accent-foreground: var(--bone);
   --destructive: oklch(0.6 0.22 25);
