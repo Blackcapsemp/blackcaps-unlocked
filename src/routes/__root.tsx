@@ -92,6 +92,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:title", content: "BLACKCAPS EXPERIENCE — Productora audiovisual" },
       { name: "twitter:description", content: "Productora creativa B2B: audiovisual, técnica de eventos, booking artístico, digital y sello BCAPSTUDIO.EMP." },
       { name: "google-site-verification", content: "VXYAYo0Ele4lSo31PvtYzfwMsQ3pYTk3uSrRUXYmsYY" },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0a14b61e-2500-4f03-8114-3144d20bc750/id-preview-cd5ad228--38fb8b29-3976-4b41-bdf3-6c242c59755f.lovable.app-1781290198887.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0a14b61e-2500-4f03-8114-3144d20bc750/id-preview-cd5ad228--38fb8b29-3976-4b41-bdf3-6c242c59755f.lovable.app-1781290198887.png" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
