@@ -83,7 +83,7 @@ const TABS: { id: RequestType; label: string; sub: string }[] = [
 ];
 
 function ContactoPage() {
-  const [type, setType] = useState<RequestType>("general");
+  const [type, setType] = useState<RequestType | null>(null);
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -94,6 +94,7 @@ function ContactoPage() {
     const fd = new FormData(e.currentTarget);
     const raw = Object.fromEntries(fd.entries()) as Record<string, string>;
 
+    if (!type) return;
     const schema = type === "general" ? generalSchema : type === "booking" ? bookingSchema : artistSchema;
     const parsed = schema.safeParse(raw);
     if (!parsed.success) {
@@ -159,8 +160,7 @@ function ContactoPage() {
     }
   }
 
-  const currentTab = TABS.find((t) => t.id === type)!;
-  const stepIndex = TABS.findIndex((t) => t.id === type) + 1;
+  const currentTab = TABS.find((t) => t.id === type);
 
   return (
     <>
@@ -216,26 +216,55 @@ function ContactoPage() {
           {/* Form */}
           <div className="lg:col-span-8">
 
-            {/* Tabs */}
-            <div className="grid sm:grid-cols-3 gap-2 mb-8">
-              {TABS.map((t, i) => {
-                const active = t.id === type;
-                return (
-                  <button
-                    key={t.id}
-                    type="button"
-                    onClick={() => { setType(t.id); setErrors({}); setSent(false); }}
-                    className={`group relative text-left rounded-xl border p-4 transition-all duration-300 hover:-translate-y-0.5 ${active ? "border-bcaps-green bg-bcaps-green/[0.07] glow-green" : "border-white/10 bg-card/60 hover:border-white/25"}`}
-                  >
-                    <div className="flex items-center mb-3">
-                      <span className={`w-1.5 h-1.5 rounded-full ${active ? "bg-bcaps-green" : "bg-bone/20"}`} />
-                    </div>
-                    <p className={`text-[13px] md:text-[15px] font-semibold leading-snug ${active ? "text-bone" : "text-bone/90"}`}>{t.label}</p>
-                    <p className="text-[9px] md:text-[10px] uppercase tracking-[0.18em] text-bone/55 mt-2">{t.sub}</p>
-                  </button>
-                );
-              })}
-            </div>
+            {!type && !sent && (
+              <div>
+                <div className="flex items-baseline gap-3 mb-5">
+                  <span className="text-[10px] tabular-nums tracking-[0.22em] text-bcaps-green">01</span>
+                  <div>
+                    <p className="display text-base md:text-lg text-bone">¿Qué tipo de solicitud es?</p>
+                    <p className="text-[11px] uppercase tracking-[0.18em] text-bone/50 mt-1">Elige una opción para mostrar el formulario adecuado</p>
+                  </div>
+                </div>
+                <div className="grid sm:grid-cols-3 gap-4">
+                  {TABS.map((t) => (
+                    <button
+                      key={t.id}
+                      type="button"
+                      onClick={() => { setType(t.id); setErrors({}); setSent(false); }}
+                      className="group relative text-left rounded-2xl border border-white/10 bg-card/60 hover:border-bcaps-green/60 hover:bg-bcaps-green/[0.05] p-6 md:p-7 min-h-[200px] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:glow-green"
+                    >
+                      <span className="w-2 h-2 rounded-full bg-bone/20 group-hover:bg-bcaps-green transition-colors" />
+                      <div>
+                        <p className="text-base md:text-lg font-semibold text-bone leading-snug">{t.label}</p>
+                        <p className="text-[10px] uppercase tracking-[0.18em] text-bone/55 mt-3">{t.sub}</p>
+                        <span className="inline-flex items-center gap-1 mt-5 text-xs text-bcaps-green opacity-0 group-hover:opacity-100 transition-opacity">
+                          Elegir <span className="transition-transform group-hover:translate-x-1">→</span>
+                        </span>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {type && !sent && (
+              <div className="mb-6 flex items-center justify-between gap-4 flex-wrap">
+                <div className="flex items-center gap-3">
+                  <span className="sticker" style={{ borderColor: "var(--bcaps-green)", color: "var(--bcaps-green)" }}>
+                    {currentTab?.label}
+                  </span>
+                  <span className="text-[10px] uppercase tracking-[0.18em] text-bone/50">{currentTab?.sub}</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => { setType(null); setErrors({}); }}
+                  className="text-xs uppercase tracking-[0.18em] text-bone/60 hover:text-bcaps-green transition-colors"
+                >
+                  ← Cambiar tipo
+                </button>
+              </div>
+            )}
+
 
             {sent ? (
               <div className="rounded-2xl border border-bcaps-green/40 bg-bcaps-green/[0.06] p-10 text-center glow-green">
@@ -259,7 +288,7 @@ function ContactoPage() {
                   <Field label="Ciudad*" name="city" error={errors.city} />
                 </FormSection>
 
-                <FormSection step="03" title={`Detalles · ${currentTab.label}`} subtitle={currentTab.sub}>
+                <FormSection step="03" title={`Detalles · ${currentTab?.label ?? ""}`} subtitle={currentTab?.sub}>
                   {type === "general" && (
                     <>
                       <Field label="Empresa*" name="company" error={errors.company} />
