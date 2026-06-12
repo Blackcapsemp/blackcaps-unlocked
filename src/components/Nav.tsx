@@ -17,17 +17,17 @@ export function Nav() {
   return (
     <header className="fixed top-0 inset-x-0 z-50">
       <div className="mx-auto max-w-[1600px] px-4 md:px-8 py-3 flex items-center justify-between min-h-[64px] md:min-h-[72px]">
-        <Link to="/" className="flex items-center group" aria-label="BLACKCAPS Experience — Inicio">
+        <Link to="/" className="flex items-center group shrink-0 mr-4" aria-label="BLACKCAPS Experience — Inicio">
           <img
             src={bcapsLogo.url}
             alt="BLACKCAPS Experience logo"
             width={1220}
             height={351}
-            className="h-10 md:h-12 lg:h-14 w-auto object-contain"
+            className="h-10 md:h-12 lg:h-14 w-auto max-w-none object-contain shrink-0"
           />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-1 rounded-full border border-white/15 backdrop-blur-md bg-black/30 px-2 py-1.5">
+        <nav className="hidden md:flex items-center gap-1 rounded-full border border-white/15 backdrop-blur-md bg-black/30 px-2 py-1.5 min-w-0 overflow-x-auto">
           {links.map((l) => (
             <Link
               key={l.to}
