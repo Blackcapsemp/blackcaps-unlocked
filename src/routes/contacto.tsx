@@ -117,28 +117,45 @@ function ContactoPage() {
     try {
       const { data, error } = await supabase.functions.invoke("send-contact-email", {
         body: {
-          request_type: type,
           name,
           email,
           phone,
-          city,
-          message,
           service,
+          message,
           page: typeof window !== "undefined" ? window.location.pathname : "/contacto",
+          request_type: type,
+          city,
           extra: rest,
         },
       });
       setSending(false);
-      if (error || !data?.success) {
-        toast.error("No se pudo enviar. Inténtalo de nuevo.");
+      if (error) {
+        const ctx = (error as { context?: Response }).context;
+        let detail = error.message || "Error desconocido";
+        if (ctx && typeof ctx.text === "function") {
+          try {
+            const body = await ctx.text();
+            const parsed = body ? JSON.parse(body) : null;
+            if (parsed?.error) detail = parsed.error;
+            else if (body) detail = body;
+          } catch {
+            /* ignore */
+          }
+        }
+        toast.error(`Error: ${detail}`);
+        return;
+      }
+      if (!data?.success) {
+        toast.error(`Error: ${data?.error ?? "respuesta inválida del servidor"}`);
         return;
       }
       setSent(true);
       toast.success("Solicitud enviada. Te respondemos en <48h.");
       (e.target as HTMLFormElement).reset();
-    } catch {
+    } catch (err) {
       setSending(false);
-      toast.error("No se pudo enviar. Inténtalo de nuevo.");
+      const msg = err instanceof Error ? err.message : String(err);
+      toast.error(`Error: ${msg}`);
     }
   }
 
