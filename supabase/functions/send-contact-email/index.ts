@@ -166,8 +166,13 @@ Página de origen: ${page || "—"}`;
     if (!resendRes.ok) {
       const errBody = await resendRes.text();
       console.error("[send-contact-email] Resend error:", resendRes.status, errBody);
+      let detail = errBody;
+      try {
+        const parsed = JSON.parse(errBody);
+        detail = parsed?.message || parsed?.error || errBody;
+      } catch { /* ignore */ }
       return new Response(
-        JSON.stringify({ success: false, error: "No se pudo enviar el email" }),
+        JSON.stringify({ success: false, error: `Resend ${resendRes.status}: ${detail}` }),
         { status: 502, headers: { ...corsHeaders, "Content-Type": "application/json" } },
       );
     }
