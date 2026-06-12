@@ -5,7 +5,7 @@ export const Route = createFileRoute("/produccion-audiovisual")({
   head: () => ({
     meta: [
       { title: "Producción audiovisual en Madrid — BLACKCAPS EXPERIENCE" },
-      { name: "description", content: "Productora audiovisual en Madrid, Valencia y Barcelona: aftermovies, videoclips, branded content, entrevistas, vídeos corporativos y campañas para marcas y artistas." },
+      { name: "description", content: "Productora audiovisual en Madrid, Valencia y Barcelona: aftermovies, videoclips, branded content, vídeos corporativos y campañas para marcas." },
       { property: "og:title", content: "Producción audiovisual — BLACKCAPS EXPERIENCE" },
       { property: "og:description", content: "Aftermovies, videoclips, branded content, entrevistas y campañas audiovisuales con calidad técnica de cine." },
       { property: "og:url", content: "https://blackcaps.es/produccion-audiovisual" },

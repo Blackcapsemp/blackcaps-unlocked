@@ -81,15 +81,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "BLACKCAPS EXPERIENCE — Productora audiovisual y eventos" },
+      { title: "BLACKCAPS EXPERIENCE — Productora audiovisual" },
       { name: "description", content: "Productora creativa B2B: audiovisual, técnica de eventos, booking artístico, digital y sello BCAPSTUDIO.EMP." },
       { name: "author", content: "BLACKCAPS EXPERIENCE S.L." },
-      { property: "og:title", content: "BLACKCAPS EXPERIENCE — Productora audiovisual y eventos" },
+      { property: "og:title", content: "BLACKCAPS EXPERIENCE — Productora audiovisual" },
       { property: "og:description", content: "Productora creativa B2B: audiovisual, técnica de eventos, booking artístico, digital y sello BCAPSTUDIO.EMP." },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "BLACKCAPS EXPERIENCE" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "BLACKCAPS EXPERIENCE — Productora audiovisual y eventos" },
+      { name: "twitter:title", content: "BLACKCAPS EXPERIENCE — Productora audiovisual" },
       { name: "twitter:description", content: "Productora creativa B2B: audiovisual, técnica de eventos, booking artístico, digital y sello BCAPSTUDIO.EMP." },
     ],
     links: [
