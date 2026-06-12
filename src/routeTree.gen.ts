@@ -18,6 +18,7 @@ import { Route as BookingRouteImport } from './routes/booking'
 import { Route as BcapstudioRouteImport } from './routes/bcapstudio'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ServiciosVideoCorporativoRouteImport } from './routes/servicios.video-corporativo'
+import { Route as BlogGuiaBriefingProductoraAudiovisualRouteImport } from './routes/blog.guia-briefing-productora-audiovisual'
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
 
 const SobreNosotrosRoute = SobreNosotrosRouteImport.update({
@@ -66,6 +67,12 @@ const ServiciosVideoCorporativoRoute =
     path: '/video-corporativo',
     getParentRoute: () => ServiciosRoute,
   } as any)
+const BlogGuiaBriefingProductoraAudiovisualRoute =
+  BlogGuiaBriefingProductoraAudiovisualRouteImport.update({
+    id: '/blog/guia-briefing-productora-audiovisual',
+    path: '/blog/guia-briefing-productora-audiovisual',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const LovableEmailQueueProcessRoute =
   LovableEmailQueueProcessRouteImport.update({
     id: '/lovable/email/queue/process',
@@ -82,6 +89,7 @@ export interface FileRoutesByFullPath {
   '/servicios': typeof ServiciosRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre-nosotros': typeof SobreNosotrosRoute
+  '/blog/guia-briefing-productora-audiovisual': typeof BlogGuiaBriefingProductoraAudiovisualRoute
   '/servicios/video-corporativo': typeof ServiciosVideoCorporativoRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
@@ -94,6 +102,7 @@ export interface FileRoutesByTo {
   '/servicios': typeof ServiciosRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre-nosotros': typeof SobreNosotrosRoute
+  '/blog/guia-briefing-productora-audiovisual': typeof BlogGuiaBriefingProductoraAudiovisualRoute
   '/servicios/video-corporativo': typeof ServiciosVideoCorporativoRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
@@ -107,6 +116,7 @@ export interface FileRoutesById {
   '/servicios': typeof ServiciosRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre-nosotros': typeof SobreNosotrosRoute
+  '/blog/guia-briefing-productora-audiovisual': typeof BlogGuiaBriefingProductoraAudiovisualRoute
   '/servicios/video-corporativo': typeof ServiciosVideoCorporativoRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
@@ -121,6 +131,7 @@ export interface FileRouteTypes {
     | '/servicios'
     | '/sitemap.xml'
     | '/sobre-nosotros'
+    | '/blog/guia-briefing-productora-audiovisual'
     | '/servicios/video-corporativo'
     | '/lovable/email/queue/process'
   fileRoutesByTo: FileRoutesByTo
@@ -133,6 +144,7 @@ export interface FileRouteTypes {
     | '/servicios'
     | '/sitemap.xml'
     | '/sobre-nosotros'
+    | '/blog/guia-briefing-productora-audiovisual'
     | '/servicios/video-corporativo'
     | '/lovable/email/queue/process'
   id:
@@ -145,6 +157,7 @@ export interface FileRouteTypes {
     | '/servicios'
     | '/sitemap.xml'
     | '/sobre-nosotros'
+    | '/blog/guia-briefing-productora-audiovisual'
     | '/servicios/video-corporativo'
     | '/lovable/email/queue/process'
   fileRoutesById: FileRoutesById
@@ -158,6 +171,7 @@ export interface RootRouteChildren {
   ServiciosRoute: typeof ServiciosRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SobreNosotrosRoute: typeof SobreNosotrosRoute
+  BlogGuiaBriefingProductoraAudiovisualRoute: typeof BlogGuiaBriefingProductoraAudiovisualRoute
   LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
 }
 
@@ -226,6 +240,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServiciosVideoCorporativoRouteImport
       parentRoute: typeof ServiciosRoute
     }
+    '/blog/guia-briefing-productora-audiovisual': {
+      id: '/blog/guia-briefing-productora-audiovisual'
+      path: '/blog/guia-briefing-productora-audiovisual'
+      fullPath: '/blog/guia-briefing-productora-audiovisual'
+      preLoaderRoute: typeof BlogGuiaBriefingProductoraAudiovisualRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lovable/email/queue/process': {
       id: '/lovable/email/queue/process'
       path: '/lovable/email/queue/process'
@@ -257,6 +278,8 @@ const rootRouteChildren: RootRouteChildren = {
   ServiciosRoute: ServiciosRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SobreNosotrosRoute: SobreNosotrosRoute,
+  BlogGuiaBriefingProductoraAudiovisualRoute:
+    BlogGuiaBriefingProductoraAudiovisualRoute,
   LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
 }
 export const routeTree = rootRouteImport
