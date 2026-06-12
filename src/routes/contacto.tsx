@@ -226,18 +226,38 @@ function ContactoPage() {
                   </div>
                 </div>
                 <div className="grid sm:grid-cols-3 gap-4">
-                  {TABS.map((t) => (
+                  {TABS.map((t, i) => (
                     <button
                       key={t.id}
                       type="button"
                       onClick={() => { setType(t.id); setErrors({}); setSent(false); }}
-                      className="group relative text-left rounded-2xl border border-white/10 bg-card/60 hover:border-bcaps-green/60 hover:bg-bcaps-green/[0.05] p-6 md:p-7 min-h-[200px] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:glow-green"
+                      style={{
+                        ["--tab-color" as string]: t.color,
+                        background: `linear-gradient(160deg, color-mix(in oklab, ${t.color} 14%, transparent) 0%, color-mix(in oklab, ${t.color} 4%, transparent) 60%, transparent 100%)`,
+                        borderColor: `color-mix(in oklab, ${t.color} 30%, transparent)`,
+                      }}
+                      className="group relative overflow-hidden text-left rounded-2xl border p-6 md:p-7 min-h-[210px] flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_40px_-10px_var(--tab-color)]"
                     >
-                      <span className="w-2 h-2 rounded-full bg-bone/20 group-hover:bg-bcaps-green transition-colors" />
+                      <span
+                        className="absolute inset-x-0 top-0 h-[3px] opacity-70 group-hover:opacity-100 transition-opacity"
+                        style={{ background: `linear-gradient(90deg, transparent, ${t.color}, transparent)` }}
+                      />
+                      <div className="flex items-center justify-between">
+                        <span className="w-2.5 h-2.5 rounded-full" style={{ background: t.color, boxShadow: `0 0 14px ${t.color}` }} />
+                        <span
+                          className="text-[9px] uppercase tracking-[0.22em] px-2 py-1 rounded-full border"
+                          style={{ color: t.color, borderColor: `color-mix(in oklab, ${t.color} 40%, transparent)` }}
+                        >
+                          0{i + 1} · {t.tag}
+                        </span>
+                      </div>
                       <div>
                         <p className="text-base md:text-lg font-semibold text-bone leading-snug">{t.label}</p>
                         <p className="text-[10px] uppercase tracking-[0.18em] text-bone/55 mt-3">{t.sub}</p>
-                        <span className="inline-flex items-center gap-1 mt-5 text-xs text-bcaps-green opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span
+                          className="inline-flex items-center gap-1 mt-5 text-xs opacity-70 group-hover:opacity-100 transition-opacity"
+                          style={{ color: t.color }}
+                        >
                           Elegir <span className="transition-transform group-hover:translate-x-1">→</span>
                         </span>
                       </div>
@@ -247,18 +267,23 @@ function ContactoPage() {
               </div>
             )}
 
-            {type && !sent && (
-              <div className="mb-6 flex items-center justify-between gap-4 flex-wrap">
+            {type && !sent && currentTab && (
+              <div
+                className="mb-6 rounded-xl border p-4 md:p-5 flex items-center justify-between gap-4 flex-wrap"
+                style={{
+                  borderColor: `color-mix(in oklab, ${currentTab.color} 35%, transparent)`,
+                  background: `linear-gradient(120deg, color-mix(in oklab, ${currentTab.color} 10%, transparent), transparent)`,
+                }}
+              >
                 <div className="flex items-center gap-3">
-                  <span className="sticker" style={{ borderColor: "var(--bcaps-green)", color: "var(--bcaps-green)" }}>
-                    {currentTab?.label}
-                  </span>
-                  <span className="text-[10px] uppercase tracking-[0.18em] text-bone/50">{currentTab?.sub}</span>
+                  <span className="w-2.5 h-2.5 rounded-full" style={{ background: currentTab.color, boxShadow: `0 0 14px ${currentTab.color}` }} />
+                  <span className="text-sm font-semibold" style={{ color: currentTab.color }}>{currentTab.label}</span>
+                  <span className="text-[10px] uppercase tracking-[0.18em] text-bone/50 hidden sm:inline">{currentTab.sub}</span>
                 </div>
                 <button
                   type="button"
                   onClick={() => { setType(null); setErrors({}); }}
-                  className="text-xs uppercase tracking-[0.18em] text-bone/60 hover:text-bcaps-green transition-colors"
+                  className="text-xs uppercase tracking-[0.18em] text-bone/60 hover:text-bone transition-colors"
                 >
                   ← Cambiar tipo
                 </button>
