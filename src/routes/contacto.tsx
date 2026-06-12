@@ -502,45 +502,56 @@ function FieldError({ msg }: { msg?: string }) {
 function Field({
   label, name, type = "text", placeholder, error, full,
 }: { label: string; name: string; type?: string; placeholder?: string; error?: string; full?: boolean }) {
+  const id = `field-${name}`;
   return (
-    <label className={`block ${full ? "md:col-span-2" : ""}`}>
-      <Label>{label}</Label>
+    <div className={`block ${full ? "md:col-span-2" : ""}`}>
+      <label htmlFor={id}>
+        <Label>{label}</Label>
+      </label>
       <input
+        id={id}
         name={name}
         type={type}
         placeholder={placeholder}
         className={`w-full bg-white/[0.03] border rounded-lg px-4 py-3 mt-2 text-bone placeholder:text-bone/30 outline-none transition-all focus:bg-white/[0.06] focus:ring-2 focus:ring-bcaps-green/20 ${error ? "border-destructive" : "border-white/10 focus:border-bcaps-green/60"}`}
       />
       <FieldError msg={error} />
-    </label>
+    </div>
   );
 }
 
 function TextareaField({
   label, name, rows = 4, error, full,
 }: { label: string; name: string; rows?: number; error?: string; full?: boolean }) {
+  const id = `field-${name}`;
   return (
-    <label className={`block ${full ? "md:col-span-2" : ""}`}>
-      <Label>{label}</Label>
+    <div className={`block ${full ? "md:col-span-2" : ""}`}>
+      <label htmlFor={id}>
+        <Label>{label}</Label>
+      </label>
       <textarea
+        id={id}
         name={name}
         rows={rows}
         className={`w-full bg-white/[0.03] border rounded-lg px-4 py-3 mt-2 text-bone placeholder:text-bone/30 outline-none resize-none transition-all focus:bg-white/[0.06] focus:ring-2 focus:ring-bcaps-green/20 ${error ? "border-destructive" : "border-white/10 focus:border-bcaps-green/60"}`}
       />
       <FieldError msg={error} />
-    </label>
+    </div>
   );
 }
 
 function SelectField({
   label, name, options, error,
 }: { label: string; name: string; options: string[]; error?: string }) {
+  const id = `field-${name}`;
   return (
-    <label className="block">
-      <Label>{label}</Label>
+    <div className="block">
+      <label htmlFor={id}>
+        <Label>{label}</Label>
+      </label>
       <select
+        id={id}
         name={name}
-        aria-label={label}
         defaultValue=""
         className={`w-full bg-white/[0.03] border rounded-lg px-4 py-3 mt-2 text-bone outline-none transition-all focus:bg-white/[0.06] focus:ring-2 focus:ring-bcaps-green/20 ${error ? "border-destructive" : "border-white/10 focus:border-bcaps-green/60"}`}
       >
@@ -550,6 +561,7 @@ function SelectField({
         ))}
       </select>
       <FieldError msg={error} />
-    </label>
+    </div>
   );
 }
+
