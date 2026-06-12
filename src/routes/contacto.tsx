@@ -76,10 +76,10 @@ const artistSchema = baseSchema.extend({
   serviceRequested: z.string().trim().min(1, "Selecciona un servicio"),
 });
 
-const TABS: { id: RequestType; label: string; sub: string }[] = [
-  { id: "general", label: "Contacto general", sub: "Empresas · marcas · partners" },
-  { id: "booking", label: "Booking de artistas", sub: "Eventos · festivales · privados" },
-  { id: "artist", label: "Soy artista / BCAPSTUDIO", sub: "Sello · management · producción" },
+const TABS: { id: RequestType; label: string; sub: string; color: string; tag: string }[] = [
+  { id: "general", label: "Contacto general", sub: "Empresas · marcas · partners", color: "oklch(0.74 0.18 152)", tag: "B2B" },
+  { id: "booking", label: "Booking de artistas", sub: "Eventos · festivales · privados", color: "oklch(0.72 0.19 55)", tag: "Live" },
+  { id: "artist", label: "Soy artista / BCAPSTUDIO", sub: "Sello · management · producción", color: "oklch(0.68 0.22 310)", tag: "Studio" },
 ];
 
 function ContactoPage() {
