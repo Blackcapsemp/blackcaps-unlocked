@@ -94,6 +94,7 @@ function ContactoPage() {
     const fd = new FormData(e.currentTarget);
     const raw = Object.fromEntries(fd.entries()) as Record<string, string>;
 
+    if (!type) return;
     const schema = type === "general" ? generalSchema : type === "booking" ? bookingSchema : artistSchema;
     const parsed = schema.safeParse(raw);
     if (!parsed.success) {
