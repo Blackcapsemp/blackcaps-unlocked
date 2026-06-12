@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
+import bcapsLogo from "@/assets/bcaps-logo.png.asset.json";
 
 const links = [
   { to: "/", label: "Inicio" },
@@ -16,9 +17,14 @@ export function Nav() {
   return (
     <header className="fixed top-0 inset-x-0 z-50">
       <div className="mx-auto max-w-[1600px] px-4 md:px-8 py-4 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-2 group">
-          <span className="inline-block w-9 h-9 rounded-full bg-bone text-ink grid place-items-center font-black text-lg group-hover:bg-bcaps-green transition-colors">B</span>
-          <span className="display text-lg tracking-tight hidden sm:inline">BLACKCAPS<span className="text-bcaps-green">.</span></span>
+        <Link to="/" className="flex items-center gap-3 group" aria-label="BLACKCAPS Experience — Inicio">
+          <img
+            src={bcapsLogo.url}
+            alt="BLACKCAPS Experience logo"
+            width={160}
+            height={46}
+            className="h-9 md:h-10 w-auto object-contain"
+          />
         </Link>
 
         <nav className="hidden md:flex items-center gap-1 rounded-full border border-white/15 backdrop-blur-md bg-black/30 px-2 py-1.5">
