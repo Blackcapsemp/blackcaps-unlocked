@@ -67,8 +67,20 @@ export function Nav() {
               {l.label}
             </Link>
           ))}
+          <a
+            href="https://presupuestos.blackcaps.es"
+            target="_blank"
+            rel="noopener"
+            data-cta="presupuestos"
+            onClick={() => setOpen(false)}
+            className="btn text-xs py-3 px-4 text-ink font-semibold text-center mt-2"
+            style={{ background: "var(--bcaps-signal)" }}
+          >
+            Calcula tu presupuesto →
+          </a>
         </div>
       )}
+
     </header>
   );
 }
