@@ -97,6 +97,11 @@ function ServiciosPage() {
           <p className="mt-8 max-w-2xl text-lg text-bone/80">
             Servicios modulares adaptados a cada tipo de evento, proyecto cultural, marca o artista. Trabajamos con ayuntamientos, promotores, agencias, marcas y artistas.
           </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a href="https://presupuestos.blackcaps.es" target="_blank" rel="noopener" data-cta="presupuestos" className="btn text-ink font-semibold" style={{ background: "var(--bcaps-signal)" }}>Solicitar presupuesto online →</a>
+            <Link to="/contacto" className="btn btn-ghost">Hablar con el equipo</Link>
+          </div>
+
         </div>
       </section>
 
