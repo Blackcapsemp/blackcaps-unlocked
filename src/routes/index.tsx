@@ -66,13 +66,16 @@ function Home() {
             <p className="md:col-span-2 text-lg md:text-xl text-bone/85 max-w-2xl">
               Producción audiovisual · Servicios técnicos · Booking artístico · Soluciones digitales.
               <span className="block mt-3 text-bcaps-green text-2xl display">Tu marca, tu sonido, tu historia: lo creamos todo.</span>
+              <span className="block mt-4 text-base text-bone/75">Planifica tu evento, producción o servicio audiovisual con una estimación rápida y personalizada.</span>
             </p>
             <div className="flex flex-wrap gap-3 md:justify-end">
+              <a href="https://presupuestos.blackcaps.es" target="_blank" rel="noopener" data-cta="presupuestos" className="btn text-ink font-semibold" style={{ background: "var(--bcaps-signal)" }}>Calcula tu presupuesto →</a>
               <Link to="/servicios" className="btn btn-primary">Ver servicios</Link>
               <Link to="/booking" className="btn btn-ghost">Booking</Link>
               <Link to="/contacto" className="btn btn-accent">Trabaja con nosotros</Link>
             </div>
           </div>
+
         </div>
 
         <div className="absolute bottom-6 inset-x-0 z-10">
