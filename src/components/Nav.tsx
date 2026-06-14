@@ -1,6 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import bcapsLogo from "@/assets/bcaps-logo.png.asset.json";
 
 const links = [
   { to: "/", label: "Inicio" },
@@ -19,11 +18,12 @@ export function Nav() {
       <div className="mx-auto max-w-[1600px] px-4 md:px-8 py-3 flex items-center justify-between min-h-[64px] md:min-h-[72px]">
         <Link to="/" className="flex items-center group shrink-0 mr-4" aria-label="BLACKCAPS Experience — Inicio">
           <img
-            src={bcapsLogo.url}
-            alt="BLACKCAPS Experience logo"
+            src="/bcaps-logo.png"
+            alt=""
+            aria-hidden="true"
             width={1220}
             height={351}
-            className="h-10 md:h-12 lg:h-14 w-auto max-w-none object-contain shrink-0"
+            className="h-9 md:h-11 lg:h-12 w-auto max-w-[170px] md:max-w-[210px] lg:max-w-[240px] object-contain shrink-0"
           />
         </Link>
 
