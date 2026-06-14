@@ -42,14 +42,17 @@ export function Nav() {
         </nav>
 
 
-        <Link
-          to="/contacto"
-          className="hidden xl:inline-flex btn text-[10px] py-2.5 px-4 text-ink font-semibold transition-transform hover:-translate-y-0.5 shrink-0"
-
+        <a
+          href="https://presupuestos.blackcaps.es"
+          target="_blank"
+          rel="noopener"
+          data-cta="presupuestos"
+          className="hidden lg:inline-flex btn text-[10px] py-2.5 px-4 text-ink font-semibold transition-transform hover:-translate-y-0.5 shrink-0"
           style={{ background: "var(--bcaps-signal)" }}
         >
-          Trabaja con nosotros →
-        </Link>
+          Calcula tu presupuesto →
+        </a>
+
 
         <button onClick={() => setOpen(!open)} className="md:hidden text-bone p-2" aria-label="menu">
           <div className="w-6 h-0.5 bg-bone mb-1.5" />
@@ -64,8 +67,20 @@ export function Nav() {
               {l.label}
             </Link>
           ))}
+          <a
+            href="https://presupuestos.blackcaps.es"
+            target="_blank"
+            rel="noopener"
+            data-cta="presupuestos"
+            onClick={() => setOpen(false)}
+            className="btn text-xs py-3 px-4 text-ink font-semibold text-center mt-2"
+            style={{ background: "var(--bcaps-signal)" }}
+          >
+            Calcula tu presupuesto →
+          </a>
         </div>
       )}
+
     </header>
   );
 }
