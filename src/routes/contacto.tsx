@@ -25,7 +25,7 @@ export const Route = createFileRoute("/contacto")({
           name: "BLACKCAPS EXPERIENCE",
           url: "https://blackcaps.es/contacto",
           email: "info@blackcaps.es",
-          telephone: ["+34686068968", "+34722129948"],
+          telephone: ["+34650466516", "+34722129948"],
           areaServed: ["Madrid", "Valencia", "Barcelona", "España"],
           address: [
             { "@type": "PostalAddress", addressLocality: "Madrid", addressCountry: "ES" },
@@ -197,8 +197,8 @@ function ContactoPage() {
 
               <div>
                 <p className="text-[10px] uppercase tracking-[0.22em] text-bcaps-green">Teléfono</p>
-                <p className="mt-2 text-bone text-lg tabular-nums">686 06 88 968</p>
-                <p className="text-bone/80 text-lg tabular-nums">722 12 99 48</p>
+                <p className="mt-2 text-bone text-lg tabular-nums">+34 650 46 65 16</p>
+                <p className="text-bone/80 text-lg tabular-nums">+34 722 12 99 48</p>
               </div>
 
               <div>

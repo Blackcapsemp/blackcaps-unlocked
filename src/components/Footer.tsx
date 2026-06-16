@@ -21,7 +21,7 @@ export function Footer() {
             <li>info@blackcaps.es</li>
             <li>@Blackcaps.emp</li>
             <li>blackcaps.es</li>
-            <li>686 06 88 968 · 722 12 99 48</li>
+            <li>+34 650 46 65 16 · +34 722 12 99 48</li>
           </ul>
         </div>
         <div>
