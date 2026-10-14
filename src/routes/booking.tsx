@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Marquee } from "@/components/Marquee";
 import crowd from "@/assets/booking-crowd.jpg";
-import artist from "@/assets/artist-portrait.jpg";
-import dj from "@/assets/dj-booth.jpg";
+import { supabase } from "@/integrations/supabase/client";
+import { ARTIST_STYLES, signPhotos } from "@/lib/artists";
 
 export const Route = createFileRoute("/booking")({
   head: () => ({
@@ -22,22 +22,27 @@ export const Route = createFileRoute("/booking")({
   component: BookingPage,
 });
 
-const STYLES = ["Todos", "Urbano", "Electrónica", "DJ", "Rap", "Pop", "Experimental", "Live Set"] as const;
+const STYLES = ["Todos", ...ARTIST_STYLES] as const;
 
-const ARTISTS = [
-  { name: "NÖRA", style: "Electrónica", city: "Madrid", img: dj },
-  { name: "MC KORI", style: "Rap", city: "Valencia", img: artist },
-  { name: "LUX/22", style: "Pop", city: "Barcelona", img: artist },
-  { name: "SAVAGE FM", style: "Urbano", city: "Madrid", img: dj },
-  { name: "RAYA LIVE", style: "Live Set", city: "Barcelona", img: artist },
-  { name: "VOID 808", style: "Experimental", city: "Madrid", img: dj },
-  { name: "DJ KAIBA", style: "DJ", city: "Valencia", img: dj },
-  { name: "ÓCTAVA", style: "Pop", city: "Madrid", img: artist },
-];
+type RosterItem = { slug: string; name: string; style: string; city: string; img: string | null };
 
 function BookingPage() {
   const [filter, setFilter] = useState<(typeof STYLES)[number]>("Todos");
-  const list = ARTISTS.filter((a) => filter === "Todos" || a.style === filter);
+  const [artists, setArtists] = useState<RosterItem[] | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await supabase
+        .from("artist_profiles")
+        .select("slug, artist_name, style, city, photo_url")
+        .eq("status", "approved")
+        .order("created_at", { ascending: false });
+      const photos = await signPhotos((data ?? []).map((a) => a.photo_url));
+      setArtists((data ?? []).map((a) => ({ slug: a.slug, name: a.artist_name, style: a.style, city: a.city, img: a.photo_url ? photos[a.photo_url] ?? null : null })));
+    })();
+  }, []);
+
+  const list = (artists ?? []).filter((a) => filter === "Todos" || a.style === filter);
 
   return (
     <>

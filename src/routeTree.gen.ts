@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BcapstudioRouteImport } from './routes/bcapstudio'
 import { Route as BookingRouteImport } from './routes/booking'
 import { Route as ContactoRouteImport } from './routes/contacto'
@@ -17,13 +19,25 @@ import { Route as ProduccionAudiovisualRouteImport } from './routes/produccion-a
 import { Route as ServiciosRouteImport } from './routes/servicios'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SobreNosotrosRouteImport } from './routes/sobre-nosotros'
+import { Route as AuthenticatedMiPerfilRouteImport } from './routes/_authenticated/mi-perfil'
+import { Route as ArtistasSlugRouteImport } from './routes/artistas.$slug'
 import { Route as BlogGuiaBriefingProductoraAudiovisualRouteImport } from './routes/blog.guia-briefing-productora-audiovisual'
 import { Route as ServiciosVideoCorporativoRouteImport } from './routes/servicios.video-corporativo'
+import { Route as AuthenticatedAdminArtistasRouteImport } from './routes/_authenticated/admin.artistas'
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BcapstudioRoute = BcapstudioRouteImport.update({
@@ -61,6 +75,16 @@ const SobreNosotrosRoute = SobreNosotrosRouteImport.update({
   path: '/sobre-nosotros',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedMiPerfilRoute = AuthenticatedMiPerfilRouteImport.update({
+  id: '/mi-perfil',
+  path: '/mi-perfil',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const ArtistasSlugRoute = ArtistasSlugRouteImport.update({
+  id: '/artistas/$slug',
+  path: '/artistas/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogGuiaBriefingProductoraAudiovisualRoute =
   BlogGuiaBriefingProductoraAudiovisualRouteImport.update({
     id: '/blog/guia-briefing-productora-audiovisual',
@@ -73,6 +97,12 @@ const ServiciosVideoCorporativoRoute =
     path: '/video-corporativo',
     getParentRoute: () => ServiciosRoute,
   } as any)
+const AuthenticatedAdminArtistasRoute =
+  AuthenticatedAdminArtistasRouteImport.update({
+    id: '/admin/artistas',
+    path: '/admin/artistas',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const LovableEmailQueueProcessRoute =
   LovableEmailQueueProcessRouteImport.update({
     id: '/lovable/email/queue/process',
@@ -82,6 +112,7 @@ const LovableEmailQueueProcessRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/bcapstudio': typeof BcapstudioRoute
   '/booking': typeof BookingRoute
   '/contacto': typeof ContactoRoute
@@ -89,12 +120,16 @@ export interface FileRoutesByFullPath {
   '/servicios': typeof ServiciosRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre-nosotros': typeof SobreNosotrosRoute
+  '/mi-perfil': typeof AuthenticatedMiPerfilRoute
+  '/artistas/$slug': typeof ArtistasSlugRoute
   '/blog/guia-briefing-productora-audiovisual': typeof BlogGuiaBriefingProductoraAudiovisualRoute
   '/servicios/video-corporativo': typeof ServiciosVideoCorporativoRoute
+  '/admin/artistas': typeof AuthenticatedAdminArtistasRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/bcapstudio': typeof BcapstudioRoute
   '/booking': typeof BookingRoute
   '/contacto': typeof ContactoRoute
@@ -102,13 +137,18 @@ export interface FileRoutesByTo {
   '/servicios': typeof ServiciosRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre-nosotros': typeof SobreNosotrosRoute
+  '/mi-perfil': typeof AuthenticatedMiPerfilRoute
+  '/artistas/$slug': typeof ArtistasSlugRoute
   '/blog/guia-briefing-productora-audiovisual': typeof BlogGuiaBriefingProductoraAudiovisualRoute
   '/servicios/video-corporativo': typeof ServiciosVideoCorporativoRoute
+  '/admin/artistas': typeof AuthenticatedAdminArtistasRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
   '/bcapstudio': typeof BcapstudioRoute
   '/booking': typeof BookingRoute
   '/contacto': typeof ContactoRoute
@@ -116,14 +156,18 @@ export interface FileRoutesById {
   '/servicios': typeof ServiciosRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/sobre-nosotros': typeof SobreNosotrosRoute
+  '/_authenticated/mi-perfil': typeof AuthenticatedMiPerfilRoute
+  '/artistas/$slug': typeof ArtistasSlugRoute
   '/blog/guia-briefing-productora-audiovisual': typeof BlogGuiaBriefingProductoraAudiovisualRoute
   '/servicios/video-corporativo': typeof ServiciosVideoCorporativoRoute
+  '/_authenticated/admin/artistas': typeof AuthenticatedAdminArtistasRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/auth'
     | '/bcapstudio'
     | '/booking'
     | '/contacto'
@@ -131,12 +175,16 @@ export interface FileRouteTypes {
     | '/servicios'
     | '/sitemap.xml'
     | '/sobre-nosotros'
+    | '/mi-perfil'
+    | '/artistas/$slug'
     | '/blog/guia-briefing-productora-audiovisual'
     | '/servicios/video-corporativo'
+    | '/admin/artistas'
     | '/lovable/email/queue/process'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/auth'
     | '/bcapstudio'
     | '/booking'
     | '/contacto'
@@ -144,12 +192,17 @@ export interface FileRouteTypes {
     | '/servicios'
     | '/sitemap.xml'
     | '/sobre-nosotros'
+    | '/mi-perfil'
+    | '/artistas/$slug'
     | '/blog/guia-briefing-productora-audiovisual'
     | '/servicios/video-corporativo'
+    | '/admin/artistas'
     | '/lovable/email/queue/process'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
+    | '/auth'
     | '/bcapstudio'
     | '/booking'
     | '/contacto'
@@ -157,13 +210,18 @@ export interface FileRouteTypes {
     | '/servicios'
     | '/sitemap.xml'
     | '/sobre-nosotros'
+    | '/_authenticated/mi-perfil'
+    | '/artistas/$slug'
     | '/blog/guia-briefing-productora-audiovisual'
     | '/servicios/video-corporativo'
+    | '/_authenticated/admin/artistas'
     | '/lovable/email/queue/process'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
   BcapstudioRoute: typeof BcapstudioRoute
   BookingRoute: typeof BookingRoute
   ContactoRoute: typeof ContactoRoute
@@ -171,6 +229,7 @@ export interface RootRouteChildren {
   ServiciosRoute: typeof ServiciosRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   SobreNosotrosRoute: typeof SobreNosotrosRoute
+  ArtistasSlugRoute: typeof ArtistasSlugRoute
   BlogGuiaBriefingProductoraAudiovisualRoute: typeof BlogGuiaBriefingProductoraAudiovisualRoute
   LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
 }
@@ -182,6 +241,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/bcapstudio': {
@@ -233,6 +306,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SobreNosotrosRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/mi-perfil': {
+      id: '/_authenticated/mi-perfil'
+      path: '/mi-perfil'
+      fullPath: '/mi-perfil'
+      preLoaderRoute: typeof AuthenticatedMiPerfilRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/artistas/$slug': {
+      id: '/artistas/$slug'
+      path: '/artistas/$slug'
+      fullPath: '/artistas/$slug'
+      preLoaderRoute: typeof ArtistasSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/blog/guia-briefing-productora-audiovisual': {
       id: '/blog/guia-briefing-productora-audiovisual'
       path: '/blog/guia-briefing-productora-audiovisual'
@@ -247,6 +334,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServiciosVideoCorporativoRouteImport
       parentRoute: typeof ServiciosRoute
     }
+    '/_authenticated/admin/artistas': {
+      id: '/_authenticated/admin/artistas'
+      path: '/admin/artistas'
+      fullPath: '/admin/artistas'
+      preLoaderRoute: typeof AuthenticatedAdminArtistasRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/lovable/email/queue/process': {
       id: '/lovable/email/queue/process'
       path: '/lovable/email/queue/process'
@@ -256,6 +350,19 @@ declare module '@tanstack/react-router' {
     }
   }
 }
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedMiPerfilRoute: typeof AuthenticatedMiPerfilRoute
+  AuthenticatedAdminArtistasRoute: typeof AuthenticatedAdminArtistasRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedMiPerfilRoute: AuthenticatedMiPerfilRoute,
+  AuthenticatedAdminArtistasRoute: AuthenticatedAdminArtistasRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
 
 interface ServiciosRouteChildren {
   ServiciosVideoCorporativoRoute: typeof ServiciosVideoCorporativoRoute
@@ -271,6 +378,8 @@ const ServiciosRouteWithChildren = ServiciosRoute._addFileChildren(
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
   BcapstudioRoute: BcapstudioRoute,
   BookingRoute: BookingRoute,
   ContactoRoute: ContactoRoute,
@@ -278,6 +387,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServiciosRoute: ServiciosRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   SobreNosotrosRoute: SobreNosotrosRoute,
+  ArtistasSlugRoute: ArtistasSlugRoute,
   BlogGuiaBriefingProductoraAudiovisualRoute:
     BlogGuiaBriefingProductoraAudiovisualRoute,
   LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
