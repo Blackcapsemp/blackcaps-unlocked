@@ -40,8 +40,26 @@
   --font-sans: "Hind", system-ui, sans-serif;
 }
 
+/* Global type scale: lower --type-scale to shrink every text-* size at once. */
+@theme {
+  --text-xs: calc(0.75rem * var(--type-scale));
+  --text-sm: calc(0.875rem * var(--type-scale));
+  --text-base: calc(1rem * var(--type-scale));
+  --text-lg: calc(1.125rem * var(--type-scale));
+  --text-xl: calc(1.25rem * var(--type-scale));
+  --text-2xl: calc(1.5rem * var(--type-scale));
+  --text-3xl: calc(1.875rem * var(--type-scale));
+  --text-4xl: calc(2.25rem * var(--type-scale));
+  --text-5xl: calc(3rem * var(--type-scale));
+  --text-6xl: calc(3.75rem * var(--type-scale));
+  --text-7xl: calc(4.5rem * var(--type-scale));
+  --text-8xl: calc(6rem * var(--type-scale));
+  --text-9xl: calc(8rem * var(--type-scale));
+}
+
 :root {
   --radius: 0.25rem;
+  --type-scale: 0.88;
 
   /* Editorial Noir core */
   --ink: oklch(0.13 0 0);
