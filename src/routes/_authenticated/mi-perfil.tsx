@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
-import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
-import { ARTIST_STYLES, signPhotos, slugify, type ArtistProfile } from "@/lib/artists";
+import { signPhotos, slugify, type ArtistProfile } from "@/lib/artists";
+import { ArtistProfileForm, artistRow, type ArtistForm } from "@/components/ArtistProfileForm";
 
 export const Route = createFileRoute("/_authenticated/mi-perfil")({
   head: () => ({
@@ -20,20 +20,6 @@ export const Route = createFileRoute("/_authenticated/mi-perfil")({
   component: MyProfile,
 });
 
-const url = z.string().trim().max(300).url("Enlace no válido").or(z.literal(""));
-const schema = z.object({
-  artist_name: z.string().trim().min(1, "Indica tu nombre artístico").max(80),
-  style: z.enum(ARTIST_STYLES),
-  city: z.string().trim().min(1, "Indica tu ciudad").max(80),
-  bio: z.string().trim().min(20, "Cuéntanos algo más (mín. 20 caracteres)").max(2000),
-  instagram: url,
-  spotify: url,
-  soundcloud: url,
-  youtube: url,
-});
-type Form = z.infer<typeof schema>;
-const empty: Form = { artist_name: "", style: "DJ", city: "", bio: "", instagram: "", spotify: "", soundcloud: "", youtube: "" };
-
 const STATUS = {
   pending: { label: "En revisión", cls: "border-amber-400/50 text-amber-300" },
   approved: { label: "Publicado", cls: "border-bcaps-signal text-bcaps-signal" },
@@ -43,9 +29,6 @@ const STATUS = {
 function MyProfile() {
   const [userId, setUserId] = useState<string | null>(null);
   const [profile, setProfile] = useState<ArtistProfile | null>(null);
-  const [form, setForm] = useState<Form>(empty);
-  const [errors, setErrors] = useState<Partial<Record<keyof Form, string>>>({});
-  const [file, setFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -62,40 +45,13 @@ function MyProfile() {
       setIsAdmin(!!r);
       if (p) {
         setProfile(p);
-        setForm({
-          artist_name: p.artist_name, style: (ARTIST_STYLES as readonly string[]).includes(p.style) ? (p.style as Form["style"]) : "DJ",
-          city: p.city, bio: p.bio, instagram: p.instagram ?? "", spotify: p.spotify ?? "", soundcloud: p.soundcloud ?? "", youtube: p.youtube ?? "",
-        });
         if (p.photo_url) setPreview((await signPhotos([p.photo_url]))[p.photo_url] ?? null);
       }
     })();
   }, []);
 
-  function set<K extends keyof Form>(k: K, v: Form[K]) {
-    setForm((f) => ({ ...f, [k]: v }));
-    setErrors((e) => ({ ...e, [k]: undefined }));
-  }
-
-  function pickFile(f: File | undefined) {
-    if (!f) return;
-    if (!f.type.startsWith("image/")) return toast.error("Sube una imagen (JPG o PNG)");
-    if (f.size > 5 * 1024 * 1024) return toast.error("La imagen debe pesar menos de 5 MB");
-    setFile(f);
-    setPreview(URL.createObjectURL(f));
-  }
-
-  async function save(e: React.FormEvent) {
-    e.preventDefault();
-    if (!userId) return;
-    const parsed = schema.safeParse(form);
-    if (!parsed.success) {
-      const errs: typeof errors = {};
-      parsed.error.issues.forEach((i) => (errs[i.path[0] as keyof Form] = i.message));
-      setErrors(errs);
-      toast.error("Revisa los campos marcados");
-      return;
-    }
-    if (!file && !profile?.photo_url) return toast.error("Añade una foto para tu perfil");
+  async function save(d: ArtistForm, file: File | null) {
+    if (!userId) return false;
     setBusy(true);
     try {
       let photo_url = profile?.photo_url ?? null;
@@ -106,12 +62,7 @@ function MyProfile() {
         if (error) throw error;
         photo_url = path;
       }
-      const d = parsed.data;
-      const row = {
-        artist_name: d.artist_name, style: d.style, city: d.city, bio: d.bio, photo_url,
-        instagram: d.instagram || null, spotify: d.spotify || null, soundcloud: d.soundcloud || null, youtube: d.youtube || null,
-        status: "pending" as const,
-      };
+      const row = { ...artistRow(d), photo_url, status: "pending" as const };
       if (profile) {
         const { data, error } = await supabase.from("artist_profiles").update(row).eq("id", profile.id).select().single();
         if (error) throw error;
@@ -122,10 +73,11 @@ function MyProfile() {
         if (error) throw error;
         setProfile(data);
       }
-      setFile(null);
       toast.success("Perfil enviado. Lo revisaremos y te avisaremos cuando esté publicado.");
+      return true;
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "No se pudo guardar");
+      return false;
     } finally {
       setBusy(false);
     }
