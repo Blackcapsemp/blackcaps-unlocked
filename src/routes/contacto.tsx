@@ -1,10 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
+type ContactoSearch = { type?: string; artist?: string };
+
 export const Route = createFileRoute("/contacto")({
+  validateSearch: (search: Record<string, unknown>): ContactoSearch => ({
+    type: typeof search.type === "string" ? search.type : undefined,
+    artist: typeof search.artist === "string" ? search.artist : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Contacto — BLACKCAPS EXPERIENCE" },
