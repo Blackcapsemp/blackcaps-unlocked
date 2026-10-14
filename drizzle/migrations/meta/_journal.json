@@ -15,6 +15,13 @@
       "when": 1791992222354,
       "tag": "0001_assign_admin_info",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791994127040,
+      "tag": "0002_artist_photos_restrict",
+      "breakpoints": true
     }
   ]
 }
