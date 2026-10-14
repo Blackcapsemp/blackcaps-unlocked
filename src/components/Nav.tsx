@@ -15,13 +15,33 @@ const links = [
 export function Nav() {
   const [open, setOpen] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = useLocation({ select: (l) => l.pathname });
   const navigate = useNavigate();
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => setSignedIn(!!data.session));
-    const { data } = supabase.auth.onAuthStateChange((_e, s) => setSignedIn(!!s));
+    async function loadRole(session: { user: { id: string } } | null) {
+      if (!session) {
+        setIsAdmin(false);
+        return;
+      }
+      const { data: r } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", session.user.id)
+        .eq("role", "admin")
+        .maybeSingle();
+      setIsAdmin(!!r);
+    }
+    supabase.auth.getSession().then(({ data }) => {
+      setSignedIn(!!data.session);
+      loadRole(data.session);
+    });
+    const { data } = supabase.auth.onAuthStateChange((e, s) => {
+      setSignedIn(!!s);
+      if (e === "SIGNED_OUT") setIsAdmin(false);
+    });
     return () => data.subscription.unsubscribe();
   }, []);
 
@@ -63,8 +83,8 @@ export function Nav() {
         </nav>
 
         <div className="hidden lg:flex items-center gap-2 ml-3">
-          <Link to={signedIn ? "/mi-perfil" : "/auth"} className="px-4 py-2 text-[11px] uppercase tracking-[0.16em] font-semibold rounded-full border border-white/20 hover:border-bone transition whitespace-nowrap">
-            {signedIn ? "Mi perfil" : "Soy artista"}
+          <Link to={isAdmin ? "/admin/artistas" : signedIn ? "/mi-perfil" : "/auth"} className="px-4 py-2 text-[11px] uppercase tracking-[0.16em] font-semibold rounded-full border border-white/20 hover:border-bone transition whitespace-nowrap">
+            {isAdmin ? "Panel de administración" : signedIn ? "Mi perfil" : "Soy artista"}
           </Link>
           {signedIn && (
             <button onClick={signOut} className="text-[11px] uppercase tracking-[0.16em] text-muted-foreground hover:text-bone">Salir</button>
@@ -91,8 +111,8 @@ export function Nav() {
           </nav>
           <div className="mt-8 flex flex-col gap-3">
             <Link to="/contacto" className="btn btn-primary justify-center">Pedir presupuesto</Link>
-            <Link to={signedIn ? "/mi-perfil" : "/auth"} className="btn btn-ghost justify-center">
-              {signedIn ? "Mi perfil de artista" : "Soy artista · Crear perfil"}
+            <Link to={isAdmin ? "/admin/artistas" : signedIn ? "/mi-perfil" : "/auth"} className="btn btn-ghost justify-center">
+              {isAdmin ? "Panel de administración" : signedIn ? "Mi perfil de artista" : "Soy artista · Crear perfil"}
             </Link>
             {signedIn && <button onClick={signOut} className="text-xs uppercase tracking-[0.16em] text-muted-foreground py-2">Cerrar sesión</button>}
           </div>
