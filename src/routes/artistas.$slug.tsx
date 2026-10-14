@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { safeUrl, signPhotos, type ArtistProfile } from "@/lib/artists";
+import { displayPhotos, safeUrl, type ArtistProfile } from "@/lib/artists";
 
 export const Route = createFileRoute("/artistas/$slug")({
   head: ({ params }) => ({
@@ -27,7 +27,7 @@ function ArtistPage() {
     (async () => {
       const { data } = await supabase.from("artist_profiles").select("*").eq("slug", slug).eq("status", "approved").maybeSingle();
       setA(data);
-      if (data?.photo_url) setPhoto((await signPhotos([data.photo_url]))[data.photo_url] ?? null);
+      if (data?.photo_url) setPhoto((await displayPhotos([data]))[data.photo_url] ?? null);
     })();
   }, [slug]);
 
