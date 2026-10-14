@@ -89,10 +89,34 @@ const TABS: { id: RequestType; label: string; sub: string; color: string; tag: s
 ];
 
 function ContactoPage() {
-  const [type, setType] = useState<RequestType | null>(null);
+  const search = Route.useSearch();
+  const [type, setType] = useState<RequestType | null>(
+    search.type === "booking" || search.type === "general" || search.type === "artist" ? search.type : null
+  );
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [approvedArtists, setApprovedArtists] = useState<{ id: string; artist_name: string }[]>([]);
+  const [selectedArtist, setSelectedArtist] = useState<{ id: string; artist_name: string } | null>(null);
+
+  // Load approved artists for the booking selector and resolve a preselected artist.
+  useEffect(() => {
+    if (type !== "booking") return;
+    (async () => {
+      const { data } = await supabase
+        .from("artist_profiles")
+        .select("id, artist_name")
+        .eq("status", "approved")
+        .order("artist_name");
+      const list = data ?? [];
+      setApprovedArtists(list);
+      if (search.artist) {
+        const found = list.find((a) => a.id === search.artist);
+        if (found) setSelectedArtist(found);
+        else toast.error("El artista seleccionado no está disponible. Elige uno de la lista.");
+      }
+    })();
+  }, [type, search.artist]);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
