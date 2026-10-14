@@ -61,7 +61,7 @@ function ArtistPage() {
               ))}
             </div>
           )}
-          <Link to="/contacto" className="btn btn-primary mt-10">Solicitar booking de {a.artist_name}</Link>
+          <Link to="/contacto" search={{ type: "booking", artist: a.id }} className="btn btn-primary mt-10">Solicitar booking de {a.artist_name}</Link>
         </div>
       </div>
     </section>

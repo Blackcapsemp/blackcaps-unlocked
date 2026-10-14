@@ -1,10 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
+type ContactoSearch = { type?: string; artist?: string };
+
 export const Route = createFileRoute("/contacto")({
+  validateSearch: (search: Record<string, unknown>): ContactoSearch => ({
+    type: typeof search.type === "string" ? search.type : undefined,
+    artist: typeof search.artist === "string" ? search.artist : undefined,
+  }),
   head: () => ({
     meta: [
       { title: "Contacto — BLACKCAPS EXPERIENCE" },
@@ -83,10 +89,34 @@ const TABS: { id: RequestType; label: string; sub: string; color: string; tag: s
 ];
 
 function ContactoPage() {
-  const [type, setType] = useState<RequestType | null>(null);
+  const search = Route.useSearch();
+  const [type, setType] = useState<RequestType | null>(
+    search.type === "booking" || search.type === "general" || search.type === "artist" ? search.type : null
+  );
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [approvedArtists, setApprovedArtists] = useState<{ id: string; artist_name: string }[]>([]);
+  const [selectedArtist, setSelectedArtist] = useState<{ id: string; artist_name: string } | null>(null);
+
+  // Load approved artists for the booking selector and resolve a preselected artist.
+  useEffect(() => {
+    if (type !== "booking") return;
+    (async () => {
+      const { data } = await supabase
+        .from("artist_profiles")
+        .select("id, artist_name")
+        .eq("status", "approved")
+        .order("artist_name");
+      const list = data ?? [];
+      setApprovedArtists(list);
+      if (search.artist) {
+        const found = list.find((a) => a.id === search.artist);
+        if (found) setSelectedArtist(found);
+        else toast.error("El artista seleccionado no está disponible. Elige uno de la lista.");
+      }
+    })();
+  }, [type, search.artist]);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -126,7 +156,12 @@ function ContactoPage() {
           page: typeof window !== "undefined" ? window.location.pathname : "/contacto",
           request_type: type,
           city,
-          extra: rest,
+          extra: {
+            ...rest,
+            ...(type === "booking" && selectedArtist
+              ? { artista_solicitado: selectedArtist.artist_name, artista_id: selectedArtist.id }
+              : {}),
+          },
         },
       });
       setSending(false);
@@ -403,6 +438,40 @@ function ContactoPage() {
 
                   {type === "booking" && (
                     <>
+                      <div className="md:col-span-2">
+                        <Label>Artista solicitado</Label>
+                        {selectedArtist ? (
+                          <div className="mt-2 flex items-center justify-between gap-3 rounded-xl border border-white/15 bg-white/5 px-4 py-3">
+                            <span className="text-bone font-semibold">{selectedArtist.artist_name}</span>
+                            <button
+                              type="button"
+                              onClick={() => setSelectedArtist(null)}
+                              className="text-xs uppercase tracking-[0.16em] text-bone/60 hover:text-bone transition-colors"
+                            >
+                              Cambiar
+                            </button>
+                          </div>
+                        ) : (
+                          <select
+                            aria-label="Artista solicitado"
+                            className="mt-2 w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-bone outline-none focus:border-bcaps-green/60 transition-colors"
+                            value=""
+                            onChange={(e) => {
+                              const found = approvedArtists.find((a) => a.id === e.target.value);
+                              setSelectedArtist(found ?? null);
+                            }}
+                          >
+                            <option value="" disabled>
+                              Elige un artista de nuestro roster (opcional)
+                            </option>
+                            {approvedArtists.map((a) => (
+                              <option key={a.id} value={a.id} className="bg-ink">
+                                {a.artist_name}
+                              </option>
+                            ))}
+                          </select>
+                        )}
+                      </div>
                       <Field label="Tipo de evento*" name="eventType" placeholder="Festival, club, privado…" error={errors.eventType} />
                       <Field label="Fecha del evento*" name="eventDate" placeholder="DD/MM/AAAA" error={errors.eventDate} />
                       <Field label="Ciudad del evento*" name="eventCity" error={errors.eventCity} />
