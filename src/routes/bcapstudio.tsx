@@ -140,6 +140,39 @@ function BcapPage() {
         </div>
       </section>
 
+      {/* ARTIST ROSTER & BOOKING */}
+      <section className="relative py-24 px-4 md:px-8 border-t border-white/10 overflow-hidden">
+        <div className="absolute inset-0 -z-10 opacity-60"
+             style={{ backgroundImage: "radial-gradient(800px 360px at 85% 20%, oklch(0.72 0.19 55 / 0.12), transparent 60%), radial-gradient(700px 320px at 10% 90%, oklch(0.68 0.22 310 / 0.10), transparent 60%)" }} />
+        <div className="mx-auto max-w-[1600px] grid lg:grid-cols-2 gap-10 items-center">
+          <div>
+            <div className="flex items-center gap-3 flex-wrap">
+              <span className="sticker">BCAPSTUDIO.EMP</span>
+              <span className="sticker" style={{ borderColor: "var(--bcaps-orange)", color: "var(--bcaps-orange)" }}>Representación artística</span>
+            </div>
+            <h2 className="display text-4xl md:text-6xl lg:text-7xl mt-6 leading-[0.95]">
+              ARTIST ROSTER<br /><span className="text-gradient-bcaps">& BOOKING</span>
+            </h2>
+            <p className="mt-6 max-w-xl text-bone/80 text-base md:text-lg leading-relaxed">
+              Promocionamos, representamos y contratamos a los artistas de nuestro roster. Desde showcases y festivales hasta eventos privados y colaboraciones con marcas: conectamos el talento de BCAPSTUDIO.EMP con escenarios y oportunidades reales.
+            </p>
+          </div>
+          <div className="rounded-3xl border border-white/15 bg-card/60 backdrop-blur p-8 md:p-10">
+            <p className="display text-lg text-bone">¿Qué necesitas?</p>
+            <p className="text-sm text-bone/65 mt-2 leading-relaxed">
+              Explora el roster de artistas disponibles para tu evento, o crea tu perfil de artista y pasa a formar parte de BCAPSTUDIO.EMP.
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row gap-3">
+              <Link to="/booking" className="btn btn-primary justify-center flex-1">Explorar artistas</Link>
+              <Link to="/auth" className="btn btn-ghost justify-center flex-1">Soy artista</Link>
+            </div>
+            <p className="mt-5 text-[11px] uppercase tracking-[0.18em] text-bone/45">
+              Booking gestionado por BCAPSTUDIO.EMP · BLACKCAPS EXPERIENCE
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* TOOLS */}
       <section className="py-24 px-4 md:px-8 border-t border-white/10">
         <div className="mx-auto max-w-[1600px]">
