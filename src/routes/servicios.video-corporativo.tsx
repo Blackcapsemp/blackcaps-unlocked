@@ -114,7 +114,7 @@ function VideoCorporativoPage() {
             <span className="sticker">Madrid · Valencia · Barcelona</span>
             <span className="sticker">B2B · Corporate</span>
           </div>
-          <h1 className="display text-5xl md:text-7xl lg:text-[7vw] leading-[0.9] max-w-[18ch]">
+          <h1 className="display text-4xl md:text-6xl lg:text-[6vw] leading-[0.9] max-w-[18ch]">
             VÍDEOS CORPORATIVOS<br /><span className="text-gradient-bcaps">PARA EMPRESAS</span> EN MADRID
           </h1>
           <p className="mt-8 max-w-2xl text-lg md:text-xl text-bone/85 leading-relaxed">

@@ -55,7 +55,7 @@ function Home() {
 
 
         <div className="relative z-10 mx-auto max-w-[1600px] px-4 md:px-8 pt-44 md:pt-56 pb-24">
-          <h1 className="display text-[18vw] md:text-[14vw] leading-[0.85]">
+          <h1 className="display text-[15vw] md:text-[11.5vw] leading-[0.85]">
             <span className="reveal-mask"><span>BLACK</span></span>
             <span className="reveal-mask block stroke-text glitch" style={{ animationDelay: "200ms" }}><span>CAPS</span></span>
             <span className="reveal-mask block text-gradient-bcaps" style={{ animationDelay: "400ms" }}><span>EXPERIENCE</span></span>
@@ -85,7 +85,7 @@ function Home() {
 
       {/* QUIÉNES SOMOS */}
       <section className="relative py-24 md:py-36 px-4 md:px-8 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 display text-[28vw] leading-none text-white/[0.025] pointer-events-none select-none">CULTURE</div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 display text-[24vw] leading-none text-white/[0.025] pointer-events-none select-none">CULTURE</div>
         <div className="mx-auto max-w-[1600px] grid md:grid-cols-12 gap-10 relative">
           <div className="md:col-span-5">
             <span className="sticker mb-6">01 — Quiénes somos</span>
@@ -110,7 +110,7 @@ function Home() {
           </div>
 
           <div className="md:col-span-12 mt-10">
-            <p className="display text-5xl md:text-[10vw] leading-[0.9] stroke-text">
+            <p className="display text-4xl md:text-[8.5vw] leading-[0.9] stroke-text">
               ANYWHERE BUT WITH <span className="text-gradient-bcaps not-stroke">MUSIC.</span>
             </p>
           </div>
