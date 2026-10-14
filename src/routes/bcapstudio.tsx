@@ -78,7 +78,7 @@ function BcapPage() {
             BCAPSTUDIO<span className="text-bcaps-orange">.EMP</span>
             <span className="sr-only"> — Sello Creativo 360º</span>
           </h1>
-          <p className="display text-4xl sm:text-5xl md:text-7xl lg:text-[8vw] leading-[0.9] mt-4 text-gradient-bcaps">Música · Audiovisual · Estrategia digital</p>
+          <p className="display text-3xl sm:text-4xl md:text-6xl lg:text-[6.5vw] leading-[0.9] mt-4 text-gradient-bcaps">Música · Audiovisual · Estrategia digital</p>
           <p className="mt-8 max-w-2xl text-bone/85 text-lg">
             Línea de negocio de Blackcaps Experience enfocada en el desarrollo creativo y estratégico de artistas y marcas. Integra producción audiovisual, branding, contenido digital, distribución musical y comunicación para construir lanzamientos con identidad y recorrido.
           </p>

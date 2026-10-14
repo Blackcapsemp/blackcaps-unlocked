@@ -54,7 +54,7 @@ function BookingPage() {
             <span className="sticker">Festival · Showcases · B2B</span>
             <span className="sticker" style={{ borderColor: "var(--bcaps-orange)", color: "var(--bcaps-orange)" }}>BCAPSTUDIO.EMP</span>
           </div>
-          <h1 className="display text-[14vw] md:text-[12vw] leading-[0.85] mt-6">
+          <h1 className="display text-[11.5vw] md:text-[10vw] leading-[0.85] mt-6">
             BOOKING<br /><span className="text-gradient-bcaps">OF ARTISTS</span>
           </h1>
           <p className="mt-6 md:mt-8 max-w-2xl text-base md:text-xl text-bone/85">

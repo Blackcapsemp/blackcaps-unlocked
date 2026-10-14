@@ -208,7 +208,7 @@ function ContactoPage() {
             <span className="sticker" style={{ borderColor: "var(--bcaps-green)", color: "var(--bcaps-green)" }}>B2B · Booking · Artists</span>
             <span className="text-xs uppercase tracking-[0.2em] text-bone/50">Respuesta &lt; 48h</span>
           </div>
-          <h1 className="display text-[9vw] md:text-[8.5vw] leading-[0.9] mt-2 max-w-[14ch]">
+          <h1 className="display text-[7.5vw] md:text-[7vw] leading-[0.9] mt-2 max-w-[14ch]">
             Hablemos de <span className="text-gradient-bcaps">tu próximo</span> proyecto.
           </h1>
           <p className="mt-6 max-w-xl text-sm md:text-lg text-bone/75 leading-relaxed">
