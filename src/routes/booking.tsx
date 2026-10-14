@@ -50,7 +50,10 @@ function BookingPage() {
         <img src={crowd} alt="" width={1920} height={1080} className="absolute inset-0 w-full h-full object-cover opacity-45" />
         <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/30 to-ink" />
         <div className="relative mx-auto max-w-[1600px]">
-          <span className="sticker mb-6">Festival · Showcases · B2B</span>
+          <div className="flex items-center gap-3 flex-wrap mb-6">
+            <span className="sticker">Festival · Showcases · B2B</span>
+            <span className="sticker" style={{ borderColor: "var(--bcaps-orange)", color: "var(--bcaps-orange)" }}>BCAPSTUDIO.EMP</span>
+          </div>
           <h1 className="display text-[14vw] md:text-[12vw] leading-[0.85] mt-6">
             BOOKING<br /><span className="text-gradient-bcaps">OF ARTISTS</span>
           </h1>
