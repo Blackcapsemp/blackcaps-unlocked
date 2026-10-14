@@ -35,6 +35,20 @@ function AdminArtists() {
   const [editing, setEditing] = useState<ArtistProfile | "new" | null>(null);
   const [saving, setSaving] = useState(false);
 
+  async function deleteArtist(a: ArtistProfile) {
+    if (!window.confirm(`¿Eliminar definitivamente el perfil de «${a.artist_name}»?\n\nEsta acción es irreversible: se borrarán el perfil y su fotografía, y dejará de aparecer en Booking y en su página pública.${a.user_id ? "\n\nLa cuenta de usuario del artista NO se eliminará." : ""}\n\nLas solicitudes de booking ya recibidas se conservan.`)) return;
+    const { error, count } = await supabase.from("artist_profiles").delete({ count: "exact" }).eq("id", a.id);
+    if (error || !count) return toast.error(error?.message ?? "No se pudo eliminar el perfil");
+    // Only this profile's own photo path is removed; other artists are untouched.
+    if (a.photo_url) {
+      const { error: e2 } = await supabase.storage.from("artist-photos").remove([a.photo_url]);
+      if (e2) toast.warning("Perfil eliminado, pero la foto no se pudo borrar");
+    }
+    toast.success("Artista eliminado");
+    setSelected(null);
+    setList((l) => l?.filter((x) => x.id !== a.id) ?? null);
+  }
+
   // Admin create/edit. Admin photo uploads always go to the "manual/" folder (admin-only write).
   async function saveArtist(d: ArtistForm, file: File | null) {
     const current = editing === "new" ? null : editing;
@@ -181,6 +195,7 @@ function AdminArtists() {
                   <div className="mt-3 flex flex-wrap gap-2">
                     <button onClick={() => setSelected(a)} className="btn btn-ghost">Ver ficha</button>
                     <button onClick={() => setEditing(a)} className="btn btn-ghost">Editar</button>
+                    <button onClick={() => deleteArtist(a)} className="btn btn-ghost text-destructive">Eliminar</button>
                     <button onClick={() => setStatus(a.id, "approved")} disabled={a.status === "approved"} className="btn btn-primary disabled:opacity-40">Aprobar</button>
                     <button onClick={() => setStatus(a.id, "rejected")} disabled={a.status === "rejected"} className="btn btn-ghost disabled:opacity-40">Rechazar</button>
                   </div>
@@ -228,6 +243,7 @@ function AdminArtists() {
               <button onClick={() => setStatus(selected.id, "approved")} disabled={selected.status === "approved"} className="btn btn-primary disabled:opacity-40">Aprobar</button>
               <button onClick={() => setStatus(selected.id, "rejected")} disabled={selected.status === "rejected"} className="btn btn-ghost disabled:opacity-40">Rechazar</button>
               <button onClick={() => setEditing(selected)} className="btn btn-ghost">Editar</button>
+              <button onClick={() => deleteArtist(selected)} className="btn btn-ghost text-destructive">Eliminar</button>
             </div>
           </div>
         </div>
