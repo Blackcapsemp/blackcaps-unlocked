@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
@@ -6,6 +6,18 @@ import { signPhotos, slugify, type ArtistProfile } from "@/lib/artists";
 import { ArtistProfileForm, artistRow, type ArtistForm } from "@/components/ArtistProfileForm";
 
 export const Route = createFileRoute("/_authenticated/mi-perfil")({
+  beforeLoad: async () => {
+    // Los administradores no gestionan un perfil de artista propio: van al panel.
+    const { data: u } = await supabase.auth.getUser();
+    if (!u.user) return;
+    const { data: r } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", u.user.id)
+      .eq("role", "admin")
+      .maybeSingle();
+    if (r) throw redirect({ to: "/admin/artistas", replace: true });
+  },
   head: () => ({
     meta: [
       { title: "Mi perfil de artista — BLACKCAPS" },

@@ -26,10 +26,23 @@ function AuthPage() {
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
 
+  async function redirectAfterLogin() {
+    const { data: u } = await supabase.auth.getUser();
+    if (!u.user) return navigate({ to: "/mi-perfil" });
+    const { data: r } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", u.user.id)
+      .eq("role", "admin")
+      .maybeSingle();
+    navigate({ to: r ? "/admin/artistas" : "/mi-perfil" });
+  }
+
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
-      if (data.session) navigate({ to: "/mi-perfil", replace: true });
+      if (data.session) redirectAfterLogin();
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigate]);
 
   async function submit(e: React.FormEvent) {
@@ -52,7 +65,7 @@ function AuthPage() {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
       }
-      navigate({ to: "/mi-perfil" });
+      await redirectAfterLogin();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "No se pudo acceder");
     } finally {
