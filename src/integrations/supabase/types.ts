@@ -29,7 +29,7 @@ export type Database = {
           status: Database["public"]["Enums"]["artist_status"]
           style: string
           updated_at: string
-          user_id: string
+          user_id: string | null
           youtube: string | null
         }
         Insert: {
@@ -46,7 +46,7 @@ export type Database = {
           status?: Database["public"]["Enums"]["artist_status"]
           style: string
           updated_at?: string
-          user_id: string
+          user_id?: string | null
           youtube?: string | null
         }
         Update: {
@@ -63,7 +63,7 @@ export type Database = {
           status?: Database["public"]["Enums"]["artist_status"]
           style?: string
           updated_at?: string
-          user_id?: string
+          user_id?: string | null
           youtube?: string | null
         }
         Relationships: []

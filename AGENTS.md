@@ -1,0 +1,1 @@
+- Artist profiles with user_id NULL are admin-created (manual); their photos live under artist-photos/manual/, writable only by admins. Why: lets admins add artists without fake accounts while owner RLS stays untouched.
