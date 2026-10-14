@@ -29,6 +29,13 @@
       "when": 1791995476789,
       "tag": "0003_manual_artist_profiles",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1791995974034,
+      "tag": "0004_admin_delete_artist_photos",
+      "breakpoints": true
     }
   ]
 }
