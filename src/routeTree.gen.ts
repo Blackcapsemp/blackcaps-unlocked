@@ -9,46 +9,21 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SobreNosotrosRouteImport } from './routes/sobre-nosotros'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as ServiciosRouteImport } from './routes/servicios'
-import { Route as ProduccionAudiovisualRouteImport } from './routes/produccion-audiovisual'
-import { Route as ContactoRouteImport } from './routes/contacto'
-import { Route as BookingRouteImport } from './routes/booking'
-import { Route as BcapstudioRouteImport } from './routes/bcapstudio'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ServiciosVideoCorporativoRouteImport } from './routes/servicios.video-corporativo'
+import { Route as BcapstudioRouteImport } from './routes/bcapstudio'
+import { Route as BookingRouteImport } from './routes/booking'
+import { Route as ContactoRouteImport } from './routes/contacto'
+import { Route as ProduccionAudiovisualRouteImport } from './routes/produccion-audiovisual'
+import { Route as ServiciosRouteImport } from './routes/servicios'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as SobreNosotrosRouteImport } from './routes/sobre-nosotros'
 import { Route as BlogGuiaBriefingProductoraAudiovisualRouteImport } from './routes/blog.guia-briefing-productora-audiovisual'
+import { Route as ServiciosVideoCorporativoRouteImport } from './routes/servicios.video-corporativo'
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
 
-const SobreNosotrosRoute = SobreNosotrosRouteImport.update({
-  id: '/sobre-nosotros',
-  path: '/sobre-nosotros',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ServiciosRoute = ServiciosRouteImport.update({
-  id: '/servicios',
-  path: '/servicios',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProduccionAudiovisualRoute = ProduccionAudiovisualRouteImport.update({
-  id: '/produccion-audiovisual',
-  path: '/produccion-audiovisual',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactoRoute = ContactoRouteImport.update({
-  id: '/contacto',
-  path: '/contacto',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BookingRoute = BookingRouteImport.update({
-  id: '/booking',
-  path: '/booking',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BcapstudioRoute = BcapstudioRouteImport.update({
@@ -56,22 +31,47 @@ const BcapstudioRoute = BcapstudioRouteImport.update({
   path: '/bcapstudio',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const BookingRoute = BookingRouteImport.update({
+  id: '/booking',
+  path: '/booking',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServiciosVideoCorporativoRoute =
-  ServiciosVideoCorporativoRouteImport.update({
-    id: '/video-corporativo',
-    path: '/video-corporativo',
-    getParentRoute: () => ServiciosRoute,
-  } as any)
+const ContactoRoute = ContactoRouteImport.update({
+  id: '/contacto',
+  path: '/contacto',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProduccionAudiovisualRoute = ProduccionAudiovisualRouteImport.update({
+  id: '/produccion-audiovisual',
+  path: '/produccion-audiovisual',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServiciosRoute = ServiciosRouteImport.update({
+  id: '/servicios',
+  path: '/servicios',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SobreNosotrosRoute = SobreNosotrosRouteImport.update({
+  id: '/sobre-nosotros',
+  path: '/sobre-nosotros',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BlogGuiaBriefingProductoraAudiovisualRoute =
   BlogGuiaBriefingProductoraAudiovisualRouteImport.update({
     id: '/blog/guia-briefing-productora-audiovisual',
     path: '/blog/guia-briefing-productora-audiovisual',
     getParentRoute: () => rootRouteImport,
+  } as any)
+const ServiciosVideoCorporativoRoute =
+  ServiciosVideoCorporativoRouteImport.update({
+    id: '/video-corporativo',
+    path: '/video-corporativo',
+    getParentRoute: () => ServiciosRoute,
   } as any)
 const LovableEmailQueueProcessRoute =
   LovableEmailQueueProcessRouteImport.update({
@@ -177,46 +177,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/sobre-nosotros': {
-      id: '/sobre-nosotros'
-      path: '/sobre-nosotros'
-      fullPath: '/sobre-nosotros'
-      preLoaderRoute: typeof SobreNosotrosRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/servicios': {
-      id: '/servicios'
-      path: '/servicios'
-      fullPath: '/servicios'
-      preLoaderRoute: typeof ServiciosRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/produccion-audiovisual': {
-      id: '/produccion-audiovisual'
-      path: '/produccion-audiovisual'
-      fullPath: '/produccion-audiovisual'
-      preLoaderRoute: typeof ProduccionAudiovisualRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contacto': {
-      id: '/contacto'
-      path: '/contacto'
-      fullPath: '/contacto'
-      preLoaderRoute: typeof ContactoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/booking': {
-      id: '/booking'
-      path: '/booking'
-      fullPath: '/booking'
-      preLoaderRoute: typeof BookingRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/bcapstudio': {
@@ -226,11 +191,53 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BcapstudioRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/booking': {
+      id: '/booking'
+      path: '/booking'
+      fullPath: '/booking'
+      preLoaderRoute: typeof BookingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contacto': {
+      id: '/contacto'
+      path: '/contacto'
+      fullPath: '/contacto'
+      preLoaderRoute: typeof ContactoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/produccion-audiovisual': {
+      id: '/produccion-audiovisual'
+      path: '/produccion-audiovisual'
+      fullPath: '/produccion-audiovisual'
+      preLoaderRoute: typeof ProduccionAudiovisualRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/servicios': {
+      id: '/servicios'
+      path: '/servicios'
+      fullPath: '/servicios'
+      preLoaderRoute: typeof ServiciosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sobre-nosotros': {
+      id: '/sobre-nosotros'
+      path: '/sobre-nosotros'
+      fullPath: '/sobre-nosotros'
+      preLoaderRoute: typeof SobreNosotrosRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/blog/guia-briefing-productora-audiovisual': {
+      id: '/blog/guia-briefing-productora-audiovisual'
+      path: '/blog/guia-briefing-productora-audiovisual'
+      fullPath: '/blog/guia-briefing-productora-audiovisual'
+      preLoaderRoute: typeof BlogGuiaBriefingProductoraAudiovisualRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/servicios/video-corporativo': {
@@ -239,13 +246,6 @@ declare module '@tanstack/react-router' {
       fullPath: '/servicios/video-corporativo'
       preLoaderRoute: typeof ServiciosVideoCorporativoRouteImport
       parentRoute: typeof ServiciosRoute
-    }
-    '/blog/guia-briefing-productora-audiovisual': {
-      id: '/blog/guia-briefing-productora-audiovisual'
-      path: '/blog/guia-briefing-productora-audiovisual'
-      fullPath: '/blog/guia-briefing-productora-audiovisual'
-      preLoaderRoute: typeof BlogGuiaBriefingProductoraAudiovisualRouteImport
-      parentRoute: typeof rootRouteImport
     }
     '/lovable/email/queue/process': {
       id: '/lovable/email/queue/process'
