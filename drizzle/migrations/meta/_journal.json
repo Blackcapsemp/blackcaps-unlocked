@@ -8,6 +8,13 @@
       "when": 1791984231350,
       "tag": "0000_artist_profiles",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791992222354,
+      "tag": "0001_assign_admin_info",
+      "breakpoints": true
     }
   ]
 }
