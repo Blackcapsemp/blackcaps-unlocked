@@ -83,15 +83,6 @@ function MyProfile() {
     }
   }
 
-  const input = "w-full rounded-xl bg-white/[0.04] border border-white/15 px-4 py-3 text-base outline-none focus:border-bone focus:ring-2 focus:ring-bone/20 transition";
-  const field = (k: keyof Form, label: string, el: React.ReactNode, hint?: string) => (
-    <label className="block">
-      <span className="text-xs uppercase tracking-[0.16em] text-muted-foreground">{label}</span>
-      <div className="mt-2">{el}</div>
-      {errors[k] ? <span className="text-xs text-destructive mt-1 block">{errors[k]}</span> : hint ? <span className="text-xs text-muted-foreground mt-1 block">{hint}</span> : null}
-    </label>
-  );
-
   return (
     <section className="pt-32 pb-20 px-4 md:px-8">
       <div className="mx-auto max-w-4xl">
@@ -119,41 +110,8 @@ function MyProfile() {
           </div>
         )}
 
-        <form onSubmit={save} className="mt-10 grid md:grid-cols-[260px_1fr] gap-8">
-          <div>
-            <label className="block cursor-pointer group">
-              <div className="aspect-[4/5] rounded-2xl border border-dashed border-white/25 overflow-hidden grid place-items-center bg-white/[0.03] group-hover:border-bone transition">
-                {preview ? <img src={preview} alt="Foto de perfil" className="w-full h-full object-cover" /> : (
-                  <span className="text-sm text-muted-foreground text-center px-6">Toca para subir tu foto<br /><span className="text-xs">JPG/PNG · máx 5 MB</span></span>
-                )}
-              </div>
-              <input type="file" accept="image/*" className="sr-only" onChange={(e) => pickFile(e.target.files?.[0])} />
-              {preview && <span className="mt-2 block text-xs text-center text-muted-foreground">Toca para cambiar</span>}
-            </label>
-          </div>
-
-          <div className="space-y-5">
-            {field("artist_name", "Nombre artístico *", <input className={input} value={form.artist_name} onChange={(e) => set("artist_name", e.target.value)} />)}
-            <div className="grid sm:grid-cols-2 gap-5">
-              {field("style", "Estilo *", (
-                <select aria-label="Estilo" className={input} value={form.style} onChange={(e) => set("style", e.target.value as Form["style"])}>
-                  {ARTIST_STYLES.map((s) => <option key={s} value={s} className="bg-ink">{s}</option>)}
-                </select>
-              ))}
-              {field("city", "Ciudad *", <input className={input} value={form.city} onChange={(e) => set("city", e.target.value)} />)}
-            </div>
-            {field("bio", "Biografía *", <textarea rows={5} className={input} value={form.bio} onChange={(e) => set("bio", e.target.value)} />, `${form.bio.length}/2000`)}
-            <div className="grid sm:grid-cols-2 gap-5">
-              {field("instagram", "Instagram", <input className={input} placeholder="https://instagram.com/…" value={form.instagram} onChange={(e) => set("instagram", e.target.value)} />)}
-              {field("spotify", "Spotify", <input className={input} placeholder="https://open.spotify.com/…" value={form.spotify} onChange={(e) => set("spotify", e.target.value)} />)}
-              {field("soundcloud", "SoundCloud", <input className={input} placeholder="https://soundcloud.com/…" value={form.soundcloud} onChange={(e) => set("soundcloud", e.target.value)} />)}
-              {field("youtube", "YouTube", <input className={input} placeholder="https://youtube.com/…" value={form.youtube} onChange={(e) => set("youtube", e.target.value)} />)}
-            </div>
-            <button disabled={busy} className="btn btn-primary w-full sm:w-auto justify-center disabled:opacity-60">
-              {busy ? "Guardando…" : profile ? "Guardar y enviar a revisión" : "Enviar perfil"}
-            </button>
-          </div>
-        </form>
+        <ArtistProfileForm initial={profile} initialPreview={preview} hasPhoto={!!profile?.photo_url} busy={busy}
+          submitLabel={profile ? "Guardar y enviar a revisión" : "Enviar perfil"} onSubmit={save} />
       </div>
     </section>
   );
