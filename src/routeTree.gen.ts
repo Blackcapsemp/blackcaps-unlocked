@@ -24,6 +24,7 @@ import { Route as ArtistasSlugRouteImport } from './routes/artistas.$slug'
 import { Route as BlogGuiaBriefingProductoraAudiovisualRouteImport } from './routes/blog.guia-briefing-productora-audiovisual'
 import { Route as ServiciosVideoCorporativoRouteImport } from './routes/servicios.video-corporativo'
 import { Route as AuthenticatedAdminArtistasRouteImport } from './routes/_authenticated/admin.artistas'
+import { Route as ApiPublicArtistPhotoIdRouteImport } from './routes/api/public/artist-photo.$id'
 import { Route as LovableEmailQueueProcessRouteImport } from './routes/lovable/email/queue/process'
 
 const IndexRoute = IndexRouteImport.update({
@@ -103,6 +104,11 @@ const AuthenticatedAdminArtistasRoute =
     path: '/admin/artistas',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const ApiPublicArtistPhotoIdRoute = ApiPublicArtistPhotoIdRouteImport.update({
+  id: '/api/public/artist-photo/$id',
+  path: '/api/public/artist-photo/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LovableEmailQueueProcessRoute =
   LovableEmailQueueProcessRouteImport.update({
     id: '/lovable/email/queue/process',
@@ -125,6 +131,7 @@ export interface FileRoutesByFullPath {
   '/blog/guia-briefing-productora-audiovisual': typeof BlogGuiaBriefingProductoraAudiovisualRoute
   '/servicios/video-corporativo': typeof ServiciosVideoCorporativoRoute
   '/admin/artistas': typeof AuthenticatedAdminArtistasRoute
+  '/api/public/artist-photo/$id': typeof ApiPublicArtistPhotoIdRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRoutesByTo {
@@ -142,6 +149,7 @@ export interface FileRoutesByTo {
   '/blog/guia-briefing-productora-audiovisual': typeof BlogGuiaBriefingProductoraAudiovisualRoute
   '/servicios/video-corporativo': typeof ServiciosVideoCorporativoRoute
   '/admin/artistas': typeof AuthenticatedAdminArtistasRoute
+  '/api/public/artist-photo/$id': typeof ApiPublicArtistPhotoIdRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRoutesById {
@@ -161,6 +169,7 @@ export interface FileRoutesById {
   '/blog/guia-briefing-productora-audiovisual': typeof BlogGuiaBriefingProductoraAudiovisualRoute
   '/servicios/video-corporativo': typeof ServiciosVideoCorporativoRoute
   '/_authenticated/admin/artistas': typeof AuthenticatedAdminArtistasRoute
+  '/api/public/artist-photo/$id': typeof ApiPublicArtistPhotoIdRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
 }
 export interface FileRouteTypes {
@@ -180,6 +189,7 @@ export interface FileRouteTypes {
     | '/blog/guia-briefing-productora-audiovisual'
     | '/servicios/video-corporativo'
     | '/admin/artistas'
+    | '/api/public/artist-photo/$id'
     | '/lovable/email/queue/process'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -197,6 +207,7 @@ export interface FileRouteTypes {
     | '/blog/guia-briefing-productora-audiovisual'
     | '/servicios/video-corporativo'
     | '/admin/artistas'
+    | '/api/public/artist-photo/$id'
     | '/lovable/email/queue/process'
   id:
     | '__root__'
@@ -215,6 +226,7 @@ export interface FileRouteTypes {
     | '/blog/guia-briefing-productora-audiovisual'
     | '/servicios/video-corporativo'
     | '/_authenticated/admin/artistas'
+    | '/api/public/artist-photo/$id'
     | '/lovable/email/queue/process'
   fileRoutesById: FileRoutesById
 }
@@ -231,6 +243,7 @@ export interface RootRouteChildren {
   SobreNosotrosRoute: typeof SobreNosotrosRoute
   ArtistasSlugRoute: typeof ArtistasSlugRoute
   BlogGuiaBriefingProductoraAudiovisualRoute: typeof BlogGuiaBriefingProductoraAudiovisualRoute
+  ApiPublicArtistPhotoIdRoute: typeof ApiPublicArtistPhotoIdRoute
   LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
 }
 
@@ -341,6 +354,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminArtistasRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/api/public/artist-photo/$id': {
+      id: '/api/public/artist-photo/$id'
+      path: '/api/public/artist-photo/$id'
+      fullPath: '/api/public/artist-photo/$id'
+      preLoaderRoute: typeof ApiPublicArtistPhotoIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lovable/email/queue/process': {
       id: '/lovable/email/queue/process'
       path: '/lovable/email/queue/process'
@@ -390,6 +410,7 @@ const rootRouteChildren: RootRouteChildren = {
   ArtistasSlugRoute: ArtistasSlugRoute,
   BlogGuiaBriefingProductoraAudiovisualRoute:
     BlogGuiaBriefingProductoraAudiovisualRoute,
+  ApiPublicArtistPhotoIdRoute: ApiPublicArtistPhotoIdRoute,
   LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,
 }
 export const routeTree = rootRouteImport
