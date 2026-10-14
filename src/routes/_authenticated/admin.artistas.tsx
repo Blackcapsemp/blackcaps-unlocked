@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { ARTIST_STYLES, safeUrl, signPhotos, slugify, type ArtistProfile } from "@/lib/artists";
+import { ARTIST_STYLES, displayPhotos, safeUrl, slugify, type ArtistProfile } from "@/lib/artists";
 import { ArtistProfileForm, artistRow, type ArtistForm } from "@/components/ArtistProfileForm";
 
 export const Route = createFileRoute("/_authenticated/admin/artistas")({
@@ -92,7 +92,7 @@ function AdminArtists() {
     if (!r) return;
     const { data } = await supabase.from("artist_profiles").select("*").order("created_at", { ascending: false });
     setList(data ?? []);
-    setPhotos(await signPhotos((data ?? []).map((a) => a.photo_url)));
+    setPhotos(await displayPhotos(data ?? []));
   }
   useEffect(() => { load(); }, []);
 

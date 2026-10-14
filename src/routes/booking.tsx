@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Marquee } from "@/components/Marquee";
 import crowd from "@/assets/booking-crowd.jpg";
 import { supabase } from "@/integrations/supabase/client";
-import { ARTIST_STYLES, signPhotos } from "@/lib/artists";
+import { ARTIST_STYLES, displayPhotos } from "@/lib/artists";
 
 export const Route = createFileRoute("/booking")({
   head: () => ({
@@ -34,10 +34,10 @@ function BookingPage() {
     (async () => {
       const { data } = await supabase
         .from("artist_profiles")
-        .select("slug, artist_name, style, city, photo_url")
+        .select("id, slug, artist_name, style, city, photo_url, status")
         .eq("status", "approved")
         .order("created_at", { ascending: false });
-      const photos = await signPhotos((data ?? []).map((a) => a.photo_url));
+      const photos = await displayPhotos(data ?? []);
       setArtists((data ?? []).map((a) => ({ slug: a.slug, name: a.artist_name, style: a.style, city: a.city, img: a.photo_url ? photos[a.photo_url] ?? null : null })));
     })();
   }, []);

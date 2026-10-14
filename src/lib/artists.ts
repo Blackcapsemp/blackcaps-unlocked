@@ -15,6 +15,28 @@ export function slugify(s: string) {
     .slice(0, 60);
 }
 
+/** Public URL for an approved artist's photo, served by the server after checking approval. */
+export function approvedPhotoUrl(id: string) {
+  return `/api/public/artist-photo/${id}`;
+}
+
+/**
+ * Map photo_url -> displayable URL. Approved artists are served through the
+ * public server route; pending/rejected photos stay private and are signed
+ * (only owner/admin can read them in storage).
+ */
+export async function displayPhotos(artists: Pick<ArtistProfile, "id" | "status" | "photo_url">[]) {
+  const map: Record<string, string> = {};
+  const privatePaths: string[] = [];
+  for (const a of artists) {
+    if (!a.photo_url) continue;
+    if (a.status === "approved") map[a.photo_url] = approvedPhotoUrl(a.id);
+    else privatePaths.push(a.photo_url);
+  }
+  Object.assign(map, await signPhotos(privatePaths));
+  return map;
+}
+
 /** photo_url stores the storage path; bucket is private so we sign URLs. */
 export async function signPhotos(paths: (string | null)[]) {
   const valid = paths.filter((p): p is string => !!p);
