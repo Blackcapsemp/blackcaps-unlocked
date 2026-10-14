@@ -59,7 +59,7 @@
 
 :root {
   --radius: 0.25rem;
-  --type-scale: 0.88;
+  --type-scale: 0.9;
 
   /* Editorial Noir core */
   --ink: oklch(0.13 0 0);
@@ -169,7 +169,7 @@
     padding: .25rem .55rem; border-radius: 999px;
     border: 1px solid var(--bone); color: var(--bone);
     font-family: var(--font-sans); font-weight: 600;
-    font-size: calc(.7rem * var(--type-scale)); letter-spacing: .12em; text-transform: uppercase;
+    font-size: max(.68rem, calc(.7rem * var(--type-scale))); letter-spacing: .12em; text-transform: uppercase;
     backdrop-filter: blur(6px);
     background: oklch(1 0 0 / 0.04);
   }
@@ -181,7 +181,7 @@
     transform: rotate(-3deg);
   }
 
-  .btn { display: inline-flex; align-items: center; gap: .6rem; padding: .95rem 1.4rem; border-radius: 999px; font-weight: 600; text-transform: uppercase; letter-spacing: .12em; font-size: calc(.8rem * var(--type-scale)); transition: transform .25s ease, background .25s ease, color .25s ease; }
+  .btn { display: inline-flex; align-items: center; gap: .6rem; padding: .95rem 1.4rem; border-radius: 999px; font-weight: 600; text-transform: uppercase; letter-spacing: .12em; font-size: max(.75rem, calc(.8rem * var(--type-scale))); transition: transform .25s ease, background .25s ease, color .25s ease; }
   .btn-primary { background: var(--bone); color: var(--ink); }
   .btn-primary:hover { transform: translateY(-2px); background: var(--bcaps-green); }
   .btn-ghost { border: 1px solid var(--bone); color: var(--bone); }
