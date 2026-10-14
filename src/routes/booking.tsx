@@ -34,7 +34,7 @@ function BookingPage() {
     (async () => {
       const { data } = await supabase
         .from("artist_profiles")
-        .select("slug, artist_name, style, city, photo_url")
+        .select("id, slug, artist_name, style, city, photo_url, status")
         .eq("status", "approved")
         .order("created_at", { ascending: false });
       const photos = await displayPhotos(data ?? []);
