@@ -223,26 +223,27 @@
 :root {
   --graphite: #222725;
   --ivory: #F3EFE7;
-  --copper: #B57C5B;
+  --corp-white: #FFFFFF;
   --sand: #D3C6B2;
   --sage: #596158;
 }
 @theme inline {
   --color-graphite: var(--graphite);
   --color-ivory: var(--ivory);
-  --color-copper: var(--copper);
+  --color-corp-highlight: var(--corp-highlight);
+  --color-corp-white: var(--corp-white);
   --color-sand: var(--sand);
   --color-sage: var(--sage);
   --font-serif: "Fraunces", Georgia, serif;
 }
 @layer utilities {
-  .corp { background: var(--graphite); color: var(--ivory); }
+  .corp { --corp-highlight: var(--corp-white); --corp-action-bg: var(--corp-white); --corp-action-fg: var(--ink); background: var(--graphite); color: var(--ivory); }
   .corp :where(h1, h2, h3, h4) { color: inherit; }
-  .corp-light { background: var(--ivory); color: var(--graphite); }
-  .eyebrow { display: inline-flex; align-items: center; gap: .6rem; font-size: calc(.72rem * var(--type-scale)); font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--copper); }
+  .corp-light { --corp-highlight: var(--graphite); --corp-action-bg: var(--ink); --corp-action-fg: var(--corp-white); background: var(--ivory); color: var(--graphite); }
+  .eyebrow { display: inline-flex; align-items: center; gap: .6rem; font-size: calc(.72rem * var(--type-scale)); font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--corp-highlight); }
   .eyebrow::before { content: ""; width: 1.75rem; height: 1px; background: currentColor; }
-  .btn-copper { background: var(--copper); color: var(--ivory); }
-  .btn-copper:hover { transform: translateY(-2px); filter: brightness(1.08); }
+  .btn-corp { background: var(--corp-action-bg); color: var(--corp-action-fg); }
+  .btn-corp:hover { transform: translateY(-2px); background: color-mix(in oklab, var(--corp-action-bg) 90%, var(--corp-action-fg)); }
   .btn-line { border: 1px solid currentColor; }
   .btn-line:hover { transform: translateY(-2px); background: color-mix(in oklab, currentColor 10%, transparent); }
   @keyframes fade-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
