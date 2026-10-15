@@ -237,7 +237,7 @@
 }
 @layer utilities {
   .corp { background: var(--graphite); color: var(--ivory); }
-  .corp :where(h1, h2, h3, h4) { font-family: var(--font-serif); font-weight: 400; text-transform: none; letter-spacing: -0.015em; line-height: 1.05; color: inherit; }
+  .corp :where(h1, h2, h3, h4) { color: inherit; }
   .corp-light { background: var(--ivory); color: var(--graphite); }
   .eyebrow { display: inline-flex; align-items: center; gap: .6rem; font-size: calc(.72rem * var(--type-scale)); font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--copper); }
   .eyebrow::before { content: ""; width: 1.75rem; height: 1px; background: currentColor; }
