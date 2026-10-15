@@ -1,19 +1,19 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import heroStage from "@/assets/hero-stage.jpg";
-import djBooth from "@/assets/dj-booth.jpg";
 import camera from "@/assets/camera-detail.jpg";
-import artist from "@/assets/artist-portrait.jpg";
-import bcapBg from "@/assets/bcapstudio-bg.jpg";
-import { Marquee } from "@/components/Marquee";
+import crowd from "@/assets/booking-crowd.jpg";
+import djBooth from "@/assets/dj-booth.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Inicio — BLACKCAPS EXPERIENCE · Audiovisual & eventos" },
-      { name: "description", content: "Productora creativa B2B en Madrid, Valencia y Barcelona. Audiovisual, técnica de eventos, booking artístico, digital y sello BCAPSTUDIO.EMP." },
-      { property: "og:title", content: "BLACKCAPS EXPERIENCE — Productora audiovisual y eventos" },
-      { property: "og:description", content: "Productora creativa B2B en Madrid, Valencia y Barcelona. Audiovisual, eventos, booking y sello BCAPSTUDIO.EMP." },
+      { title: "BLACKCAPS EXPERIENCE — Productora audiovisual B2B" },
+      { name: "description", content: "Productora audiovisual para marcas, empresas, agencias y eventos en Madrid, Valencia y Barcelona. Vídeo, cobertura de eventos y soluciones técnicas." },
+      { property: "og:title", content: "BLACKCAPS EXPERIENCE — Productora audiovisual para empresas" },
+      { property: "og:description", content: "Producción audiovisual, cobertura de eventos y soluciones técnicas para marcas, empresas y agencias." },
       { property: "og:url", content: "https://blackcaps.es/" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       { rel: "canonical", href: "https://blackcaps.es/" },
@@ -23,214 +23,144 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const SERVICES = [
-  { n: "01", t: "Producción audiovisual", d: "Aftermovies, entrevistas, contenido de redes, videoclips y campañas audiovisuales completas." },
-  { n: "02", t: "Servicios técnicos", d: "Sonido, iluminación, visuales, streaming y soporte técnico para todo tipo de evento." },
-  { n: "03", t: "Visuales y contenido", d: "Motion graphics, VJ, pantallas LED, identidad visual para escenarios y campañas." },
-  { n: "04", t: "Booking de artistas", d: "Conectamos talento con eventos, marcas, festivales y proyectos culturales." },
-  { n: "05", t: "Soluciones digitales", d: "Webs, landings de evento, tiendas online, automatizaciones con IA y mantenimiento." },
-  { n: "06", t: "Colaboraciones B2B", d: "Equipo técnico y creativo externo para agencias, productoras e instituciones." },
+const CORE = [
+  { t: "Producción audiovisual", d: "Vídeo corporativo, campañas, entrevistas y contenido para redes, de la idea a la entrega final.", img: camera },
+  { t: "Cobertura de eventos", d: "Grabación, aftermovies y piezas resumen para eventos corporativos, culturales y de marca.", img: crowd },
+  { t: "Soluciones técnicas", d: "Sonido, iluminación, visuales, pantallas y streaming con equipo propio y técnicos especializados.", img: heroStage },
+];
+
+const STEPS = [
+  { n: "01", t: "Briefing", d: "Escuchamos objetivos, público, plazos y presupuesto." },
+  { n: "02", t: "Propuesta", d: "Enviamos una propuesta clara con alcance, calendario y coste." },
+  { n: "03", t: "Producción", d: "Rodaje, técnica y coordinación con un único interlocutor." },
+  { n: "04", t: "Entrega", d: "Postproducción, revisiones y formatos listos para publicar." },
+];
+
+const COMPLEMENTARY = [
+  { t: "Booking de artistas", to: "/booking" as const },
+  { t: "BCAPSTUDIO.EMP", to: "/bcapstudio" as const },
+  { t: "Desarrollo web y digital", to: "/servicios" as const },
 ];
 
 function Home() {
   return (
-    <>
-      {/* HERO */}
-      <section className="relative min-h-screen w-full overflow-hidden grain">
-        <img
-          src={heroStage}
-          alt="Concierto Blackcaps con pantallas LED"
-          width={1920}
-          height={1080}
-          fetchPriority="high"
-          decoding="async"
-          className="absolute inset-0 w-full h-full object-cover opacity-50"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/40 to-ink" />
-
-        <div className="absolute top-24 left-4 md:left-8 z-10 flex flex-col gap-3">
-          <span className="sticker">● Live since 2020</span>
-          <span className="stamp text-xs">B2B · Audiovisual · Events</span>
-        </div>
-
-
-        <div className="relative z-10 mx-auto max-w-[1600px] px-4 md:px-8 pt-44 md:pt-56 pb-24">
-          <h1 className="display text-[15vw] md:text-[11.5vw] leading-[0.85]">
-            <span className="reveal-mask"><span>BLACK</span></span>
-            <span className="reveal-mask block stroke-text glitch" style={{ animationDelay: "200ms" }}><span>CAPS</span></span>
-            <span className="reveal-mask block text-gradient-bcaps" style={{ animationDelay: "400ms" }}><span>EXPERIENCE</span></span>
-            <span className="sr-only"> — Productora Audiovisual y Eventos</span>
+    <div className="corp">
+      {/* 1. HERO */}
+      <section className="relative min-h-[92vh] flex items-end overflow-hidden">
+        <img src={heroStage} alt="Producción audiovisual y técnica de evento de BLACKCAPS" width={1920} height={1080} fetchPriority="high" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-45" />
+        <div className="absolute inset-0 bg-gradient-to-t from-graphite via-graphite/70 to-graphite/30" />
+        <div className="relative w-full mx-auto max-w-[1400px] px-5 md:px-10 pt-40 pb-16 md:pb-24">
+          <span className="eyebrow fade-up">Productora audiovisual · Desde 2020</span>
+          <h1 className="mt-6 text-5xl md:text-7xl lg:text-8xl max-w-5xl fade-up" style={{ animationDelay: "120ms" }}>
+            Contenido audiovisual para <em className="text-copper">marcas, empresas</em> y eventos.
           </h1>
-
-          <div className="mt-10 grid md:grid-cols-3 gap-6 items-end">
-            <p className="md:col-span-2 text-lg md:text-xl text-bone/85 max-w-2xl">
-              Producción audiovisual · Servicios técnicos · Booking artístico · Soluciones digitales.
-              <span className="block mt-3 text-bcaps-green text-2xl display">Tu marca, tu sonido, tu historia: lo creamos todo.</span>
-              <span className="block mt-4 text-base text-bone/75">Planifica tu evento, producción o servicio audiovisual con una estimación rápida y personalizada.</span>
-            </p>
-            <div className="flex flex-wrap gap-3 md:justify-end">
-              <a href="https://presupuestos.blackcaps.es" target="_blank" rel="noopener" data-cta="presupuestos" className="btn text-ink font-semibold" style={{ background: "var(--bcaps-signal)" }}>Calcula tu presupuesto →</a>
-              <Link to="/servicios" className="btn btn-primary">Ver servicios</Link>
-              <Link to="/booking" className="btn btn-ghost">Booking</Link>
-              <Link to="/contacto" className="btn btn-accent">Trabaja con nosotros</Link>
-            </div>
+          <p className="mt-8 max-w-2xl text-lg text-ivory/80 fade-up" style={{ animationDelay: "240ms" }}>
+            Producimos vídeo, cubrimos eventos y ponemos la técnica audiovisual para que tu comunicación se vea y suene profesional. Madrid, Valencia, Barcelona y toda España.
+          </p>
+          <div className="mt-10 flex flex-wrap gap-3 fade-up" style={{ animationDelay: "360ms" }}>
+            <Link to="/contacto" className="btn btn-copper">Solicitar propuesta</Link>
+            <a href="https://presupuestos.blackcaps.es" target="_blank" rel="noopener" data-cta="presupuestos" className="btn btn-line">Calcular presupuesto →</a>
           </div>
-
-        </div>
-
-        <div className="absolute bottom-6 inset-x-0 z-10">
-          <Marquee items={["AUDIOVISUAL", "MUSIC", "EVENTS", "BOOKING", "DIGITAL", "CULTURE", "B2B"]} fast />
         </div>
       </section>
 
-      {/* QUIÉNES SOMOS */}
-      <section className="relative py-24 md:py-36 px-4 md:px-8 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 display text-[24vw] leading-none text-white/[0.025] pointer-events-none select-none">CULTURE</div>
-        <div className="mx-auto max-w-[1600px] grid md:grid-cols-12 gap-10 relative">
+      {/* 2. SERVICIOS DESTACADOS */}
+      <section className="corp-light py-20 md:py-32 px-5 md:px-10">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="grid md:grid-cols-12 gap-8 items-end mb-14">
+            <div className="md:col-span-7">
+              <span className="eyebrow">Servicios audiovisuales</span>
+              <h2 className="mt-5 text-4xl md:text-6xl">Lo que hacemos, de principio a fin.</h2>
+            </div>
+            <p className="md:col-span-5 text-graphite/75">Un solo equipo para idear, grabar, producir y dar soporte técnico. Servicios modulares que se adaptan a cada proyecto.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {CORE.map((s) => (
+              <article key={s.t} className="group bg-ivory border border-graphite/10 rounded-lg overflow-hidden transition-shadow hover:shadow-xl">
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img src={s.img} alt={s.t} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                </div>
+                <div className="p-7">
+                  <h3 className="text-2xl">{s.t}</h3>
+                  <p className="mt-3 text-graphite/70 text-sm leading-relaxed">{s.d}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+          <div className="mt-12">
+            <Link to="/servicios" className="btn btn-line text-graphite">Ver todos los servicios →</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. PROYECTOS */}
+      <section className="py-20 md:py-32 px-5 md:px-10">
+        <div className="mx-auto max-w-[1400px]">
+          <span className="eyebrow">Proyectos</span>
+          <h2 className="mt-5 text-4xl md:text-6xl max-w-3xl">Producciones realizadas</h2>
+          <p className="mt-6 max-w-2xl text-ivory/70">Muy pronto mostraremos aquí una selección de nuestros trabajos. Si quieres ver ejemplos ahora, pídenos nuestro reel.</p>
+          <div className="mt-12 grid md:grid-cols-12 gap-4">
+            {[{ img: crowd, c: "md:col-span-7 aspect-[16/10]" }, { img: djBooth, c: "md:col-span-5 aspect-[16/10] md:aspect-auto" }].map((p, i) => (
+              <div key={i} className={`relative rounded-lg overflow-hidden ${p.c}`}>
+                <img src={p.img} alt="Espacio reservado para un proyecto audiovisual" loading="lazy" className="absolute inset-0 w-full h-full object-cover opacity-60" />
+                <div className="absolute inset-0 bg-gradient-to-t from-graphite/90 to-transparent" />
+                <span className="absolute bottom-5 left-5 text-xs uppercase tracking-[0.2em] text-sand">Proyecto · Próximamente</span>
+              </div>
+            ))}
+          </div>
+          <div className="mt-10">
+            <Link to="/contacto" className="btn btn-line">Solicitar reel</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. FORMA DE TRABAJAR */}
+      <section className="corp-light py-20 md:py-32 px-5 md:px-10 border-t border-graphite/10">
+        <div className="mx-auto max-w-[1400px]">
+          <span className="eyebrow">Cómo trabajamos</span>
+          <h2 className="mt-5 text-4xl md:text-6xl max-w-3xl">Un proceso claro, sin sorpresas.</h2>
+          <ol className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-graphite/15 border border-graphite/15 rounded-lg overflow-hidden">
+            {STEPS.map((s) => (
+              <li key={s.n} className="bg-ivory p-8">
+                <span className="font-serif text-4xl text-copper">{s.n}</span>
+                <h3 className="mt-6 text-2xl">{s.t}</h3>
+                <p className="mt-3 text-sm text-graphite/70">{s.d}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* 5. COMPLEMENTARIOS */}
+      <section className="py-16 md:py-20 px-5 md:px-10 bg-sage/25 border-y border-ivory/10">
+        <div className="mx-auto max-w-[1400px] grid md:grid-cols-12 gap-8 items-center">
           <div className="md:col-span-5">
-            <span className="sticker mb-6">01 — Quiénes somos</span>
-            <h2 className="display text-6xl md:text-8xl">QUIÉNES<br /><span className="text-bcaps-green">SOMOS</span></h2>
-            <p className="mt-8 text-bone/80 text-lg leading-relaxed max-w-xl">
-              Somos una productora creativa audiovisual, musical y de eventos B2B. Creamos soluciones completas para marcas, instituciones, artistas y proyectos culturales —combinando producción audiovisual, tecnología, contenido digital, servicios técnicos y estrategia creativa.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-2">
-              {["Ayuntamientos","Promotores","Agencias","Marcas","Artistas","B2B & Corporate"].map((x) => (
-                <span key={x} className="sticker">{x}</span>
-              ))}
-            </div>
+            <span className="eyebrow">Servicios complementarios</span>
+            <p className="mt-4 text-ivory/75">Además de la producción audiovisual, ofrecemos soluciones que completan tus proyectos.</p>
           </div>
-
-          <div className="md:col-span-7 relative">
-            <div className="grid grid-cols-2 gap-4">
-              <img src={djBooth} alt="Cabina de DJ Blackcaps en directo" width={1200} height={1500} loading="lazy" className="rounded-2xl object-cover w-full h-72 md:h-96" />
-              <img src={camera} alt="Detalle de cámara durante rodaje audiovisual" width={1200} height={1500} loading="lazy" className="rounded-2xl object-cover w-full h-72 md:h-96 mt-12" />
-              <img src={artist} alt="Retrato de artista musical en escenario" width={1024} height={1280} loading="lazy" className="col-span-2 rounded-2xl object-cover w-full h-72 md:h-[28rem]" />
-            </div>
-            <div className="absolute -top-6 -right-2 stamp text-bcaps-green rotate-6">Since 2020</div>
-          </div>
-
-          <div className="md:col-span-12 mt-10">
-            <p className="display text-4xl md:text-[8.5vw] leading-[0.9] stroke-text">
-              ANYWHERE BUT WITH <span className="text-gradient-bcaps not-stroke">MUSIC.</span>
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* SERVICIOS */}
-      <section className="relative py-24 md:py-36 px-4 md:px-8 bg-[oklch(0.1_0_0)] border-y border-white/5">
-        <div className="mx-auto max-w-[1600px]">
-          <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
-            <div>
-              <span className="sticker mb-6">02 — Servicios</span>
-              <h2 className="display text-6xl md:text-8xl mt-4">NUESTROS<br />SERVICIOS</h2>
-            </div>
-            <p className="max-w-md text-bone/75">
-              Blackcaps ofrece servicios modulares, adaptados a cada tipo de evento, proyecto cultural, marca o artista.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10 rounded-3xl overflow-hidden">
-            {SERVICES.map((s) => (
-              <div key={s.n} className="bg-ink p-8 md:p-10 min-h-[280px] flex flex-col justify-between group hover:bg-[oklch(0.16_0_0)] transition-colors">
-                <div className="flex items-start justify-between">
-                  <span className="num-3d text-5xl md:text-6xl">{s.n}</span>
-                  <span className="opacity-0 group-hover:opacity-100 transition text-bcaps-green">↗</span>
-                </div>
-                <div className="mt-10">
-                  <h3 className="display text-sm group-hover:text-bcaps-green transition-colors">{s.t}</h3>
-                  <p className="mt-3 text-bone/70 text-sm leading-relaxed text-sm">{s.d}</p>
-                </div>
-              </div>
+          <ul className="md:col-span-7 grid sm:grid-cols-3 gap-3">
+            {COMPLEMENTARY.map((c) => (
+              <li key={c.t}>
+                <Link to={c.to} className="flex items-center justify-between gap-3 border border-ivory/15 rounded-md px-5 py-4 text-sm hover:border-copper hover:text-copper transition-colors">
+                  {c.t} <span aria-hidden>→</span>
+                </Link>
+              </li>
             ))}
-          </div>
-
-          <div className="mt-10 flex justify-center">
-            <Link to="/servicios" className="btn btn-ghost">Ver todos los servicios →</Link>
-          </div>
+          </ul>
         </div>
       </section>
 
-      {/* BOOKING TEASER */}
-      <section className="relative py-24 md:py-36 px-4 md:px-8 overflow-hidden">
-        <Marquee items={["URBAN", "ELECTRONIC", "DJ", "RAP", "POP", "EXPERIMENTAL", "LIVE SET"]} reverse />
-        <div className="mx-auto max-w-[1600px] grid md:grid-cols-2 gap-12 mt-12 items-center">
-          <div>
-            <span className="sticker mb-6">03 — Booking</span>
-            <h2 className="display text-6xl md:text-8xl mt-4">BOOKING<br /><span className="stroke-text">OF ARTISTS</span></h2>
-            <p className="mt-6 text-bone/80 max-w-lg">
-              Impulsamos la programación artística, contratación, showcases, eventos privados, festivales y colaboraciones con marcas. Creamos oportunidades reales para artistas emergentes y consolidados.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/booking" className="btn btn-primary">Solicitar artista</Link>
-              <Link to="/booking" className="btn btn-ghost">Soy artista</Link>
-            </div>
-          </div>
-          <div className="relative">
-            <img src={artist} alt="Retrato de artista musical" width={1024} height={1280} loading="lazy" className="rounded-3xl w-full h-[32rem] object-cover" />
-            <div className="absolute -bottom-4 -left-4 bg-bone text-ink p-5 rounded-2xl max-w-[14rem] rotate-[-3deg]">
-              <p className="display text-sm leading-tight">FESTIVAL POSTER ENERGY</p>
-              <p className="text-[10px] mt-2 uppercase tracking-[0.18em]">Live · 2026</p>
-            </div>
+      {/* 6. CONTACTO */}
+      <section className="py-20 md:py-32 px-5 md:px-10">
+        <div className="mx-auto max-w-[1400px] text-center">
+          <span className="eyebrow">Hablemos</span>
+          <h2 className="mt-5 text-4xl md:text-6xl max-w-3xl mx-auto">¿Tienes un proyecto? Te enviamos una propuesta profesional.</h2>
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            <Link to="/contacto" className="btn btn-copper">Solicitar propuesta</Link>
+            <a href="https://presupuestos.blackcaps.es" target="_blank" rel="noopener" data-cta="presupuestos" className="btn btn-line">Calcular presupuesto →</a>
           </div>
         </div>
       </section>
-
-      {/* BCAPSTUDIO */}
-      <section className="relative py-24 md:py-36 px-4 md:px-8 overflow-hidden">
-        <img src={bcapBg} alt="" width={1920} height={1080} loading="lazy" className="absolute inset-0 w-full h-full object-cover opacity-30" />
-        <div className="absolute inset-0 gradient-bcaps opacity-30 mix-blend-overlay" />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink via-transparent to-ink" />
-
-        <div className="relative mx-auto max-w-[1600px]">
-          <div className="flex flex-wrap items-end justify-between gap-6 mb-10">
-            <div>
-              <span className="sticker mb-6">04 — Sello creativo 360º</span>
-              <h2 className="display text-6xl md:text-[8rem] leading-[0.85]">
-                BCAPSTUDIO<span className="text-bcaps-orange">.EMP</span>
-              </h2>
-              <p className="mt-4 text-xl md:text-2xl text-gradient-bcaps display">Música · Audiovisual · Estrategia digital</p>
-            </div>
-            <Link to="/bcapstudio" className="btn btn-primary">Conoce el sello →</Link>
-          </div>
-
-          <div className="grid md:grid-cols-12 gap-6">
-            <p className="md:col-span-7 text-lg text-bone/85 max-w-2xl">
-              Línea de negocio de Blackcaps Experience enfocada al desarrollo creativo y estratégico de artistas y marcas en entornos digitales. Integra producción audiovisual, branding, contenido digital, distribución musical y comunicación para construir lanzamientos con identidad y recorrido.
-            </p>
-            <div className="md:col-span-5 grid grid-cols-2 gap-3">
-              {["Distribución", "Royalties", "Branding", "Videoclips", "TikTok/IG", "Estudio"].map((t) => (
-                <div key={t} className="rounded-2xl border border-white/15 backdrop-blur-md bg-black/30 p-4">
-                  <p className="display text-lg">{t}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* MANIFIESTO / VISION */}
-      <section className="relative py-24 md:py-36 px-4 md:px-8">
-        <div className="mx-auto max-w-[1600px]">
-          <span className="sticker">05 — Nuestra visión</span>
-          <h2 className="display text-2xl md:text-4xl lg:text-5xl mt-6 max-w-4xl leading-tight">
-            CREEMOS QUE EL FUTURO DE LOS <span className="text-bcaps-green">EVENTOS, LA MÚSICA Y LA CULTURA</span> PASA POR UNIR CREATIVIDAD, TECNOLOGÍA Y COMUNIDAD.
-          </h2>
-          <div className="mt-16 grid md:grid-cols-3 gap-8">
-            {[
-              { n: "01", t: "Talento emergente", d: "Impulsamos artistas, marcas y proyectos con identidad." },
-              { n: "02", t: "Experiencias culturales", d: "Generamos eventos con narrativa, no solo logística." },
-              { n: "03", t: "Comunidad", d: "Construimos red entre artistas, marcas y promotores." },
-            ].map((x) => (
-              <div key={x.n} className="border-t border-white/15 pt-6">
-                <span className="num-3d text-4xl">{x.n}</span>
-                <h3 className="display text-sm mt-4">{x.t}</h3>
-                <p className="mt-3 text-bone/70 text-sm">{x.d}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </>
+    </div>
   );
 }
