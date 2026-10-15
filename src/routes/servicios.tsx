@@ -85,7 +85,7 @@ function ServiciosPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-graphite via-graphite/90 to-graphite/30" />
         <div className="relative mx-auto max-w-[1400px]">
           <span className="eyebrow fade-up">Servicios</span>
-          <h1 className="mt-6 text-5xl md:text-7xl max-w-4xl fade-up">Servicios audiovisuales para <em className="text-copper">empresas y marcas</em>.</h1>
+          <h1 className="mt-6 text-5xl md:text-7xl max-w-4xl fade-up">Servicios audiovisuales para <span className="text-copper">empresas y marcas</span>.</h1>
           <p className="mt-8 max-w-2xl text-lg text-ivory/80">Servicios modulares adaptados a cada proyecto. Trabajamos con empresas, agencias, marcas, ayuntamientos y promotores.</p>
           <div className="mt-10 flex flex-wrap gap-3">
             <Link to="/contacto" className="btn btn-copper">Solicitar propuesta</Link>
@@ -98,7 +98,7 @@ function ServiciosPage() {
         <div className="mx-auto max-w-[1400px] divide-y divide-graphite/15 border-y border-graphite/15">
           {GROUPS.map((s) => (
             <article key={s.n} className="py-12 md:py-16 grid md:grid-cols-12 gap-8 items-start">
-              <span className="md:col-span-1 font-serif text-4xl text-copper">{s.n}</span>
+              <span className="md:col-span-1 font-display text-4xl text-copper">{s.n}</span>
               <div className="md:col-span-5">
                 <h2 className="text-3xl md:text-4xl">{s.t}</h2>
                 <p className="mt-4 text-graphite/70 max-w-md">{s.copy}</p>
@@ -138,7 +138,7 @@ function ServiciosPage() {
           <div className="mt-10 grid md:grid-cols-3 gap-4">
             {AMIGA.map((a) => (
               <div key={a.p} className="bg-graphite text-ivory rounded-lg p-8">
-                <span className="font-serif text-5xl text-copper">{a.p}</span>
+                <span className="font-display text-5xl text-copper">{a.p}</span>
                 <p className="mt-3">{a.t}</p>
               </div>
             ))}
