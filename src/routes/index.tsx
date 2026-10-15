@@ -52,7 +52,7 @@ function Home() {
         <div className="relative w-full mx-auto max-w-[1400px] px-5 md:px-10 pt-40 pb-16 md:pb-24">
           <span className="eyebrow fade-up">Productora audiovisual · Desde 2020</span>
           <h1 className="mt-6 text-5xl md:text-7xl lg:text-8xl max-w-5xl fade-up" style={{ animationDelay: "120ms" }}>
-            Contenido audiovisual para <span className="text-copper">marcas, empresas</span> y eventos.
+            PRODUCCIÓN  AUDIOVISUAL PARA MARCAS, EMPRESAS Y EVENTOS.
           </h1>
           <p className="mt-8 max-w-2xl text-lg text-ivory/80 fade-up" style={{ animationDelay: "240ms" }}>
             Producimos vídeo, cubrimos eventos y ponemos la técnica audiovisual para que tu comunicación se vea y suene profesional. Madrid, Valencia, Barcelona y toda España.
