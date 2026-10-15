@@ -55,7 +55,8 @@ function Home() {
             PRODUCCIÓN  AUDIOVISUAL PARA MARCAS, EMPRESAS Y EVENTOS.
           </h1>
           <p className="mt-8 max-w-2xl text-lg text-ivory/80 fade-up" style={{ animationDelay: "240ms" }}>
-            Producimos vídeo, cubrimos eventos y ponemos la técnica audiovisual para que tu comunicación se vea y suene profesional. Madrid, Valencia, Barcelona y toda España.
+            Desarrollamos producciones audiovisuales para marcas y empresas, planificamos eventos corporativos y gestionamos la contratación de artistas a través de nuestro roster.{" \n"}
+            Unimos creatividad, producción y coordinación para ofrecer soluciones profesionales adaptadas a cada proyecto.{" "}Madrid, Valencia, Barcelona y toda España.
           </p>
           <div className="mt-10 flex flex-wrap gap-3 fade-up" style={{ animationDelay: "360ms" }}>
             <Link to="/contacto" className="btn btn-copper">Solicitar propuesta</Link>
