@@ -59,7 +59,7 @@ function Home() {
             Unimos creatividad, producción y coordinación para ofrecer soluciones profesionales adaptadas a cada proyecto.{" "}Madrid, Valencia, Barcelona y toda España.
           </p>
           <div className="mt-10 flex flex-wrap gap-3 fade-up" style={{ animationDelay: "360ms" }}>
-            <Link to="/contacto" className="btn btn-copper">Solicitar propuesta</Link>
+            <Link to="/contacto" className="btn btn-corp">Solicitar propuesta</Link>
             <a href="https://presupuestos.blackcaps.es" target="_blank" rel="noopener" data-cta="presupuestos" className="btn btn-line">Calcular presupuesto →</a>
           </div>
         </div>
@@ -123,7 +123,7 @@ function Home() {
           <ol className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-graphite/15 border border-graphite/15 rounded-lg overflow-hidden">
             {STEPS.map((s) => (
               <li key={s.n} className="bg-ivory p-8">
-                <span className="font-display text-4xl text-copper">{s.n}</span>
+                <span className="font-display text-4xl text-corp-highlight">{s.n}</span>
                 <h3 className="mt-6 text-2xl">{s.t}</h3>
                 <p className="mt-3 text-sm text-graphite/70">{s.d}</p>
               </li>
@@ -142,7 +142,7 @@ function Home() {
           <ul className="md:col-span-7 grid sm:grid-cols-3 gap-3">
             {COMPLEMENTARY.map((c) => (
               <li key={c.t}>
-                <Link to={c.to} className="flex items-center justify-between gap-3 border border-ivory/15 rounded-md px-5 py-4 text-sm hover:border-copper hover:text-copper transition-colors">
+                <Link to={c.to} className="flex items-center justify-between gap-3 border border-ivory/15 rounded-md px-5 py-4 text-sm hover:border-corp-highlight hover:text-corp-highlight transition-colors">
                   {c.t} <span aria-hidden>→</span>
                 </Link>
               </li>
@@ -157,7 +157,7 @@ function Home() {
           <span className="eyebrow">Hablemos</span>
           <h2 className="mt-5 text-4xl md:text-6xl max-w-3xl mx-auto">¿Tienes un proyecto? Te enviamos una propuesta profesional.</h2>
           <div className="mt-10 flex flex-wrap justify-center gap-3">
-            <Link to="/contacto" className="btn btn-copper">Solicitar propuesta</Link>
+            <Link to="/contacto" className="btn btn-corp">Solicitar propuesta</Link>
             <a href="https://presupuestos.blackcaps.es" target="_blank" rel="noopener" data-cta="presupuestos" className="btn btn-line">Calcular presupuesto →</a>
           </div>
         </div>
