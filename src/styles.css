@@ -218,3 +218,33 @@
   @keyframes spin-slow { to { transform: rotate(360deg); } }
   .spin-slow { animation: spin-slow 22s linear infinite; }
 }
+
+/* Corporate B2B scope (Inicio + Servicios only). Does not affect panels or other pages. */
+:root {
+  --graphite: #222725;
+  --ivory: #F3EFE7;
+  --copper: #B57C5B;
+  --sand: #D3C6B2;
+  --sage: #596158;
+}
+@theme inline {
+  --color-graphite: var(--graphite);
+  --color-ivory: var(--ivory);
+  --color-copper: var(--copper);
+  --color-sand: var(--sand);
+  --color-sage: var(--sage);
+  --font-serif: "Fraunces", Georgia, serif;
+}
+@layer utilities {
+  .corp { background: var(--graphite); color: var(--ivory); }
+  .corp :where(h1, h2, h3, h4) { font-family: var(--font-serif); font-weight: 400; text-transform: none; letter-spacing: -0.015em; line-height: 1.05; color: inherit; }
+  .corp-light { background: var(--ivory); color: var(--graphite); }
+  .eyebrow { display: inline-flex; align-items: center; gap: .6rem; font-size: calc(.72rem * var(--type-scale)); font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--copper); }
+  .eyebrow::before { content: ""; width: 1.75rem; height: 1px; background: currentColor; }
+  .btn-copper { background: var(--copper); color: var(--ivory); }
+  .btn-copper:hover { transform: translateY(-2px); filter: brightness(1.08); }
+  .btn-line { border: 1px solid currentColor; }
+  .btn-line:hover { transform: translateY(-2px); background: color-mix(in oklab, currentColor 10%, transparent); }
+  @keyframes fade-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  .fade-up { animation: fade-up .9s cubic-bezier(.2,.7,.2,1) both; }
+}
