@@ -66,33 +66,38 @@ const TOOLS = [
 
 function BcapPage() {
   return (
-    <>
-      <section className="relative pt-44 pb-24 px-4 md:px-8 overflow-hidden">
-        <img src={bg} alt="" width={1920} height={1080} className="absolute inset-0 w-full h-full object-cover opacity-50" />
-        <div className="absolute inset-0 gradient-bcaps opacity-40 mix-blend-overlay" />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/30 to-ink" />
-
-        <div className="relative mx-auto max-w-[1600px]">
-          <span className="sticker mb-6">Sello creativo 360º</span>
-          <h1 className="display text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight mt-4 break-words">
+    <div className="corp">
+      {/* HERO */}
+      <section className="relative min-h-[85vh] flex items-end overflow-hidden">
+        <img src={bg} alt="" width={1920} height={1080} fetchPriority="high" className="absolute inset-0 w-full h-full object-cover opacity-50" />
+        <div className="absolute inset-0 gradient-bcaps opacity-25 mix-blend-overlay" />
+        <div className="absolute inset-0 bg-gradient-to-t from-graphite via-graphite/70 to-graphite/20" />
+        <div className="relative w-full mx-auto max-w-[1400px] px-5 md:px-10 pt-40 pb-16 md:pb-24">
+          <span className="eyebrow fade-up">Sello creativo 360º</span>
+          <h1 className="display text-3xl sm:text-4xl md:text-5xl leading-tight mt-6 fade-up">
             BCAPSTUDIO<span className="text-bcaps-orange">.EMP</span>
             <span className="sr-only"> — Sello Creativo 360º</span>
           </h1>
-          <p className="display text-3xl sm:text-4xl md:text-6xl lg:text-[6.5vw] leading-[0.9] mt-4 text-gradient-bcaps">Música · Audiovisual · Estrategia digital</p>
-          <p className="mt-8 max-w-2xl text-bone/85 text-lg">
+          <p className="display text-3xl sm:text-4xl md:text-6xl leading-[0.95] mt-4 text-gradient-bcaps max-w-5xl fade-up" style={{ animationDelay: "120ms" }}>Música · Audiovisual · Estrategia digital</p>
+          <p className="mt-8 max-w-2xl text-ivory/80 text-lg fade-up" style={{ animationDelay: "240ms" }}>
             Línea de negocio de Blackcaps Experience enfocada en el desarrollo creativo y estratégico de artistas y marcas. Integra producción audiovisual, branding, contenido digital, distribución musical y comunicación para construir lanzamientos con identidad y recorrido.
           </p>
+          <div className="mt-10 flex flex-wrap gap-3 fade-up" style={{ animationDelay: "360ms" }}>
+            <Link to="/contacto" className="btn btn-corp">Hablar con el sello</Link>
+            <Link to="/booking" className="btn btn-line">Ver artistas →</Link>
+          </div>
         </div>
       </section>
 
-      {/* SERVICIOS SELLO */}
-      <section className="py-20 px-4 md:px-8 border-t border-white/10">
-        <div className="mx-auto max-w-[1600px]">
-          <h2 className="display text-5xl md:text-7xl">ECOSISTEMA<br /><span className="stroke-text">CREATIVO</span></h2>
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-3">
+      {/* ECOSISTEMA */}
+      <section className="corp-light py-20 md:py-28 px-5 md:px-10">
+        <div className="mx-auto max-w-[1400px]">
+          <span className="eyebrow">Servicios del sello</span>
+          <h2 className="display text-4xl md:text-6xl mt-5">ECOSISTEMA <span className="text-gradient-bcaps">CREATIVO</span></h2>
+          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-px bg-graphite/15 border border-graphite/15 rounded-lg overflow-hidden">
             {["Distribución digital","Royalties","Branding artístico","Diseño de portada","Videoclips","Visualizers","Fotografía promocional","Contenido vertical","Estrategia TikTok","Campañas de lanzamiento","Análisis de streams","Booking","Producción musical","Estudio y grabación","Gestión de lanzamientos","A&R"].map((s) => (
-              <div key={s} className="rounded-2xl border border-white/15 p-5 hover:border-bcaps-violet/60 hover:bg-bcaps-violet/5 transition">
-                <p className="display text-lg">{s}</p>
+              <div key={s} className="bg-ivory p-5 md:p-6 transition-colors hover:bg-sand/40">
+                <p className="text-base md:text-lg font-semibold">{s}</p>
               </div>
             ))}
           </div>
@@ -100,19 +105,18 @@ function BcapPage() {
       </section>
 
       {/* ROADMAP */}
-      <section className="relative py-24 px-4 md:px-8 border-t border-white/10">
-        <div className="mx-auto max-w-[1600px]">
-          <span className="sticker">Plan de funcionamiento</span>
-          <h2 className="display text-5xl md:text-7xl mt-6">CÓMO<br />FUNCIONA EL <span className="text-bcaps-cyan">SELLO</span></h2>
-
+      <section className="py-20 md:py-28 px-5 md:px-10">
+        <div className="mx-auto max-w-[1400px]">
+          <span className="eyebrow">Plan de funcionamiento</span>
+          <h2 className="display text-4xl md:text-6xl mt-5">CÓMO FUNCIONA EL <span className="text-gradient-bcaps">SELLO</span></h2>
           <div className="mt-16 relative">
-            <div className="hidden md:block absolute top-12 left-0 right-0 h-px border-t border-dashed border-white/20" />
-            <div className="grid md:grid-cols-7 gap-6">
+            <div className="hidden md:block absolute top-6 left-0 right-0 h-px border-t border-dashed border-ivory/20" />
+            <div className="grid sm:grid-cols-2 md:grid-cols-7 gap-8 md:gap-6">
               {STEPS.map((s) => (
                 <div key={s.n} className="relative">
-                  <div className="w-12 h-12 rounded-full bg-ink border border-bone grid place-items-center display text-sm">{s.n}</div>
-                  <h3 className="display text-lg mt-5 leading-tight">{s.t}</h3>
-                  <p className="text-bone/65 text-sm mt-2 leading-relaxed">{s.d}</p>
+                  <div className="w-12 h-12 rounded-full bg-graphite border border-ivory grid place-items-center display text-sm">{s.n}</div>
+                  <h3 className="text-lg mt-5 leading-tight">{s.t}</h3>
+                  <p className="text-ivory/65 text-sm mt-2 leading-relaxed">{s.d}</p>
                 </div>
               ))}
             </div>
@@ -121,19 +125,20 @@ function BcapPage() {
       </section>
 
       {/* PLANES */}
-      <section className="py-24 px-4 md:px-8 border-t border-white/10">
-        <div className="mx-auto max-w-[1600px]">
-          <h2 className="display text-5xl md:text-7xl">DE SOLO DISTRIBUCIÓN<br /><span className="text-gradient-bcaps">A DESARROLLO 360º</span></h2>
+      <section className="corp-light py-20 md:py-28 px-5 md:px-10">
+        <div className="mx-auto max-w-[1400px]">
+          <span className="eyebrow">Planes</span>
+          <h2 className="display text-4xl md:text-6xl mt-5">DE SOLO DISTRIBUCIÓN<br /><span className="text-gradient-bcaps">A DESARROLLO 360º</span></h2>
           <div className="mt-12 grid md:grid-cols-3 gap-5">
             {PLANS.map((p) => (
-              <div key={p.t} className={`relative rounded-3xl p-8 border ${p.feat ? "border-bcaps-violet bg-bcaps-violet/10 glow-green" : "border-white/15 bg-card/60"}`}>
-                {p.feat && <span className="absolute -top-3 left-6 stamp text-bcaps-violet bg-ink">Más popular</span>}
-                <h3 className="display text-sm">{p.t}</h3>
-                <p className="text-bone/75 mt-3">{p.p}</p>
+              <div key={p.t} className={`relative rounded-lg p-8 border transition-shadow hover:shadow-xl ${p.feat ? "bg-graphite text-ivory border-graphite" : "bg-ivory border-graphite/15"}`}>
+                {p.feat && <span className="absolute -top-3 left-6 text-[11px] uppercase tracking-[0.18em] font-semibold px-3 py-1 rounded-full gradient-bcaps text-ivory">Más popular</span>}
+                <h3 className="text-2xl">{p.t}</h3>
+                <p className={`mt-3 ${p.feat ? "text-ivory/75" : "text-graphite/70"}`}>{p.p}</p>
                 <ul className="mt-6 space-y-2 text-sm">
-                  {p.items.map((i) => <li key={i} className="flex gap-2 text-sm"><span className="text-bcaps-cyan">●</span>{i}</li>)}
+                  {p.items.map((i) => <li key={i} className="flex gap-2"><span className="text-gradient-bcaps">●</span>{i}</li>)}
                 </ul>
-                <Link to="/contacto" className="btn btn-ghost mt-8 w-full justify-center">{p.cta}</Link>
+                <Link to="/contacto" className={`btn ${p.feat ? "btn-corp" : "btn-line"} mt-8 w-full justify-center`}>{p.cta}</Link>
               </div>
             ))}
           </div>
@@ -141,32 +146,29 @@ function BcapPage() {
       </section>
 
       {/* ARTIST ROSTER & BOOKING */}
-      <section className="relative py-24 px-4 md:px-8 border-t border-white/10 overflow-hidden">
-        <div className="absolute inset-0 -z-10 opacity-60"
+      <section className="relative py-20 md:py-28 px-5 md:px-10 overflow-hidden">
+        <div className="absolute inset-0 opacity-60 pointer-events-none"
              style={{ backgroundImage: "radial-gradient(800px 360px at 85% 20%, oklch(0.72 0.19 55 / 0.12), transparent 60%), radial-gradient(700px 320px at 10% 90%, oklch(0.68 0.22 310 / 0.10), transparent 60%)" }} />
-        <div className="mx-auto max-w-[1600px] grid lg:grid-cols-2 gap-10 items-center">
+        <div className="relative mx-auto max-w-[1400px] grid lg:grid-cols-2 gap-10 items-center">
           <div>
-            <div className="flex items-center gap-3 flex-wrap">
-              <span className="sticker">BCAPSTUDIO.EMP</span>
-              <span className="sticker" style={{ borderColor: "var(--bcaps-orange)", color: "var(--bcaps-orange)" }}>Representación artística</span>
-            </div>
-            <h2 className="display text-4xl md:text-6xl lg:text-7xl mt-6 leading-[0.95]">
+            <span className="eyebrow">BCAPSTUDIO.EMP · Representación artística</span>
+            <h2 className="display text-4xl md:text-6xl mt-5 leading-[0.95]">
               ARTIST ROSTER<br /><span className="text-gradient-bcaps">& BOOKING</span>
             </h2>
-            <p className="mt-6 max-w-xl text-bone/80 text-base md:text-lg leading-relaxed">
+            <p className="mt-6 max-w-xl text-ivory/80 text-base md:text-lg leading-relaxed">
               Promocionamos, representamos y contratamos a los artistas de nuestro roster. Desde showcases y festivales hasta eventos privados y colaboraciones con marcas: conectamos el talento de BCAPSTUDIO.EMP con escenarios y oportunidades reales.
             </p>
           </div>
-          <div className="rounded-3xl border border-white/15 bg-card/60 backdrop-blur p-8 md:p-10">
-            <p className="display text-lg text-bone">¿Qué necesitas?</p>
-            <p className="text-sm text-bone/65 mt-2 leading-relaxed">
+          <div className="rounded-lg border border-ivory/15 bg-ivory/5 backdrop-blur p-8 md:p-10">
+            <p className="text-xl">¿Qué necesitas?</p>
+            <p className="text-sm text-ivory/65 mt-2 leading-relaxed">
               Explora el roster de artistas disponibles para tu evento, o crea tu perfil de artista y pasa a formar parte de BCAPSTUDIO.EMP.
             </p>
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
-              <Link to="/booking" className="btn btn-primary justify-center flex-1">Explorar artistas</Link>
-              <Link to="/auth" className="btn btn-ghost justify-center flex-1">Soy artista</Link>
+              <Link to="/booking" className="btn btn-corp justify-center flex-1">Explorar artistas</Link>
+              <Link to="/auth" className="btn btn-line justify-center flex-1">Soy artista</Link>
             </div>
-            <p className="mt-5 text-[11px] uppercase tracking-[0.18em] text-bone/45">
+            <p className="mt-5 text-[11px] uppercase tracking-[0.18em] text-ivory/45">
               Booking gestionado por BCAPSTUDIO.EMP · BLACKCAPS EXPERIENCE
             </p>
           </div>
@@ -174,23 +176,34 @@ function BcapPage() {
       </section>
 
       {/* TOOLS */}
-      <section className="py-24 px-4 md:px-8 border-t border-white/10">
-        <div className="mx-auto max-w-[1600px]">
-          <span className="sticker">Sistema digital</span>
-          <h2 className="display text-5xl md:text-7xl mt-6">SISTEMA DIGITAL<br /><span className="stroke-text">DE GESTIÓN</span></h2>
-          <p className="mt-6 max-w-2xl text-bone/80">
+      <section className="corp-light py-20 md:py-28 px-5 md:px-10">
+        <div className="mx-auto max-w-[1400px]">
+          <span className="eyebrow">Sistema digital</span>
+          <h2 className="display text-4xl md:text-6xl mt-5">SISTEMA DIGITAL <span className="text-gradient-bcaps">DE GESTIÓN</span></h2>
+          <p className="mt-6 max-w-2xl text-graphite/75">
             BCAPSTUDIO incorpora herramientas digitales para automatizar procesos, coordinar lanzamientos y centralizar la comunicación entre artistas y equipo creativo.
           </p>
           <div className="mt-12 grid sm:grid-cols-2 md:grid-cols-4 gap-4">
             {TOOLS.map((t) => (
-              <div key={t.t} className="rounded-2xl backdrop-blur-md bg-white/5 border border-white/10 p-5 hover:bg-white/10 transition">
-                <p className="display text-xl">{t.t}</p>
-                <p className="text-xs text-bone/70 mt-2">{t.d}</p>
+              <div key={t.t} className="rounded-lg bg-ivory border border-graphite/10 p-5 transition-shadow hover:shadow-lg">
+                <p className="text-xl font-semibold">{t.t}</p>
+                <p className="text-xs text-graphite/65 mt-2">{t.d}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
-    </>
+
+      {/* CIERRE */}
+      <section className="py-20 md:py-28 px-5 md:px-10 text-center">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="display text-3xl md:text-5xl">¿LANZAMOS TU <span className="text-gradient-bcaps">PRÓXIMO PROYECTO?</span></h2>
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            <Link to="/contacto" className="btn btn-corp">Solicitar propuesta</Link>
+            <Link to="/booking" className="btn btn-line">Explorar artistas →</Link>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }
