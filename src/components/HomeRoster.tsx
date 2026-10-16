@@ -59,7 +59,7 @@ export function HomeRoster() {
 
         <div className="mt-12 flex flex-wrap items-center gap-3">
           <Link to="/booking" className="btn btn-corp">Descubrir nuestro roster</Link>
-          <Link to="/contacto" search={{ type: "booking" } as never} className="btn btn-line">Solicitar contratación</Link>
+          <Link to="/contacto" search={{ type: "booking" }} className="btn btn-line">Solicitar contratación</Link>
           <Link to="/auth" className="ml-1 text-xs uppercase tracking-[0.2em] text-ivory/60 hover:text-ivory underline-offset-4 hover:underline transition-colors">
             ¿Eres artista? Colabora con nosotros
           </Link>
