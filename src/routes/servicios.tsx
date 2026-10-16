@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { EquipmentSection } from "@/components/EquipmentSection";
 import camera from "@/assets/camera-detail.jpg";
 
 export const Route = createFileRoute("/servicios")({
@@ -115,6 +116,8 @@ function ServiciosPage() {
           ))}
         </div>
       </section>
+
+      <EquipmentSection />
 
       <section className="py-16 md:py-24 px-5 md:px-10 bg-sage/25">
         <div className="mx-auto max-w-[1400px]">
