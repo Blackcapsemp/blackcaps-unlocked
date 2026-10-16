@@ -3,6 +3,7 @@ import heroStage from "@/assets/hero-stage.jpg";
 import camera from "@/assets/camera-detail.jpg";
 import crowd from "@/assets/booking-crowd.jpg";
 import djBooth from "@/assets/dj-booth.jpg";
+import { HomeRoster } from "@/components/HomeRoster";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -37,7 +38,6 @@ const STEPS = [
 ];
 
 const COMPLEMENTARY = [
-  { t: "Booking de artistas", to: "/booking" as const },
   { t: "BCAPSTUDIO.EMP", to: "/bcapstudio" as const },
   { t: "Desarrollo web y digital", to: "/servicios" as const },
 ];
@@ -132,6 +132,8 @@ function Home() {
         </div>
       </section>
 
+      <HomeRoster />
+
       {/* 5. COMPLEMENTARIOS */}
       <section className="py-16 md:py-20 px-5 md:px-10 bg-sage/25 border-y border-ivory/10">
         <div className="mx-auto max-w-[1400px] grid md:grid-cols-12 gap-8 items-center">
@@ -139,7 +141,7 @@ function Home() {
             <span className="eyebrow">Servicios complementarios</span>
             <p className="mt-4 text-ivory/75">Además de la producción audiovisual, ofrecemos soluciones que completan tus proyectos.</p>
           </div>
-          <ul className="md:col-span-7 grid sm:grid-cols-3 gap-3">
+          <ul className="md:col-span-7 grid sm:grid-cols-2 gap-3">
             {COMPLEMENTARY.map((c) => (
               <li key={c.t}>
                 <Link to={c.to} className="flex items-center justify-between gap-3 border border-ivory/15 rounded-md px-5 py-4 text-sm hover:border-corp-highlight hover:text-corp-highlight transition-colors">
