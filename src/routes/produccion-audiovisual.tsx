@@ -1,5 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import camera from "@/assets/camera-detail.jpg";
+import crowd from "@/assets/booking-crowd.jpg";
+import heroStage from "@/assets/hero-stage.jpg";
+import djBooth from "@/assets/dj-booth.jpg";
+import photo from "@/assets/av-photo.jpg";
+import post from "@/assets/av-post.jpg";
 
 export const Route = createFileRoute("/produccion-audiovisual")({
   head: () => ({
@@ -39,82 +44,131 @@ export const Route = createFileRoute("/produccion-audiovisual")({
   component: ProduccionAudiovisualPage,
 });
 
-const PIEZAS = [
-  { t: "Aftermovies", d: "Resumen audiovisual de eventos, festivales y showcases con narrativa propia." },
-  { t: "Videoclips", d: "Dirección creativa, rodaje y postproducción para artistas y sellos." },
-  { t: "Branded content", d: "Piezas de marca con storytelling para campañas digitales y broadcast." },
-  { t: "Vídeos corporativos", d: "Vídeos institucionales, casos de éxito, employer branding y formación interna." },
-  { t: "Entrevistas", d: "Formatos talking-head, documental y reportaje para marcas y medios." },
-  { t: "Contenido para redes", d: "Piezas verticales para TikTok, Reels y Shorts con foco en performance." },
+const SERVICIOS = [
+  { id: "video", t: "Producción de vídeo", d: "Vídeos corporativos, campañas, branded content y entrevistas. Idea, guion, rodaje y entrega en los formatos que necesitas.", img: camera },
+  { id: "fotografia", t: "Fotografía profesional", d: "Fotografía corporativa, de producto y de eventos para comunicación, prensa y redes.", img: photo },
+  { id: "eventos", t: "Cobertura de eventos", d: "Grabación y aftermovies de eventos corporativos, culturales y de marca, con piezas resumen listas para publicar.", img: crowd },
+  { id: "postproduccion", t: "Edición y postproducción", d: "Montaje, corrección de color, sonido, motion graphics y entregables multiformato.", img: post },
 ];
 
+const FORMATOS = ["Aftermovies", "Videoclips", "Branded content", "Vídeos corporativos", "Entrevistas", "Contenido vertical para redes"];
+
 const PROCESO = [
-  { n: "01", t: "Briefing", d: "Entendemos el proyecto, objetivos y público." },
-  { n: "02", t: "Preproducción", d: "Concepto, guión, casting, localizaciones y plan de rodaje." },
-  { n: "03", t: "Rodaje", d: "Equipo técnico y creativo en formato cine, broadcast o ágil." },
-  { n: "04", t: "Postproducción", d: "Montaje, color, sonido, motion y entregables multiformato." },
+  { n: "01", t: "Briefing y planificación", d: "Objetivos, público, plazos y presupuesto." },
+  { n: "02", t: "Preproducción", d: "Concepto, guion, localizaciones y plan de rodaje." },
+  { n: "03", t: "Rodaje y producción", d: "Equipo técnico y creativo con un único interlocutor." },
+  { n: "04", t: "Postproducción y entrega", d: "Montaje, color, sonido y formatos finales." },
 ];
 
 function ProduccionAudiovisualPage() {
   return (
-    <>
-      <section className="relative pt-44 pb-20 px-4 md:px-8 overflow-hidden grain">
-        <img src={camera} alt="" width={1920} height={1080} className="absolute inset-0 w-full h-full object-cover opacity-30" />
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/60 to-ink" />
-        <div className="relative mx-auto max-w-[1600px]">
-          <span className="sticker mb-6">Audiovisual · Cine · Branded</span>
-          <h1 className="display text-5xl md:text-[9rem] leading-[0.85] mt-6">
-            PRODUCCIÓN<br /><span className="text-gradient-bcaps">AUDIOVISUAL</span>
+    <div className="corp">
+      {/* HERO */}
+      <section className="relative min-h-[88vh] flex items-end overflow-hidden">
+        <img src={camera} alt="Cámara profesional en un rodaje audiovisual" width={1920} height={1080} fetchPriority="high" className="absolute inset-0 w-full h-full object-cover opacity-50" />
+        <div className="absolute inset-0 bg-gradient-to-t from-graphite via-graphite/70 to-graphite/20" />
+        <div className="relative w-full mx-auto max-w-[1400px] px-5 md:px-10 pt-40 pb-16 md:pb-24">
+          <span className="eyebrow fade-up">Producción audiovisual</span>
+          <h1 className="mt-6 text-4xl md:text-6xl lg:text-7xl max-w-5xl fade-up" style={{ animationDelay: "120ms" }}>
+            PRODUCCIÓN AUDIOVISUAL PARA MARCAS, EMPRESAS Y EVENTOS.
           </h1>
-          <p className="mt-8 max-w-2xl text-lg text-bone/85">
-            Convertimos eventos, marcas, artistas y proyectos culturales en piezas audiovisuales con impacto. Desde aftermovies y videoclips hasta campañas y vídeos corporativos.
+          <p className="mt-8 max-w-2xl text-lg text-ivory/80 fade-up" style={{ animationDelay: "240ms" }}>
+            Planificamos y desarrollamos producciones audiovisuales para proyectos corporativos, campañas y eventos. Desde la idea inicial hasta el rodaje, la postproducción y la entrega final.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link to="/contacto" className="btn btn-primary">Pedir presupuesto</Link>
-            <Link to="/servicios/video-corporativo" className="btn btn-ghost">Vídeos corporativos</Link>
+          <div className="mt-10 flex flex-wrap gap-3 fade-up" style={{ animationDelay: "360ms" }}>
+            <a href="#servicios" className="btn btn-corp">Explorar servicios</a>
+            <Link to="/contacto" className="btn btn-line">Solicitar propuesta →</Link>
           </div>
         </div>
       </section>
 
-      <section className="py-20 px-4 md:px-8">
-        <div className="mx-auto max-w-[1600px]">
-          <h2 className="display text-4xl md:text-6xl">FORMATOS</h2>
-          <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {PIEZAS.map((p) => (
-              <article key={p.t} className="rounded-2xl border border-white/10 p-8 hover:border-bcaps-green transition-colors">
-                <h3 className="display text-2xl">{p.t}</h3>
-                <p className="mt-3 text-bone/75">{p.d}</p>
-              </article>
-            ))}
+      {/* NAVEGACIÓN INTERNA */}
+      <nav aria-label="Áreas audiovisuales" className="sticky top-16 md:top-[72px] z-30 bg-graphite/90 backdrop-blur border-y border-ivory/10">
+        <div className="mx-auto max-w-[1400px] px-5 md:px-10 flex gap-6 overflow-x-auto py-3 text-xs uppercase tracking-[0.18em] whitespace-nowrap">
+          {SERVICIOS.map((s) => (
+            <a key={s.id} href={`#${s.id}`} className="text-ivory/70 hover:text-ivory transition-colors">{s.t}</a>
+          ))}
+          <a href="#proceso" className="text-ivory/70 hover:text-ivory transition-colors">Proceso</a>
+        </div>
+      </nav>
+
+      {/* SERVICIOS ALTERNOS */}
+      <section id="servicios" className="corp-light scroll-mt-32 py-20 md:py-28 px-5 md:px-10">
+        <div className="mx-auto max-w-[1400px] space-y-20 md:space-y-28">
+          {SERVICIOS.map((s, i) => (
+            <article key={s.id} id={s.id} className="scroll-mt-36 grid md:grid-cols-12 gap-8 md:gap-12 items-center">
+              <div className={`md:col-span-7 overflow-hidden rounded-lg group ${i % 2 ? "md:order-2" : ""}`}>
+                <img src={s.img} alt={s.t} loading="lazy" width={1280} height={960} className="w-full aspect-[4/3] object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+              </div>
+              <div className="md:col-span-5">
+                <span className="font-display text-sm text-graphite/50">0{i + 1}</span>
+                <h2 className="mt-3 text-3xl md:text-5xl">{s.t}</h2>
+                <p className="mt-5 text-graphite/75 leading-relaxed">{s.d}</p>
+                <Link to="/contacto" className="mt-8 inline-flex items-center gap-2 text-sm uppercase tracking-[0.16em] font-semibold border-b border-graphite pb-1 hover:gap-3 transition-all">
+                  Solicitar propuesta <span aria-hidden>→</span>
+                </Link>
+              </div>
+            </article>
+          ))}
+          <div className="border-t border-graphite/15 pt-10">
+            <span className="eyebrow">También producimos</span>
+            <ul className="mt-6 flex flex-wrap gap-2">
+              {FORMATOS.map((f) => (
+                <li key={f} className="border border-graphite/20 rounded-full px-4 py-2 text-sm">{f}</li>
+              ))}
+            </ul>
+            <Link to="/servicios/video-corporativo" className="btn btn-corp mt-8">Vídeos corporativos →</Link>
           </div>
         </div>
       </section>
 
-      <section className="py-20 px-4 md:px-8 paper text-ink">
-        <div className="mx-auto max-w-[1600px]">
-          <h2 className="display text-4xl md:text-6xl text-ink">PROCESO</h2>
-          <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {PROCESO.map((p) => (
-              <div key={p.n} className="bg-ink text-bone rounded-2xl p-8">
-                <span className="num-3d text-5xl">{p.n}</span>
-                <h3 className="display text-xl mt-4">{p.t}</h3>
-                <p className="mt-3 text-bone/80">{p.d}</p>
+      {/* GALERÍA */}
+      <section className="py-20 md:py-28 px-5 md:px-10">
+        <div className="mx-auto max-w-[1400px]">
+          <span className="eyebrow">Galería</span>
+          <h2 className="mt-5 text-3xl md:text-5xl max-w-3xl">Nuestros trabajos, muy pronto aquí.</h2>
+          <p className="mt-5 max-w-2xl text-ivory/70">Estamos preparando una selección de producciones propias. Las imágenes actuales son ilustrativas.</p>
+          <div className="mt-12 grid grid-cols-2 md:grid-cols-12 gap-4">
+            {[
+              { img: heroStage, c: "col-span-2 md:col-span-8 aspect-[16/9]" },
+              { img: djBooth, c: "md:col-span-4 aspect-[3/4] md:aspect-auto" },
+              { img: post, c: "md:col-span-4 aspect-[3/4] md:aspect-[4/5]" },
+              { img: crowd, c: "col-span-2 md:col-span-8 aspect-[16/9] md:aspect-auto" },
+            ].map((g, i) => (
+              <div key={i} className={`relative rounded-lg overflow-hidden group ${g.c}`}>
+                <img src={g.img} alt="Imagen ilustrativa de producción audiovisual" loading="lazy" className="absolute inset-0 w-full h-full object-cover opacity-70 transition duration-700 group-hover:opacity-90 group-hover:scale-[1.03]" />
+                <span className="absolute bottom-4 left-4 text-[11px] uppercase tracking-[0.2em] text-ivory/80">Proyecto · Próximamente</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-24 px-4 md:px-8 text-center">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="display text-4xl md:text-6xl">¿Tienes un proyecto audiovisual?</h2>
-          <p className="mt-6 text-bone/80">Cuéntanos qué necesitas. Respondemos en 48h hábiles.</p>
-          <div className="mt-8 flex flex-wrap gap-3 justify-center">
-            <Link to="/contacto" className="btn btn-primary">Pedir presupuesto</Link>
-            <Link to="/sobre-nosotros" className="btn btn-ghost">Sobre nosotros</Link>
-          </div>
+      {/* PROCESO */}
+      <section id="proceso" className="corp-light scroll-mt-32 py-20 md:py-28 px-5 md:px-10">
+        <div className="mx-auto max-w-[1400px]">
+          <span className="eyebrow">Cómo trabajamos</span>
+          <h2 className="mt-5 text-3xl md:text-5xl max-w-3xl">Organización y confianza en cada fase.</h2>
+          <ol className="mt-14 grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-graphite/15 border border-graphite/15 rounded-lg overflow-hidden">
+            {PROCESO.map((p) => (
+              <li key={p.n} className="bg-ivory p-8">
+                <span className="font-display text-4xl text-corp-highlight">{p.n}</span>
+                <h3 className="mt-6 text-xl">{p.t}</h3>
+                <p className="mt-3 text-sm text-graphite/70">{p.d}</p>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
-    </>
+
+      {/* CIERRE */}
+      <section className="py-24 md:py-32 px-5 md:px-10 text-center">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="text-3xl md:text-5xl">HABLEMOS DE TU PRÓXIMA PRODUCCIÓN.</h2>
+          <p className="mt-6 text-ivory/75">Cuéntanos qué necesitas y estudiaremos la mejor solución audiovisual para tu proyecto.</p>
+          <Link to="/contacto" className="btn btn-corp mt-10">Solicitar propuesta</Link>
+        </div>
+      </section>
+    </div>
   );
 }
