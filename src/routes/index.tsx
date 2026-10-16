@@ -3,6 +3,7 @@ import heroStage from "@/assets/hero-stage.jpg";
 import camera from "@/assets/camera-detail.jpg";
 import crowd from "@/assets/booking-crowd.jpg";
 import djBooth from "@/assets/dj-booth.jpg";
+import { EquipmentSection } from "@/components/EquipmentSection";
 import { HomeRoster } from "@/components/HomeRoster";
 
 export const Route = createFileRoute("/")({
@@ -93,6 +94,8 @@ function Home() {
           </div>
         </div>
       </section>
+
+      <EquipmentSection />
 
       {/* 3. PROYECTOS */}
       <section className="py-20 md:py-32 px-5 md:px-10">
