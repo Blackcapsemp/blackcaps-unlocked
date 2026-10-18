@@ -6,14 +6,12 @@ export const Route = createFileRoute("/servicios")({
   head: () => ({
     meta: [
       { title: "Servicios — BLACKCAPS EXPERIENCE" },
-      { name: "description", content: "Producción audiovisual, cobertura de eventos, soluciones técnicas y servicios para agencias y empresas. Además: booking y soluciones digitales." },
+      { name: "description", content: "Producción audiovisual, alquiler independiente de material y producción técnica de eventos con equipamiento, montaje, instalación y personal técnico." },
       { property: "og:title", content: "Servicios — BLACKCAPS EXPERIENCE" },
-      { property: "og:description", content: "Servicios audiovisuales modulares para marcas, empresas, agencias y eventos." },
+      { property: "og:description", content: "Producción audiovisual, alquiler de material por separado y soluciones técnicas completas para empresas, marcas y eventos." },
       { property: "og:url", content: "https://blackcaps.es/servicios" },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "https://blackcaps.es/og/servicios.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: "https://blackcaps.es/og/servicios.jpg" },
     ],
     links: [{ rel: "canonical", href: "https://blackcaps.es/servicios" }],
     scripts: [
@@ -25,7 +23,8 @@ export const Route = createFileRoute("/servicios")({
           itemListElement: [
             "Producción audiovisual y creación de contenido",
             "Producción y cobertura de eventos",
-            "Soluciones técnicas audiovisuales",
+            "Alquiler de material audiovisual",
+            "Producción técnica de eventos",
             "Servicios para agencias y empresas",
             "Servicios complementarios",
           ].map((name, i) => ({
@@ -55,9 +54,9 @@ const GROUPS = [
     items: ["Grabación de eventos", "Aftermovies", "Proyectos culturales", "Streaming", "Visuales para escenario"],
   },
   {
-    n: "03", t: "Soluciones técnicas audiovisuales",
-    copy: "Técnica fiable para eventos pequeños, medianos y de gran escala.",
-    items: ["Equipamiento audiovisual", "Sonido", "Iluminación", "Sistemas de visuales y pantallas", "Soporte técnico"],
+    n: "03", t: "Alquiler audiovisual y producción técnica",
+    copy: "Dos modalidades: alquiler independiente de material, sin contratar una producción completa, o producción técnica de eventos con equipamiento, montaje, instalación y personal técnico.",
+    items: ["Alquiler independiente de material", "Producción técnica completa de eventos", "Equipamiento audiovisual propio", "Montaje e instalación", "Personal técnico"],
   },
   {
     n: "04", t: "Servicios para agencias y empresas",
