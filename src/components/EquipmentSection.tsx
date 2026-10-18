@@ -11,8 +11,8 @@ const ITEMS = [
   { t: "Sonido profesional y altavoces", d: "Sistemas de sonido para ponencias, conciertos, celebraciones y espacios de cualquier tamaño.", img: sound },
   { t: "Iluminación para eventos y escenarios", d: "Iluminación técnica y ambiental para crear la atmósfera adecuada en cada momento.", img: lights },
   { t: "Mesas y equipamiento DJ", d: "Equipamiento DJ preparado para sesiones en eventos corporativos y experiencias de marca.", img: dj },
-  { t: "Estructuras Truss", d: "Estructuras para montajes técnicos seguros de iluminación, pantallas y escenografía.", img: truss },
-  { t: "Soluciones técnicas integrales", d: "Coordinamos todo el montaje técnico del evento con un único interlocutor.", img: integral },
+  { t: "Estructuras Truss para montajes técnicos", d: "Estructuras para montajes técnicos seguros de iluminación, pantallas y escenografía.", img: truss },
+  { t: "Soluciones técnicas integrales para eventos", d: "Coordinamos todo el montaje técnico del evento con un único interlocutor.", img: integral },
 ];
 
 export function EquipmentSection() {
