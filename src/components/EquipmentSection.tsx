@@ -22,11 +22,25 @@ export function EquipmentSection() {
         <div className="grid md:grid-cols-12 gap-8 items-end mb-14">
           <div className="md:col-span-7">
             <span className="eyebrow">Equipamiento propio</span>
-            <h2 className="mt-5 text-4xl md:text-6xl">Equipamiento audiovisual y soluciones técnicas para eventos.</h2>
+            <h2 className="mt-5 text-4xl md:text-6xl">Alquiler audiovisual y producción técnica de eventos.</h2>
           </div>
           <p className="md:col-span-5 text-ivory/75">
-            Disponemos de equipamiento audiovisual propio para dar respuesta a las necesidades técnicas de eventos corporativos, producciones, espectáculos y celebraciones.
+            Pantallas, altavoces, iluminación, mesas DJ, estructuras Truss y otros equipos profesionales propios. Alquila el material por separado o cuenta con nuestro equipo para la producción técnica completa de tu evento.
           </p>
+        </div>
+        <div className="grid md:grid-cols-2 gap-10 md:gap-12 mb-14 border-y border-ivory/15 py-10">
+          <div className="flex flex-col items-start">
+            <span className="eyebrow">Solo el material</span>
+            <h3 className="mt-4 text-2xl md:text-3xl">Alquiler de material audiovisual</h3>
+            <p className="mt-4 mb-8 text-ivory/75 max-w-xl">Alquila el equipamiento que necesitas de forma independiente, sin contratar una producción completa. Consúltanos por el material y su disponibilidad para tus fechas.</p>
+            <Link to="/contacto" search={{ type: "general" }} className="btn btn-corp mt-auto max-w-full whitespace-normal text-center">Consultar alquiler y disponibilidad</Link>
+          </div>
+          <div className="flex flex-col items-start">
+            <span className="eyebrow">La solución completa</span>
+            <h3 className="mt-4 text-2xl md:text-3xl">Producción técnica de eventos</h3>
+            <p className="mt-4 mb-8 text-ivory/75 max-w-xl">Nos encargamos del equipamiento, montaje, instalación y personal técnico. Una solución integral para coordinar las necesidades técnicas de tu evento.</p>
+            <Link to="/contacto" search={{ type: "general" }} className="btn btn-corp mt-auto max-w-full whitespace-normal text-center">Solicitar producción técnica</Link>
+          </div>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {ITEMS.map((s) => (
@@ -40,10 +54,6 @@ export function EquipmentSection() {
               </div>
             </article>
           ))}
-        </div>
-        <div className="mt-12 flex flex-wrap gap-3">
-          <Link to="/contacto" search={{ type: "general" }} className="btn btn-corp">Consultar equipamiento</Link>
-          <Link to="/contacto" search={{ type: "general" }} className="btn btn-line">Solicitar presupuesto</Link>
         </div>
       </div>
     </section>
