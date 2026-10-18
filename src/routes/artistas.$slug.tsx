@@ -40,7 +40,9 @@ function ArtistPage() {
     </section>
   );
 
-  const links = [["Instagram", a.instagram], ["Spotify", a.spotify], ["SoundCloud", a.soundcloud], ["YouTube", a.youtube]]
+  // Solo contenido artístico (escuchar/ver trabajos). Redes de contacto como
+  // Instagram siguen guardadas pero no se muestran en la ficha pública.
+  const links = [["Spotify", a.spotify], ["SoundCloud", a.soundcloud], ["YouTube", a.youtube]]
     .map(([l, u]) => [l, safeUrl(u)] as const).filter(([, u]) => u);
 
   // Presskit público: solo se muestra si existe una URL válida en la ficha.
