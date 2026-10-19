@@ -1,6 +1,7 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+@import "leaflet/dist/leaflet.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -249,3 +250,15 @@
   @keyframes fade-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
   .fade-up { animation: fade-up .9s cubic-bezier(.2,.7,.2,1) both; }
 }
+
+/* Public roster map; Leaflet panes stay below site navigation. */
+.roster-map .leaflet-container { background: var(--ivory); font-family: var(--font-sans); }
+.roster-map .leaflet-tile-pane { filter: grayscale(1); }
+.roster-marker { border: 2px solid var(--corp-white); border-radius: 50%; background: var(--graphite); color: var(--corp-white); display: grid; place-items: center; font-family: var(--font-sans); font-size: calc(1rem * var(--type-scale)); font-weight: 700; box-shadow: 0 2px 8px color-mix(in srgb, var(--ink) 25%, transparent); }
+.roster-marker.is-selected { background: var(--corp-white); color: var(--graphite); border-color: var(--graphite); }
+.roster-cluster { border-style: double; border-width: 4px; }
+.roster-map .leaflet-control-attribution { background: var(--ivory); color: var(--graphite); font-size: calc(.7rem * var(--type-scale)); }
+.roster-map .leaflet-control-attribution a { color: var(--graphite); }
+.roster-map .leaflet-tooltip { background: var(--ivory); color: var(--graphite); border-color: var(--graphite); font-size: calc(.875rem * var(--type-scale)); }
+.booking-roster :where(h1,h2,h3,h4) { letter-spacing: 0; }
+@media (prefers-reduced-motion: reduce) { .booking-roster * { scroll-behavior: auto; animation: none; transition: none; } }
