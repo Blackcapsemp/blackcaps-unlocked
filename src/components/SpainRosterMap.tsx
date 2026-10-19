@@ -15,6 +15,8 @@ export default function SpainRosterMap({ cities, selected, onSelect, resetKey }:
   const maps = useRef<L.Map[]>([]);
   const onSelectRef = useRef(onSelect);
   onSelectRef.current = onSelect;
+  const selectedRef = useRef(selected);
+  selectedRef.current = selected;
   const [touchEnabled, setTouchEnabled] = useState(false);
   const [tileError, setTileError] = useState(false);
 
@@ -29,7 +31,10 @@ export default function SpainRosterMap({ cities, selected, onSelect, resetKey }:
       return map;
     });
     maps.current = instances;
-    const observer = new ResizeObserver(() => instances.forEach((map) => map.invalidateSize()));
+    const observer = new ResizeObserver(() => instances.forEach((map, i) => {
+      map.invalidateSize();
+      if (!selectedRef.current) map.fitBounds(i === 0 ? mainlandBounds : islandBounds, { animate: false, padding: [12, 12] });
+    }));
     observer.observe(mainEl.current);
     observer.observe(islandEl.current);
     return () => { observer.disconnect(); instances.forEach((map) => map.remove()); maps.current = []; };
