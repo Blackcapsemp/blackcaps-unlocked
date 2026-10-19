@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import L from "leaflet";
 import "leaflet.markercluster";
-import "leaflet/dist/leaflet.css";
 import { Hand, Minus, Plus, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { CityGroup } from "@/lib/roster-cities";
@@ -16,13 +15,15 @@ export default function SpainRosterMap({ cities, selected, onSelect, resetKey }:
   const maps = useRef<L.Map[]>([]);
   const onSelectRef = useRef(onSelect);
   onSelectRef.current = onSelect;
+  const selectedRef = useRef(selected);
+  selectedRef.current = selected;
   const [touchEnabled, setTouchEnabled] = useState(false);
   const [tileError, setTileError] = useState(false);
 
   useEffect(() => {
     if (!mainEl.current || !islandEl.current) return;
     const instances = [mainEl.current, islandEl.current].map((el, i) => {
-      const map = L.map(el, { zoomControl: false, scrollWheelZoom: false, attributionControl: true, minZoom: 3, maxZoom: 16, dragging: !L.Browser.mobile, tapHold: false });
+      const map = L.map(el, { zoomControl: false, zoomSnap: 0.25, scrollWheelZoom: false, attributionControl: true, minZoom: 3, maxZoom: 16, dragging: !L.Browser.mobile, tapHold: false });
       L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors',
       }).on("tileerror", () => setTileError(true)).addTo(map);
@@ -30,7 +31,10 @@ export default function SpainRosterMap({ cities, selected, onSelect, resetKey }:
       return map;
     });
     maps.current = instances;
-    const observer = new ResizeObserver(() => instances.forEach((map) => map.invalidateSize()));
+    const observer = new ResizeObserver(() => instances.forEach((map, i) => {
+      map.invalidateSize();
+      if (!selectedRef.current) map.fitBounds(i === 0 ? mainlandBounds : islandBounds, { animate: false, padding: [12, 12] });
+    }));
     observer.observe(mainEl.current);
     observer.observe(islandEl.current);
     return () => { observer.disconnect(); instances.forEach((map) => map.remove()); maps.current = []; };
