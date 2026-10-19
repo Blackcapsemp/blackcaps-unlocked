@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import L from "leaflet";
 import "leaflet.markercluster";
-import "leaflet/dist/leaflet.css";
 import { Hand, Minus, Plus, RotateCcw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { CityGroup } from "@/lib/roster-cities";
@@ -22,7 +21,7 @@ export default function SpainRosterMap({ cities, selected, onSelect, resetKey }:
   useEffect(() => {
     if (!mainEl.current || !islandEl.current) return;
     const instances = [mainEl.current, islandEl.current].map((el, i) => {
-      const map = L.map(el, { zoomControl: false, scrollWheelZoom: false, attributionControl: true, minZoom: 3, maxZoom: 16, dragging: !L.Browser.mobile, tapHold: false });
+      const map = L.map(el, { zoomControl: false, zoomSnap: 0.25, scrollWheelZoom: false, attributionControl: true, minZoom: 3, maxZoom: 16, dragging: !L.Browser.mobile, tapHold: false });
       L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
         maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> contributors',
       }).on("tileerror", () => setTileError(true)).addTo(map);
