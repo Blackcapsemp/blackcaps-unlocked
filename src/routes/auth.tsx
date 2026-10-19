@@ -2,7 +2,6 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable";
 
 export const Route = createFileRoute("/auth")({
   head: () => ({
@@ -39,9 +38,17 @@ function AuthPage() {
   }
 
   useEffect(() => {
+    // Retorno OAuth: si la URL trae un error del proveedor, mostrarlo.
+    const params = new URLSearchParams(window.location.search + "&" + window.location.hash.slice(1));
+    const oauthError = params.get("error_description") || params.get("error");
+    if (oauthError) toast.error(`No se pudo acceder con Google: ${oauthError.replace(/\+/g, " ")}`);
     supabase.auth.getSession().then(({ data }) => {
       if (data.session) redirectAfterLogin();
     });
+    const { data: sub } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === "SIGNED_IN" && session) redirectAfterLogin();
+    });
+    return () => sub.subscription.unsubscribe();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigate]);
 
@@ -74,9 +81,16 @@ function AuthPage() {
   }
 
   async function google() {
-    const res = await lovable.auth.signInWithOAuth("google", { redirect_uri: `${window.location.origin}/auth` });
-    if (res.error) toast.error("No se pudo acceder con Google");
-    else if (!("redirected" in res && res.redirected)) navigate({ to: "/mi-perfil" });
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: { redirectTo: `${window.location.origin}/auth` },
+    });
+    if (error) {
+      const msg = /provider is not enabled|unsupported provider/i.test(error.message)
+        ? "El acceso con Google todavía no está activado. Usa tu email y contraseña mientras tanto."
+        : `No se pudo acceder con Google: ${error.message}`;
+      toast.error(msg);
+    }
   }
 
   const input = "w-full rounded-xl bg-white/[0.04] border border-white/15 px-4 py-3 text-base outline-none focus:border-bone focus:ring-2 focus:ring-bone/20 transition";
