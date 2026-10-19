@@ -14,7 +14,9 @@ import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BcapstudioRouteImport } from './routes/bcapstudio'
 import { Route as BookingRouteImport } from './routes/booking'
+import { Route as CondicionesDeUsoRouteImport } from './routes/condiciones-de-uso'
 import { Route as ContactoRouteImport } from './routes/contacto'
+import { Route as PoliticaDePrivacidadRouteImport } from './routes/politica-de-privacidad'
 import { Route as ProduccionAudiovisualRouteImport } from './routes/produccion-audiovisual'
 import { Route as ServiciosRouteImport } from './routes/servicios'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
@@ -51,9 +53,19 @@ const BookingRoute = BookingRouteImport.update({
   path: '/booking',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CondicionesDeUsoRoute = CondicionesDeUsoRouteImport.update({
+  id: '/condiciones-de-uso',
+  path: '/condiciones-de-uso',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContactoRoute = ContactoRouteImport.update({
   id: '/contacto',
   path: '/contacto',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PoliticaDePrivacidadRoute = PoliticaDePrivacidadRouteImport.update({
+  id: '/politica-de-privacidad',
+  path: '/politica-de-privacidad',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProduccionAudiovisualRoute = ProduccionAudiovisualRouteImport.update({
@@ -121,7 +133,9 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/bcapstudio': typeof BcapstudioRoute
   '/booking': typeof BookingRoute
+  '/condiciones-de-uso': typeof CondicionesDeUsoRoute
   '/contacto': typeof ContactoRoute
+  '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
   '/produccion-audiovisual': typeof ProduccionAudiovisualRoute
   '/servicios': typeof ServiciosRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -139,7 +153,9 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/bcapstudio': typeof BcapstudioRoute
   '/booking': typeof BookingRoute
+  '/condiciones-de-uso': typeof CondicionesDeUsoRoute
   '/contacto': typeof ContactoRoute
+  '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
   '/produccion-audiovisual': typeof ProduccionAudiovisualRoute
   '/servicios': typeof ServiciosRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -159,7 +175,9 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/bcapstudio': typeof BcapstudioRoute
   '/booking': typeof BookingRoute
+  '/condiciones-de-uso': typeof CondicionesDeUsoRoute
   '/contacto': typeof ContactoRoute
+  '/politica-de-privacidad': typeof PoliticaDePrivacidadRoute
   '/produccion-audiovisual': typeof ProduccionAudiovisualRoute
   '/servicios': typeof ServiciosRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
@@ -179,7 +197,9 @@ export interface FileRouteTypes {
     | '/auth'
     | '/bcapstudio'
     | '/booking'
+    | '/condiciones-de-uso'
     | '/contacto'
+    | '/politica-de-privacidad'
     | '/produccion-audiovisual'
     | '/servicios'
     | '/sitemap.xml'
@@ -197,7 +217,9 @@ export interface FileRouteTypes {
     | '/auth'
     | '/bcapstudio'
     | '/booking'
+    | '/condiciones-de-uso'
     | '/contacto'
+    | '/politica-de-privacidad'
     | '/produccion-audiovisual'
     | '/servicios'
     | '/sitemap.xml'
@@ -216,7 +238,9 @@ export interface FileRouteTypes {
     | '/auth'
     | '/bcapstudio'
     | '/booking'
+    | '/condiciones-de-uso'
     | '/contacto'
+    | '/politica-de-privacidad'
     | '/produccion-audiovisual'
     | '/servicios'
     | '/sitemap.xml'
@@ -236,7 +260,9 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   BcapstudioRoute: typeof BcapstudioRoute
   BookingRoute: typeof BookingRoute
+  CondicionesDeUsoRoute: typeof CondicionesDeUsoRoute
   ContactoRoute: typeof ContactoRoute
+  PoliticaDePrivacidadRoute: typeof PoliticaDePrivacidadRoute
   ProduccionAudiovisualRoute: typeof ProduccionAudiovisualRoute
   ServiciosRoute: typeof ServiciosRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
@@ -284,11 +310,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BookingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/condiciones-de-uso': {
+      id: '/condiciones-de-uso'
+      path: '/condiciones-de-uso'
+      fullPath: '/condiciones-de-uso'
+      preLoaderRoute: typeof CondicionesDeUsoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contacto': {
       id: '/contacto'
       path: '/contacto'
       fullPath: '/contacto'
       preLoaderRoute: typeof ContactoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politica-de-privacidad': {
+      id: '/politica-de-privacidad'
+      path: '/politica-de-privacidad'
+      fullPath: '/politica-de-privacidad'
+      preLoaderRoute: typeof PoliticaDePrivacidadRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/produccion-audiovisual': {
@@ -402,7 +442,9 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   BcapstudioRoute: BcapstudioRoute,
   BookingRoute: BookingRoute,
+  CondicionesDeUsoRoute: CondicionesDeUsoRoute,
   ContactoRoute: ContactoRoute,
+  PoliticaDePrivacidadRoute: PoliticaDePrivacidadRoute,
   ProduccionAudiovisualRoute: ProduccionAudiovisualRoute,
   ServiciosRoute: ServiciosRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
