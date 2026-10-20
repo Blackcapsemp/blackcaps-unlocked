@@ -1,4 +1,3 @@
-# Ajuste comercial de equipamiento
 # Páginas legales
 - [ ] Redactar Privacidad y Condiciones con los datos oficiales y pendientes jurídicos explícitos.
 - [ ] Añadir enlaces en footer, acceso y formularios sin cambiar su funcionamiento.
