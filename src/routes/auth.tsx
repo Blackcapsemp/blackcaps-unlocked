@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { PrivacyNotice } from "@/components/LegalPage";
 
 export const Route = createFileRoute("/auth")({
   head: () => ({
@@ -140,6 +141,7 @@ function AuthPage() {
             {busy ? "Un momento…" : mode === "signup" ? "Crear cuenta" : "Entrar"}
           </button>
         </form>
+        <PrivacyNotice />
       </div>
     </section>
   );

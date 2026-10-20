@@ -37,6 +37,10 @@ export function Footer() {
       <div className="border-t border-white/10">
         <div className="mx-auto max-w-[1600px] px-4 md:px-8 py-5 flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
           <span>© {new Date().getFullYear()} BLACKCAPS EXPERIENCE S.L.</span>
+          <nav aria-label="Información legal" className="flex flex-wrap gap-x-5 gap-y-2">
+            <Link to="/politica-de-privacidad" className="hover:text-foreground underline underline-offset-4">Política de Privacidad</Link>
+            <Link to="/condiciones-de-uso" className="hover:text-foreground underline underline-offset-4">Condiciones de Uso</Link>
+          </nav>
           <span className="tracking-[0.3em] uppercase">Anywhere but with music</span>
         </div>
       </div>

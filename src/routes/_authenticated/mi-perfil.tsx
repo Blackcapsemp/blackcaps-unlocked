@@ -4,6 +4,7 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { signPhotos, slugify, type ArtistProfile } from "@/lib/artists";
 import { ArtistProfileForm, artistRow, type ArtistForm } from "@/components/ArtistProfileForm";
+import { PrivacyNotice } from "@/components/LegalPage";
 
 export const Route = createFileRoute("/_authenticated/mi-perfil")({
   beforeLoad: async () => {
@@ -124,6 +125,7 @@ function MyProfile() {
 
         <ArtistProfileForm initial={profile} initialPreview={preview} hasPhoto={!!profile?.photo_url} busy={busy}
           submitLabel={profile ? "Guardar y enviar a revisión" : "Enviar perfil"} onSubmit={save} />
+        <PrivacyNotice />
       </div>
     </section>
   );

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { PrivacyNotice } from "@/components/LegalPage";
 
 type ContactoSearch = { type?: string; artist?: string };
 
@@ -18,6 +19,8 @@ export const Route = createFileRoute("/contacto")({
       { property: "og:title", content: "Contacto — BLACKCAPS EXPERIENCE" },
       { property: "og:description", content: "¿Creamos algo juntos? Cuéntanos qué necesitas." },
       { property: "og:url", content: "https://blackcaps.es/contacto" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
     links: [
       { rel: "canonical", href: "https://blackcaps.es/contacto" },
@@ -407,6 +410,7 @@ function ContactoPage() {
                     </button>
                   </div>
                 </form>
+                <PrivacyNotice />
               </div>
             ) : (
               <form
@@ -515,6 +519,7 @@ function ContactoPage() {
                     <span className="transition-transform group-hover:translate-x-1">→</span>
                   </button>
                 </div>
+                <PrivacyNotice />
               </form>
             )}
           </div>

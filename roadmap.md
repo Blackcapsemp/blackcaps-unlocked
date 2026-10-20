@@ -1,8 +1,7 @@
-# Ajuste comercial de equipamiento
 # Páginas legales
-- [ ] Redactar Privacidad y Condiciones con los datos oficiales y pendientes jurídicos explícitos.
-- [ ] Añadir enlaces en footer, acceso y formularios sin cambiar su funcionamiento.
-- [ ] Verificar acceso público y presentación; preparar sin publicar.
+- [x] Redactar Privacidad y Condiciones con los datos oficiales y pendientes jurídicos explícitos.
+- [x] Añadir enlaces en footer, acceso y formularios sin cambiar su funcionamiento.
+- [x] Verificar acceso público y presentación; preparar sin publicar.
 
 # Ajuste comercial de equipamiento
 - [x] Diferenciar alquiler independiente y producción técnica en la sección compartida de Inicio y Servicios.
