@@ -1,8 +1,21 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 
+/**
+ * Cambiar a `false` cuando la revisión jurídica haya validado los puntos pendientes
+ * (proveedores, transferencias internacionales, conservación, autorización de imágenes
+ * e inscripción registral). Oculta de la versión pública todos los avisos internos.
+ */
+export const LEGAL_REVIEW_PENDING = true;
+
+/** Aviso interno; solo se muestra mientras la revisión jurídica esté pendiente. */
+export function ReviewNote({ children }: { children: ReactNode }) {
+  if (!LEGAL_REVIEW_PENDING) return null;
+  return <p className="border-l-2 border-border pl-4 text-sm"><strong>Pendiente de validación jurídica:</strong> {children}</p>;
+}
+
 export function PrivacyNotice() {
-  return <p className="mt-4 text-sm leading-relaxed text-muted-foreground">Consulta cómo tratamos tus datos en la <Link to="/politica-de-privacidad" className="text-foreground underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring">Política de Privacidad</Link>.</p>;
+  return <p className="mt-4 text-sm leading-relaxed text-muted-foreground"><strong className="text-foreground">Información básica:</strong> el responsable es BLACKCAPS EXPERIENCE, S.L. Tratamos tus datos para atender tu solicitud o gestionar tu cuenta. Puedes ejercer tus derechos de acceso, rectificación, supresión y demás en <a href="mailto:info@blackcaps.es" className="text-foreground underline underline-offset-4">info@blackcaps.es</a>. Más información en la <Link to="/politica-de-privacidad" className="text-foreground underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring">Política de Privacidad</Link>.</p>;
 }
 
 type Section = { id: string; title: string; content: ReactNode };
@@ -15,7 +28,7 @@ export function LegalPage({ title, introduction, sections }: { title: string; in
           <span className="sticker">BLACKCAPS EXPERIENCE</span>
           <h1 className="display text-3xl md:text-5xl mt-6 leading-tight break-words">{title}</h1>
           <p className="mt-5 text-lg leading-relaxed text-muted-foreground max-w-3xl">{introduction}</p>
-          <p className="mt-5 border-l-2 border-border pl-4 text-sm text-muted-foreground">Versión preparada para revisión jurídica antes de su publicación.</p>
+          {LEGAL_REVIEW_PENDING && <p className="mt-5 border-l-2 border-border pl-4 text-sm text-muted-foreground">Versión preparada para revisión jurídica antes de su publicación.</p>}
         </header>
         <nav aria-label="Índice del documento" className="border-b border-border py-8">
           <h2 className="display text-lg mb-4">Contenido</h2>

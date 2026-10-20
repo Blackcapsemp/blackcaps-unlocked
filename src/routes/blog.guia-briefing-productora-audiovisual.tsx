@@ -28,7 +28,7 @@ export const Route = createFileRoute("/blog/guia-briefing-productora-audiovisual
           headline: TITLE,
           description: DESC,
           author: { "@type": "Organization", name: "BLACKCAPS EXPERIENCE" },
-          publisher: { "@type": "Organization", name: "BLACKCAPS EXPERIENCE", url: "https://blackcaps-es.lovable.app" },
+          publisher: { "@type": "Organization", name: "BLACKCAPS EXPERIENCE", url: "https://blackcaps.es" },
           mainEntityOfPage: URL,
           inLanguage: "es-ES",
           about: ["productora audiovisual", "presupuesto producción audiovisual", "briefing audiovisual"],
