@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { LegalPage } from "@/components/LegalPage";
+import { LegalPage, ReviewNote } from "@/components/LegalPage";
 
 export const Route = createFileRoute("/politica-de-privacidad")({
   head: () => ({
@@ -20,9 +20,15 @@ export const Route = createFileRoute("/politica-de-privacidad")({
 function PrivacyPage() {
   return <LegalPage title="Política de Privacidad" introduction="Información sobre el tratamiento de datos personales en la web, las solicitudes comerciales y el registro de artistas, conforme al Reglamento General de Protección de Datos (RGPD) y a la Ley Orgánica 3/2018 (LOPDGDD)." sections={[
     { id: "responsable", title: "Responsable del tratamiento", content: <>
-      <p><strong>BLACKCAPS EXPERIENCE, S.L.</strong> · NIF: B75680611.</p>
-      <p>Domicilio: Avenida de Castilla, 53-55, 28830 San Fernando de Henares (Madrid), España.</p>
-      <p>Correo: <a href="mailto:info@blackcaps.es">info@blackcaps.es</a> · Web: <a href="https://blackcaps.es">https://blackcaps.es</a>.</p>
+      <ul>
+        <li><strong>Denominación social:</strong> BLACKCAPS EXPERIENCE, S.L.</li>
+        <li><strong>NIF:</strong> B75680611</li>
+        <li><strong>Domicilio social:</strong> Avenida de Castilla, 53-55, 28830 San Fernando de Henares (Madrid), España</li>
+        <li><strong>Correo electrónico:</strong> <a href="mailto:info@blackcaps.es">info@blackcaps.es</a></li>
+        <li><strong>Web:</strong> <a href="/">blackcaps.es</a></li>
+        <li><strong>Inscripción registral:</strong> Registro Mercantil de [pendiente], tomo [pendiente], folio [pendiente], hoja [pendiente].</li>
+      </ul>
+      <ReviewNote>datos de inscripción en el Registro Mercantil, que facilitará la sociedad.</ReviewNote>
     </> },
     { id: "datos", title: "Datos que recogemos", content: <>
       <ul>
@@ -44,42 +50,45 @@ function PrivacyPage() {
         <li><strong>Responder consultas:</strong> el interés legítimo en atender comunicaciones dirigidas a BLACKCAPS; cuando solicites una propuesta o contratación, la aplicación de medidas precontractuales a petición tuya (artículos 6.1.f y 6.1.b RGPD, respectivamente).</li>
         <li><strong>Gestionar presupuestos y servicios:</strong> medidas precontractuales y, cuando exista un acuerdo, ejecución del contrato (artículo 6.1.b RGPD).</li>
         <li><strong>Gestionar cuentas y solicitudes de artistas:</strong> tramitar la participación solicitada, revisar la información y administrar la relación de uso del servicio (artículo 6.1.b RGPD).</li>
-        <li><strong>Publicar contenido artístico aprobado:</strong> gestionar la participación solicitada en el Roster conforme a las condiciones aplicables. Debe revisarse jurídicamente la base y la autorización de imagen adecuada para cada caso, especialmente respecto de materiales de terceros.</li>
+        <li><strong>Publicar contenido artístico aprobado en el Roster:</strong> gestionar la participación solicitada por el artista (artículo 6.1.b RGPD).</li>
+        <li><strong>Promoción adicional del material artístico</strong> (redes sociales, publicidad, campañas o cesión a terceros): solo con autorización expresa o acuerdo individual del artista (artículo 6.1.a o 6.1.b RGPD).</li>
         <li><strong>Atender obligaciones legales y reclamaciones:</strong> cumplimiento de obligaciones aplicables (artículo 6.1.c RGPD) y, cuando proceda, interés legítimo en la defensa de derechos (artículo 6.1.f RGPD).</li>
       </ul>
       <p>No se atribuye al registro una autorización general para publicidad. Cualquier finalidad adicional deberá informarse y contar con la base jurídica que corresponda.</p>
+      <ReviewNote>base jurídica y autorización de imagen adecuadas para cada caso, especialmente respecto de materiales de terceros y perfiles creados manualmente.</ReviewNote>
     </> },
-    { id: "publicacion", title: "Datos privados y perfiles públicos", content: <>
+    { id: "publicacion", title: "Datos privados, publicación y promoción", content: <>
       <p><strong>La cuenta y la solicitud no se publican por el hecho de registrarte.</strong> BLACKCAPS revisa los perfiles y decide su aprobación antes de incorporarlos al Roster.</p>
       <p>Tras la aprobación, la ficha pública puede mostrar nombre artístico, fotografía, biografía, estilo, ciudad y enlaces de contenido artístico, como Spotify, SoundCloud y YouTube; un presskit solo se muestra cuando exista un enlace válido. La ciudad no representa un domicilio exacto.</p>
       <p>El correo de cuenta, contraseñas, solicitudes de contacto y datos internos de gestión no forman parte de la ficha pública. Instagram no se muestra como vía de contacto directo en la ficha artística. La contratación se gestiona a través de BLACKCAPS.</p>
-      <p>Las fotografías de perfiles pendientes o rechazados no se ofrecen públicamente. También pueden existir perfiles creados manualmente por administración: antes de publicarlos deben verificarse la procedencia de los datos, el deber de información y los derechos sobre los materiales.</p>
+      <p><strong>Requieren autorización expresa o acuerdo individual:</strong> el uso de la imagen o materiales del artista fuera de su ficha del Roster (redes sociales, publicidad o materiales comerciales), su cesión a clientes o terceros, la grabación o difusión de actuaciones y la publicación de perfiles creados manualmente por administración.</p>
+      <p>Las fotografías de perfiles pendientes o rechazados no se ofrecen públicamente.</p>
       <p>Los contenidos publicados son accesibles a visitantes y pueden ser indexados por buscadores o compartidos por terceros. Puedes solicitar su rectificación o retirada mediante el correo del responsable.</p>
     </> },
     { id: "proveedores", title: "Proveedores tecnológicos y destinatarios", content: <>
-      <p>La prestación del servicio utiliza infraestructura de base de datos, autenticación y almacenamiento, servicios de correo y alojamiento web. Entre los proveedores tecnológicos se encuentran Supabase, Resend, Google y el proveedor de alojamiento de la web.</p>
+      <p>La prestación del servicio utiliza infraestructura de base de datos, autenticación y almacenamiento, servicios de correo y alojamiento web:</p>
       <ul>
-        <li><strong>Base de datos, autenticación y almacenamiento:</strong> soporte de cuentas, solicitudes y materiales artísticos.</li>
-        <li><strong>Resend:</strong> envío de comunicaciones por correo relacionadas con los formularios.</li>
+        <li><strong>Supabase (base de datos, autenticación y almacenamiento):</strong> soporte de cuentas, solicitudes y materiales artísticos.</li>
+        <li><strong>Resend (correo electrónico):</strong> envío de los correos automáticos de autenticación, confirmación de registro y recuperación de acceso, y de las comunicaciones relacionadas con los formularios de contacto, presupuesto y Booking.</li>
         <li><strong>Google:</strong> autenticación cuando eliges este método, además del tratamiento propio de Google descrito en su política.</li>
         <li><strong>Alojamiento web:</strong> prestación y disponibilidad de la web y su infraestructura.</li>
       </ul>
       <p>El personal autorizado accede a los datos necesarios para tramitar solicitudes y revisar perfiles. Los datos podrán comunicarse a autoridades cuando exista una obligación legal.</p>
-      <p><strong>Pendiente de revisión:</strong> confirmar la identidad contractual del proveedor de alojamiento, los proveedores efectivamente activos, su papel como encargados o responsables, los acuerdos de tratamiento, ubicaciones y posibles transferencias internacionales. Este texto no afirma que existan o no dichas transferencias ni atribuye garantías no verificadas. Si fueran aplicables, deberá facilitarse la información sobre destinos y mecanismos de garantía antes de publicar la versión definitiva.</p>
+      <ReviewNote><strong>proveedores</strong> — identidad contractual del proveedor de alojamiento, papel de cada proveedor y acuerdos de tratamiento.</ReviewNote>
+      <ReviewNote><strong>transferencias internacionales</strong> — ubicaciones de tratamiento y, si las hubiera, destinos y garantías aplicables. Este texto no afirma que existan o no.</ReviewNote>
     </> },
     { id: "conservacion", title: "Conservación", content: <>
-      <p>Los datos se conservarán durante el tiempo necesario para atender la solicitud, gestionar la cuenta o participación artística y mantener la relación comercial correspondiente. Se revisará la necesidad de conservar solicitudes no continuadas y perfiles que ya no participen.</p>
-      <p>Cuando proceda su supresión, podrán mantenerse bloqueados los datos necesarios para atender obligaciones legales o responsabilidades durante los plazos legalmente aplicables. No se fija aquí un plazo concreto no verificado.</p>
-      <p>Los plazos operativos, la eliminación en copias de seguridad y los criterios de revisión de cuentas inactivas quedan pendientes de validación documental y jurídica.</p>
+      <p>Los datos se conservarán durante el tiempo necesario para atender la solicitud, gestionar la cuenta o participación artística y mantener la relación comercial correspondiente.</p>
+      <p>Cuando proceda su supresión, podrán mantenerse bloqueados los datos necesarios para atender obligaciones legales o responsabilidades durante los plazos legalmente aplicables.</p>
+      <ReviewNote><strong>conservación de datos</strong> — plazos concretos, eliminación en copias de seguridad y criterios para solicitudes no continuadas y cuentas inactivas.</ReviewNote>
     </> },
     { id: "derechos", title: "Tus derechos", content: <>
       <p>Puedes solicitar acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad, en los casos y con el alcance previstos en el RGPD. Si un tratamiento se basa en consentimiento, puedes retirarlo sin afectar a la licitud del tratamiento anterior.</p>
       <p>Escribe a <a href="mailto:info@blackcaps.es">info@blackcaps.es</a>, indicando el derecho que deseas ejercer y los datos necesarios para localizar tu solicitud o cuenta. Si existen dudas razonables sobre tu identidad, podremos solicitar información adicional proporcionada para verificarla.</p>
       <p>Si consideras que el tratamiento vulnera la normativa, tienes derecho a presentar una reclamación ante la <a href="https://www.aepd.es/" target="_blank" rel="noopener noreferrer">Agencia Española de Protección de Datos (AEPD)</a>.</p>
     </> },
-    { id: "revision", title: "Revisión de esta política", content: <>
-      <p>Esta versión debe revisarse antes de su publicación para confirmar los tratamientos reales, sus bases jurídicas, la información a artistas incorporados manualmente, los proveedores y los criterios de conservación. No constituye una certificación de cumplimiento ni sustituye asesoramiento jurídico.</p>
-      <p>Los cambios relevantes en el tratamiento deberán reflejarse en esta política y comunicarse cuando la normativa lo exija.</p>
+    { id: "cambios", title: "Cambios en esta política", content: <>
+      <p>Los cambios relevantes en el tratamiento se reflejarán en esta política y se comunicarán cuando la normativa lo exija.</p>
     </> },
   ]} />;
 }
