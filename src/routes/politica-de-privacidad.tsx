@@ -28,7 +28,6 @@ function PrivacyPage() {
         <li><strong>Web:</strong> <a href="/">blackcaps.es</a></li>
         <li><strong>Inscripción registral:</strong> Registro Mercantil de Valencia, Sección 8, Hoja V-223276, Inscripción 1.ª, de 28 de enero de 2025 (BORME-A-2025-23-46, acto 56187).</li>
       </ul>
-      <ReviewNote>la dirección de Madrid facilitada corresponde al domicilio social actual o es una dirección de contacto, dado que el domicilio publicado en la inscripción de constitución (2025) era distinto. Comprobar además si existen inscripciones posteriores.</ReviewNote>
     </> },
     { id: "datos", title: "Datos que recogemos", content: <>
       <ul>
@@ -50,10 +49,11 @@ function PrivacyPage() {
         <li><strong>Responder consultas:</strong> el interés legítimo en atender comunicaciones dirigidas a BLACKCAPS; cuando solicites una propuesta o contratación, la aplicación de medidas precontractuales a petición tuya (artículos 6.1.f y 6.1.b RGPD, respectivamente).</li>
         <li><strong>Gestionar presupuestos y servicios:</strong> medidas precontractuales y, cuando exista un acuerdo, ejecución del contrato (artículo 6.1.b RGPD).</li>
         <li><strong>Gestionar cuentas y solicitudes de artistas:</strong> tramitar la participación solicitada, revisar la información y administrar la relación de uso del servicio (artículo 6.1.b RGPD).</li>
-        <li><strong>Publicar contenido artístico aprobado en el Roster:</strong> gestionar la participación solicitada por el artista (artículo 6.1.b RGPD).</li>
+        <li><strong>Publicar nombre, biografía, fotografías y materiales promocionales en la web, Roster y presskit público:</strong> autorización expresa del artista para presentar su proyecto y gestionar posibles contrataciones (artículo 6.1.a RGPD); la gestión de la participación solicitada se basa, cuando corresponda, en el artículo 6.1.b RGPD.</li>
         <li><strong>Promoción adicional del material artístico</strong> (redes sociales, publicidad, campañas o cesión a terceros): solo con autorización expresa o acuerdo individual del artista (artículo 6.1.a o 6.1.b RGPD).</li>
         <li><strong>Atender obligaciones legales y reclamaciones:</strong> cumplimiento de obligaciones aplicables (artículo 6.1.c RGPD) y, cuando proceda, interés legítimo en la defensa de derechos (artículo 6.1.f RGPD).</li>
       </ul>
+      <p>La aceptación de las Condiciones de Uso y la lectura de esta política se registran separadamente de la autorización de publicación y no constituyen un consentimiento general para cualquier tratamiento. Se conserva el identificador del usuario o perfil manual, el tipo, la fecha y hora, el texto o versión y su estado, incluida una eventual retirada. No se presumen aceptaciones ni autorizaciones anteriores.</p>
       <p>No se atribuye al registro una autorización general para publicidad. Cualquier finalidad adicional deberá informarse y contar con la base jurídica que corresponda.</p>
       <ReviewNote>base jurídica y autorización de imagen adecuadas para cada caso, especialmente respecto de materiales de terceros y perfiles creados manualmente.</ReviewNote>
     </> },
@@ -68,17 +68,20 @@ function PrivacyPage() {
     { id: "proveedores", title: "Proveedores tecnológicos y destinatarios", content: <>
       <p>La prestación del servicio utiliza infraestructura de base de datos, autenticación y almacenamiento, servicios de correo y alojamiento web:</p>
       <ul>
-        <li><strong>Supabase (base de datos, autenticación y almacenamiento):</strong> soporte de cuentas, solicitudes y materiales artísticos.</li>
+        <li><strong>Supabase (base de datos, autenticación y almacenamiento):</strong> soporte de cuentas, solicitudes y materiales artísticos. La región principal de la base de datos es Frankfurt (Alemania).</li>
         <li><strong>Resend (correo electrónico):</strong> envío de los correos automáticos de autenticación, confirmación de registro y recuperación de acceso, y de las comunicaciones relacionadas con los formularios de contacto, presupuesto y Booking.</li>
         <li><strong>Google:</strong> autenticación cuando eliges este método, además del tratamiento propio de Google descrito en su política.</li>
-        <li><strong>Alojamiento web:</strong> prestación y disponibilidad de la web y su infraestructura.</li>
+        <li><strong>Hostinger (alojamiento web):</strong> prestación y disponibilidad de la web, con servidor de alojamiento en Francia.</li>
       </ul>
       <p>El personal autorizado accede a los datos necesarios para tramitar solicitudes y revisar perfiles. Los datos podrán comunicarse a autoridades cuando exista una obligación legal.</p>
+      <p>Las ubicaciones indicadas corresponden a la base de datos principal y al servidor de alojamiento; no implican que todos los tratamientos, servicios auxiliares o copias de seguridad se realicen necesariamente dentro de Europa. Cuando existan transferencias internacionales, deberán contar con la base y las garantías exigidas por el RGPD que resulten aplicables al servicio y destino concretos. No se presume aquí una garantía específica no verificada.</p>
       <ReviewNote><strong>proveedores</strong> — identidad contractual del proveedor de alojamiento, papel de cada proveedor y acuerdos de tratamiento.</ReviewNote>
       <ReviewNote><strong>transferencias internacionales</strong> — ubicaciones de tratamiento y, si las hubiera, destinos y garantías aplicables. Este texto no afirma que existan o no.</ReviewNote>
     </> },
     { id: "conservacion", title: "Conservación", content: <>
       <p>Los datos se conservarán durante el tiempo necesario para atender la solicitud, gestionar la cuenta o participación artística y mantener la relación comercial correspondiente.</p>
+      <p>Al finalizar la colaboración artística se retirará el perfil del Roster público. Los datos artísticos internos podrán conservarse durante un máximo de <strong>12 meses desde la finalización</strong>, cuando exista una base jurídica válida. Transcurrido ese plazo deberán suprimirse, salvo obligación legal u otra justificación aplicable. El artista podrá solicitar antes su supresión conforme al RGPD.</p>
+      <p>La documentación contractual y fiscal seguirá sus plazos legales propios. Esta política no implica que exista un sistema automático de borrado.</p>
       <p>Cuando proceda su supresión, podrán mantenerse bloqueados los datos necesarios para atender obligaciones legales o responsabilidades durante los plazos legalmente aplicables.</p>
       <ReviewNote><strong>conservación de datos</strong> — plazos concretos, eliminación en copias de seguridad y criterios para solicitudes no continuadas y cuentas inactivas.</ReviewNote>
     </> },

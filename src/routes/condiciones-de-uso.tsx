@@ -28,7 +28,6 @@ function TermsPage() {
         <li><strong>Web:</strong> <a href="/">blackcaps.es</a></li>
         <li><strong>Inscripción registral:</strong> Registro Mercantil de Valencia, Sección 8, Hoja V-223276, Inscripción 1.ª, de 28 de enero de 2025 (BORME-A-2025-23-46, acto 56187).</li>
       </ul>
-      <ReviewNote>la dirección de Madrid facilitada corresponde al domicilio social actual o es una dirección de contacto, dado que el domicilio publicado en la inscripción de constitución (2025) era distinto. Comprobar además si existen inscripciones posteriores.</ReviewNote>
       <p>Estas condiciones regulan el uso general de la web y la solicitud de participación artística. No sustituyen presupuestos aceptados ni contratos específicos de producción, alquiler, representación o Booking.</p>
     </> },
     { id: "servicios", title: "Servicios de BLACKCAPS", content: <>
@@ -48,12 +47,14 @@ function TermsPage() {
     </> },
     { id: "registro", title: "Registro y solicitud de participación", content: <>
       <p><strong>El registro de artistas es una solicitud de participación.</strong> Crear una cuenta o enviar un perfil no implica la incorporación automática al Roster ni la existencia de una relación de representación.</p>
+      <p>En el registro se solicita aceptar estas condiciones y declarar la lectura de la Política de Privacidad mediante una casilla no premarcada. Si el acceso se realiza con Google o la aceptación aún no consta, se recoge al acceder al área de artista. La autenticación no equivale a aceptación ni a autorización de publicación.</p>
       <p>BLACKCAPS revisa la información y los materiales antes de aprobar y publicar el perfil. Puede solicitar ajustes o decidir no aprobar la solicitud. Mientras el perfil no esté aprobado, no se presenta como integrante público del Roster.</p>
       <p><strong>El registro y la publicación no garantizan contrataciones</strong>, ingresos, un número de actuaciones ni exclusividad. Las condiciones económicas y comerciales se acuerdan individualmente.</p>
     </> },
     { id: "materiales", title: "Materiales, publicación y promoción", content: <>
       <p>Las fotografías, biografías, música y materiales promocionales aportados deben contar con los derechos y autorizaciones necesarios, incluidos los derechos de imagen y los de autores, fotógrafos u otros terceros.</p>
-      <p><strong>Publicación en el Roster:</strong> al solicitar la publicación del perfil, el artista autoriza que, una vez aprobado, se muestren en su ficha pública el nombre artístico, fotografía, biografía, estilo, ciudad y enlaces de contenido artístico aportados. Puede pedir su modificación o retirada en cualquier momento.</p>
+      <p><strong>Publicación en la web, Roster y presskit público:</strong> antes de enviar una nueva solicitud de publicación, se requiere una autorización expresa independiente y no premarcada para mostrar el nombre artístico, biografía, fotografías y materiales promocionales aportados, con la finalidad de presentar el proyecto artístico y gestionar posibles contrataciones. El artista declara disponer de los derechos y autorizaciones necesarios. Puede retirar esta autorización o pedir la modificación o retirada de contenidos en cualquier momento.</p>
+      <p>La autorización no incluye automáticamente campañas publicitarias externas, publicaciones independientes en redes sociales, cesiones de materiales a terceros para otros usos ni grabaciones de actuaciones. Los perfiles manuales requieren constancia documental de autorización antes de nuevas publicaciones; no se presumen autorizaciones de los perfiles existentes.</p>
       <p><strong>Requieren autorización expresa o acuerdo individual:</strong></p>
       <ul>
         <li>El uso de la imagen o los materiales del artista en redes sociales, publicidad, campañas o materiales comerciales de BLACKCAPS fuera de su ficha del Roster.</li>

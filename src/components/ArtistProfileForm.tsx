@@ -38,10 +38,12 @@ type Props = {
   hasPhoto: boolean;
   busy: boolean;
   submitLabel: string;
+  legalContent?: React.ReactNode;
+  submitDisabled?: boolean;
   onSubmit: (data: ArtistForm, file: File | null) => Promise<boolean>;
 };
 
-export function ArtistProfileForm({ initial, initialPreview, hasPhoto, busy, submitLabel, onSubmit }: Props) {
+export function ArtistProfileForm({ initial, initialPreview, hasPhoto, busy, submitLabel, legalContent, submitDisabled = false, onSubmit }: Props) {
   const [form, setForm] = useState<ArtistForm>(initial ? toArtistForm(initial) : empty);
   const [errors, setErrors] = useState<Partial<Record<keyof ArtistForm, string>>>({});
   const [file, setFile] = useState<File | null>(null);
@@ -65,6 +67,7 @@ export function ArtistProfileForm({ initial, initialPreview, hasPhoto, busy, sub
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
+    if (submitDisabled) return;
     const parsed = artistSchema.safeParse(form);
     if (!parsed.success) {
       const errs: typeof errors = {};
@@ -117,7 +120,8 @@ export function ArtistProfileForm({ initial, initialPreview, hasPhoto, busy, sub
           {field("soundcloud", "SoundCloud", <input className={input} placeholder="https://soundcloud.com/…" value={form.soundcloud} onChange={(e) => set("soundcloud", e.target.value)} />)}
           {field("youtube", "YouTube", <input className={input} placeholder="https://youtube.com/…" value={form.youtube} onChange={(e) => set("youtube", e.target.value)} />)}
         </div>
-        <button disabled={busy} className="btn btn-primary w-full sm:w-auto justify-center disabled:opacity-60">
+        {legalContent}
+        <button disabled={busy || submitDisabled} className="btn btn-primary w-full sm:w-auto justify-center disabled:opacity-60">
           {busy ? "Guardando…" : submitLabel}
         </button>
       </div>

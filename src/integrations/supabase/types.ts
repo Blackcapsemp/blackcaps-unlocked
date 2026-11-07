@@ -14,6 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
+      artist_legal_authorizations: {
+        Row: {
+          accepted_text: string
+          artist_profile_id: string | null
+          created_at: string
+          document_reference: string | null
+          id: string
+          kind: string
+          recorded_by: string
+          source: string
+          state: string
+          user_id: string | null
+          version: string
+        }
+        Insert: {
+          accepted_text: string
+          artist_profile_id?: string | null
+          created_at?: string
+          document_reference?: string | null
+          id?: string
+          kind: string
+          recorded_by: string
+          source: string
+          state: string
+          user_id?: string | null
+          version?: string
+        }
+        Update: {
+          accepted_text?: string
+          artist_profile_id?: string | null
+          created_at?: string
+          document_reference?: string | null
+          id?: string
+          kind?: string
+          recorded_by?: string
+          source?: string
+          state?: string
+          user_id?: string | null
+          version?: string
+        }
+        Relationships: []
+      }
       artist_profiles: {
         Row: {
           artist_name: string
@@ -270,6 +312,15 @@ export type Database = {
           msg_id: number
           read_ct: number
         }[]
+      }
+      record_artist_authorization: {
+        Args: {
+          p_document_reference?: string
+          p_kind: string
+          p_profile_id?: string
+          p_state?: string
+        }
+        Returns: string
       }
     }
     Enums: {
