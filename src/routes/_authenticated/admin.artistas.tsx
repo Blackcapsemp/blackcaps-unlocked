@@ -4,6 +4,8 @@ import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { ARTIST_STYLES, displayPhotos, safeUrl, slugify, type ArtistProfile } from "@/lib/artists";
 import { ArtistProfileForm, artistRow, type ArtistForm } from "@/components/ArtistProfileForm";
+import { Button } from "@/components/ui/button";
+import { hasAuthorization, latestAuthorization, loadAuthorizations, recordAuthorization, type Authorization } from "@/lib/artist-legal";
 
 export const Route = createFileRoute("/_authenticated/admin/artistas")({
   head: () => ({
@@ -34,6 +36,29 @@ function AdminArtists() {
   const [selected, setSelected] = useState<ArtistProfile | null>(null);
   const [editing, setEditing] = useState<ArtistProfile | "new" | null>(null);
   const [saving, setSaving] = useState(false);
+  const [manualRecords, setManualRecords] = useState<Authorization[]>([]);
+  const [documentConfirmed, setDocumentConfirmed] = useState(false);
+  const [documentReference, setDocumentReference] = useState("");
+  const [documentBusy, setDocumentBusy] = useState(false);
+
+  useEffect(() => {
+    setManualRecords([]); setDocumentConfirmed(false); setDocumentReference("");
+    if (selected && !selected.user_id) loadAuthorizations(null, selected.id).then(setManualRecords).catch(() => toast.error("No se pudo cargar la autorización documental"));
+  }, [selected?.id]);
+
+  async function saveDocument(state: "active" | "withdrawn") {
+    if (!selected || selected.user_id || (state === "active" && (!documentConfirmed || documentReference.trim().length < 3))) return;
+    if (state === "withdrawn" && !window.confirm("¿Registrar la retirada de la autorización? El perfil dejará de mostrarse en el Roster.")) return;
+    setDocumentBusy(true);
+    try {
+      await recordAuthorization("publication", state, selected.id, documentReference);
+      setManualRecords(await loadAuthorizations(null, selected.id));
+      if (state === "withdrawn") { await load(); setSelected((a) => a ? { ...a, status: "rejected" } : a); }
+      toast.success(state === "active" ? "Autorización documental registrada" : "Retirada registrada");
+      setDocumentConfirmed(false); setDocumentReference("");
+    } catch (err) { toast.error(err instanceof Error ? err.message : "No se pudo registrar la autorización"); }
+    finally { setDocumentBusy(false); }
+  }
 
   async function deleteArtist(a: ArtistProfile) {
     if (!window.confirm(`¿Eliminar definitivamente el perfil de «${a.artist_name}»?\n\nEsta acción es irreversible: se borrarán el perfil y su fotografía, y dejará de aparecer en Booking y en su página pública.${a.user_id ? "\n\nLa cuenta de usuario del artista NO se eliminará." : ""}\n\nLas solicitudes de booking ya recibidas se conservan.`)) return;
@@ -87,7 +112,8 @@ function AdminArtists() {
 
   async function load() {
     const { data: u } = await supabase.auth.getUser();
-    const { data: r } = await supabase.from("user_roles").select("role").eq("user_id", u.user!.id).eq("role", "admin").maybeSingle();
+    if (!u.user) { setAllowed(false); return; }
+    const { data: r } = await supabase.from("user_roles").select("role").eq("user_id", u.user.id).eq("role", "admin").maybeSingle();
     setAllowed(!!r);
     if (!r) return;
     const { data } = await supabase.from("artist_profiles").select("*").order("created_at", { ascending: false });
@@ -97,6 +123,17 @@ function AdminArtists() {
   useEffect(() => { load(); }, []);
 
   async function setStatus(id: string, s: "approved" | "rejected") {
+    if (s === "approved") {
+      const artist = list?.find((a) => a.id === id);
+      if (!artist) return;
+      try {
+        const records = await loadAuthorizations(artist.user_id, artist.user_id ? null : artist.id);
+        if (!hasAuthorization(records, "publication") || (artist.user_id && !hasAuthorization(records, "terms"))) {
+          setSelected(artist);
+          return toast.error(artist.user_id ? "El artista debe registrar las condiciones y la autorización de publicación desde Mi perfil." : "Registra la autorización documental del artista en su ficha antes de publicarlo.");
+        }
+      } catch { return toast.error("No se pudieron comprobar las autorizaciones"); }
+    }
     const { error } = await supabase.from("artist_profiles").update({ status: s }).eq("id", id);
     if (error) return toast.error(error.message);
     toast.success(s === "approved" ? "Artista publicado" : "Artista rechazado");
@@ -233,12 +270,20 @@ function AdminArtists() {
                   <div className="flex flex-wrap gap-2">
                     {([["Instagram", selected.instagram], ["Spotify", selected.spotify], ["SoundCloud", selected.soundcloud], ["YouTube", selected.youtube]] as const)
                       .map(([l, u]) => [l, safeUrl(u)] as const).filter(([, u]) => u)
-                      .map(([l, u]) => <a key={l} href={u!} target="_blank" rel="noopener noreferrer nofollow" className="px-3 py-1.5 rounded-full border border-white/20 text-xs uppercase tracking-[0.14em] hover:bg-bone hover:text-ink transition">{l} ↗</a>)}
+                      .map(([l, u]) => u ? <a key={l} href={u} target="_blank" rel="noopener noreferrer nofollow" className="px-3 py-1.5 rounded-full border border-white/20 text-xs uppercase tracking-[0.14em] hover:bg-bone hover:text-ink transition">{l} ↗</a> : null)}
                     {![selected.instagram, selected.spotify, selected.soundcloud, selected.youtube].some(Boolean) && <span className="text-muted-foreground">Sin enlaces</span>}
                   </div>
                 </Field>
               </div>
             </div>
+            {!selected.user_id && <div className="mt-6 space-y-3 border-t border-border pt-5 text-sm">
+              <p className="font-semibold">Autorización documental de publicación</p>
+              <p className="text-muted-foreground">{hasAuthorization(manualRecords, "publication") ? `Registrada: ${latestAuthorization(manualRecords, "publication")?.document_reference ?? ""}` : "No consta una autorización activa. El perfil existente no se retira automáticamente."}</p>
+              <label className="flex items-start gap-3"><input type="checkbox" checked={documentConfirmed} onChange={(e) => setDocumentConfirmed(e.target.checked)} />Confirmo que disponemos de una autorización documental del artista para mostrar su nombre, biografía, fotografías y materiales en la web, Roster y presskit público, y de los derechos necesarios.</label>
+              <label className="block">Referencia del documento (sin adjuntar datos sensibles)<input value={documentReference} onChange={(e) => setDocumentReference(e.target.value)} maxLength={500} className="mt-2 w-full rounded-md border border-input bg-background px-3 py-2" /></label>
+              <Button disabled={documentBusy || !documentConfirmed || documentReference.trim().length < 3} onClick={() => saveDocument("active")}>Registrar autorización documental</Button>
+              {hasAuthorization(manualRecords, "publication") && <Button variant="ghost" disabled={documentBusy} onClick={() => saveDocument("withdrawn")}>Registrar retirada</Button>}
+            </div>}
             <div className="mt-8 flex flex-wrap gap-2">
               <button onClick={() => setStatus(selected.id, "approved")} disabled={selected.status === "approved"} className="btn btn-primary disabled:opacity-40">Aprobar</button>
               <button onClick={() => setStatus(selected.id, "rejected")} disabled={selected.status === "rejected"} className="btn btn-ghost disabled:opacity-40">Rechazar</button>
