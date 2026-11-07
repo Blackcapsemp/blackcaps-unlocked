@@ -1,4 +1,7 @@
 # Páginas legales
+- [ ] Finalizar proveedores y conservación artística confirmados.
+- [ ] Registrar condiciones y autorizaciones expresas, con retirada y evidencia documental manual.
+- [ ] Verificar permisos, formularios y recorridos sin modificar artistas reales ni publicar.
 - [x] Redactar Privacidad y Condiciones con los datos oficiales y pendientes jurídicos explícitos.
 - [x] Añadir enlaces en footer, acceso y formularios sin cambiar su funcionamiento.
 - [x] Verificar acceso público y presentación; preparar sin publicar.
