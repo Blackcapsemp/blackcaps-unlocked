@@ -36,6 +36,13 @@
       "when": 1791995974034,
       "tag": "0004_admin_delete_artist_photos",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1794069168271,
+      "tag": "0005_artist_legal_authorizations",
+      "breakpoints": true
     }
   ]
 }
