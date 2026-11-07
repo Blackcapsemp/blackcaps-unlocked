@@ -5,6 +5,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { signPhotos, slugify, type ArtistProfile } from "@/lib/artists";
 import { ArtistProfileForm, artistRow, type ArtistForm } from "@/components/ArtistProfileForm";
 import { PrivacyNotice } from "@/components/LegalPage";
+import { TermsAcceptance, PublicationAcceptance } from "@/components/ArtistLegalAcceptance";
+import { Button } from "@/components/ui/button";
+import { canRequestPublication, hasAuthorization, loadAuthorizations, recordAuthorization } from "@/lib/artist-legal";
 
 export const Route = createFileRoute("/_authenticated/mi-perfil")({
   beforeLoad: async () => {
@@ -45,6 +48,11 @@ function MyProfile() {
   const [preview, setPreview] = useState<string | null>(null);
   const [isAdmin, setIsAdmin] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [legalReady, setLegalReady] = useState(false);
+  const [termsRecorded, setTermsRecorded] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(false);
+  const [publicationRecorded, setPublicationRecorded] = useState(false);
+  const [publicationAccepted, setPublicationAccepted] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -56,6 +64,14 @@ function MyProfile() {
         supabase.from("user_roles").select("role").eq("user_id", u.user.id).eq("role", "admin").maybeSingle(),
       ]);
       setIsAdmin(!!r);
+      if (!r) {
+        try {
+          const records = await loadAuthorizations(u.user.id);
+          setTermsRecorded(hasAuthorization(records, "terms"));
+          setPublicationRecorded(hasAuthorization(records, "publication"));
+          setLegalReady(true);
+        } catch { toast.error("No se pudieron cargar tus autorizaciones. Recarga la página."); }
+      }
       if (p) {
         setProfile(p);
         if (p.photo_url) setPreview((await signPhotos([p.photo_url]))[p.photo_url] ?? null);
@@ -64,9 +80,12 @@ function MyProfile() {
   }, []);
 
   async function save(d: ArtistForm, file: File | null) {
-    if (!userId) return false;
+    if (!userId || isAdmin || !legalReady || !canRequestPublication(termsRecorded || termsAccepted, publicationAccepted)) return false;
     setBusy(true);
     try {
+      if (!termsRecorded) { await recordAuthorization("terms"); setTermsRecorded(true); }
+      await recordAuthorization("publication");
+      setPublicationRecorded(true);
       let photo_url = profile?.photo_url ?? null;
       if (file) {
         const ext = file.name.split(".").pop()?.toLowerCase() || "jpg";
@@ -87,6 +106,7 @@ function MyProfile() {
         setProfile(data);
       }
       toast.success("Perfil enviado. Lo revisaremos y te avisaremos cuando esté publicado.");
+      setPublicationAccepted(false);
       return true;
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "No se pudo guardar");
@@ -94,6 +114,26 @@ function MyProfile() {
     } finally {
       setBusy(false);
     }
+  }
+
+  async function acceptTerms() {
+    if (!termsAccepted) return;
+    setBusy(true);
+    try { await recordAuthorization("terms"); setTermsRecorded(true); toast.success("Aceptación registrada"); }
+    catch { toast.error("No se pudo registrar la aceptación"); }
+    finally { setBusy(false); }
+  }
+
+  async function withdrawPublication() {
+    if (!window.confirm("¿Retirar la autorización de publicación? Tu perfil dejará de mostrarse en el Roster público; tu cuenta se conserva.")) return;
+    setBusy(true);
+    try {
+      await recordAuthorization("publication", "withdrawn");
+      setPublicationRecorded(false); setPublicationAccepted(false);
+      setProfile((p) => p ? { ...p, status: "rejected" } : p);
+      toast.success("Autorización retirada y perfil retirado del Roster");
+    } catch { toast.error("No se pudo retirar la autorización"); }
+    finally { setBusy(false); }
   }
 
   return (
@@ -123,8 +163,13 @@ function MyProfile() {
           </div>
         )}
 
-        <ArtistProfileForm initial={profile} initialPreview={preview} hasPhoto={!!profile?.photo_url} busy={busy}
-          submitLabel={profile ? "Guardar y enviar a revisión" : "Enviar perfil"} onSubmit={save} />
+        {!legalReady ? <p className="mt-6 text-muted-foreground">Cargando autorizaciones…</p> : !termsRecorded ? <div className="mt-8 space-y-4"><TermsAcceptance checked={termsAccepted} onChange={setTermsAccepted} /><Button onClick={acceptTerms} disabled={busy || !termsAccepted} className="btn btn-primary">Guardar aceptación</Button></div> : <>
+          <ArtistProfileForm initial={profile} initialPreview={preview} hasPhoto={!!profile?.photo_url} busy={busy}
+            legalContent={<PublicationAcceptance checked={publicationAccepted} onChange={setPublicationAccepted} />}
+            submitDisabled={!publicationAccepted}
+            submitLabel={profile ? "Guardar y enviar a revisión" : "Enviar perfil"} onSubmit={save} />
+          {publicationRecorded && <Button variant="ghost" onClick={withdrawPublication} disabled={busy} className="mt-4 underline">Retirar autorización de publicación</Button>}
+        </>}
         <PrivacyNotice />
       </div>
     </section>

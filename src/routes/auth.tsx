@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { PrivacyNotice } from "@/components/LegalPage";
+import { TermsAcceptance } from "@/components/ArtistLegalAcceptance";
+import { LEGAL_VERSION } from "@/lib/artist-legal";
 
 export const Route = createFileRoute("/auth")({
   head: () => ({
@@ -25,6 +27,7 @@ function AuthPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [busy, setBusy] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(false);
 
   async function redirectAfterLogin() {
     const { data: u } = await supabase.auth.getUser();
@@ -55,6 +58,7 @@ function AuthPage() {
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
+    if (mode === "signup" && !termsAccepted) return toast.error("Acepta las Condiciones de Uso y lee la Política de Privacidad para registrarte");
     if (password.length < 8) return toast.error("La contraseña debe tener al menos 8 caracteres");
     setBusy(true);
     try {
@@ -62,7 +66,7 @@ function AuthPage() {
         const { data, error } = await supabase.auth.signUp({
           email,
           password,
-          options: { emailRedirectTo: `${window.location.origin}/mi-perfil` },
+          options: { emailRedirectTo: `${window.location.origin}/mi-perfil`, data: { artist_terms_version: LEGAL_VERSION, artist_terms_accepted: true } },
         });
         if (error) throw error;
         if (!data.session) {
@@ -137,7 +141,8 @@ function AuthPage() {
             <input type="password" required minLength={8} autoComplete={mode === "signup" ? "new-password" : "current-password"} value={password} onChange={(e) => setPassword(e.target.value)} className={`${input} mt-2`} />
             <span className="text-xs text-muted-foreground mt-1 block">Mínimo 8 caracteres</span>
           </label>
-          <button disabled={busy} className="btn btn-primary w-full justify-center disabled:opacity-60">
+          {mode === "signup" && <TermsAcceptance checked={termsAccepted} onChange={setTermsAccepted} />}
+          <button disabled={busy || (mode === "signup" && !termsAccepted)} className="btn btn-primary w-full justify-center disabled:opacity-60">
             {busy ? "Un momento…" : mode === "signup" ? "Crear cuenta" : "Entrar"}
           </button>
         </form>
