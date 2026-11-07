@@ -26,9 +26,9 @@ function PrivacyPage() {
         <li><strong>Domicilio social:</strong> Avenida de Castilla, 53-55, 28830 San Fernando de Henares (Madrid), España</li>
         <li><strong>Correo electrónico:</strong> <a href="mailto:info@blackcaps.es">info@blackcaps.es</a></li>
         <li><strong>Web:</strong> <a href="/">blackcaps.es</a></li>
-        <li><strong>Inscripción registral:</strong> Registro Mercantil de [pendiente], tomo [pendiente], folio [pendiente], hoja [pendiente].</li>
+        <li><strong>Inscripción registral:</strong> Registro Mercantil de Valencia, Sección 8, Hoja V-223276, Inscripción 1.ª, de 28 de enero de 2025 (BORME-A-2025-23-46, acto 56187).</li>
       </ul>
-      <ReviewNote>datos de inscripción en el Registro Mercantil, que facilitará la sociedad.</ReviewNote>
+      <ReviewNote>la dirección de Madrid facilitada corresponde al domicilio social actual o es una dirección de contacto, dado que el domicilio publicado en la inscripción de constitución (2025) era distinto. Comprobar además si existen inscripciones posteriores.</ReviewNote>
     </> },
     { id: "datos", title: "Datos que recogemos", content: <>
       <ul>

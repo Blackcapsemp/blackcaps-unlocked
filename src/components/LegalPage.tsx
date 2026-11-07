@@ -6,7 +6,7 @@ import type { ReactNode } from "react";
  * (proveedores, transferencias internacionales, conservación, autorización de imágenes
  * e inscripción registral). Oculta de la versión pública todos los avisos internos.
  */
-export const LEGAL_REVIEW_PENDING = true;
+export const LEGAL_REVIEW_PENDING = false;
 
 /** Aviso interno; solo se muestra mientras la revisión jurídica esté pendiente. */
 export function ReviewNote({ children }: { children: ReactNode }) {
