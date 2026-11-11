@@ -1,0 +1,1 @@
+ALTER TABLE public.artist_legal_authorizations ALTER COLUMN created_at SET DEFAULT clock_timestamp();

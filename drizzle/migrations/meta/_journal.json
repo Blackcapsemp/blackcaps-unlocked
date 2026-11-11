@@ -43,6 +43,20 @@
       "when": 1794069168271,
       "tag": "0005_artist_legal_authorizations",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1794412277074,
+      "tag": "0006_artist_authorization_grants",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1794412376339,
+      "tag": "0007_artist_authorization_precise_timestamps",
+      "breakpoints": true
     }
   ]
 }

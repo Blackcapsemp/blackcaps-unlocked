@@ -1,7 +1,8 @@
 # Páginas legales
-- [ ] Finalizar proveedores y conservación artística confirmados.
-- [ ] Registrar condiciones y autorizaciones expresas, con retirada y evidencia documental manual.
-- [ ] Verificar permisos, formularios y recorridos sin modificar artistas reales ni publicar.
+- [x] Finalizar proveedores y conservación artística confirmados.
+- [x] Implementar registro de condiciones y autorizaciones expresas, con retirada y evidencia documental manual.
+- [x] Verificar permisos, formularios públicos y área administrativa sin modificar artistas reales ni publicar.
+- [ ] Verificar guardado y retirada completos como artista y alta con aceptación: pendiente de una cuenta de prueba autorizada; las pruebas reversibles no tienen permisos suficientes.
 - [x] Redactar Privacidad y Condiciones con los datos oficiales y pendientes jurídicos explícitos.
 - [x] Añadir enlaces en footer, acceso y formularios sin cambiar su funcionamiento.
 - [x] Verificar acceso público y presentación; preparar sin publicar.
