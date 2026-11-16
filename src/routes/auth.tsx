@@ -69,13 +69,24 @@ function AuthPage() {
           options: { emailRedirectTo: `${window.location.origin}/mi-perfil`, data: { artist_terms_version: LEGAL_VERSION, artist_terms_accepted: true } },
         });
         if (error) throw error;
+        if (data.user && data.user.identities?.length === 0) {
+          toast.error("Ya existe una cuenta con este email. Pulsa «Ya tengo cuenta» para entrar.");
+          return;
+        }
         if (!data.session) {
           toast.success("Revisa tu email para confirmar la cuenta");
           return;
         }
       } else {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
-        if (error) throw error;
+        if (error) {
+          if (/email not confirmed/i.test(error.message)) {
+            await supabase.auth.resend({ type: "signup", email, options: { emailRedirectTo: `${window.location.origin}/mi-perfil` } });
+            toast.error("Tu cuenta aún no está confirmada. Te hemos reenviado el email de confirmación.");
+            return;
+          }
+          throw error;
+        }
       }
       await redirectAfterLogin();
     } catch (err) {
