@@ -57,6 +57,13 @@
       "when": 1794412376339,
       "tag": "0007_artist_authorization_precise_timestamps",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1794840302306,
+      "tag": "0008_grant_artist_authorizations_read",
+      "breakpoints": true
     }
   ]
 }

@@ -49,6 +49,8 @@ function MyProfile() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [busy, setBusy] = useState(false);
   const [legalReady, setLegalReady] = useState(false);
+  const [legalError, setLegalError] = useState(false);
+  const [reloadKey, setReloadKey] = useState(0);
   const [termsRecorded, setTermsRecorded] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [publicationRecorded, setPublicationRecorded] = useState(false);
@@ -65,19 +67,20 @@ function MyProfile() {
       ]);
       setIsAdmin(!!r);
       if (!r) {
+        setLegalError(false);
         try {
           const records = await loadAuthorizations(u.user.id);
           setTermsRecorded(hasAuthorization(records, "terms"));
           setPublicationRecorded(hasAuthorization(records, "publication"));
           setLegalReady(true);
-        } catch { toast.error("No se pudieron cargar tus autorizaciones. Recarga la página."); }
+        } catch { setLegalError(true); toast.error("No se pudieron cargar tus autorizaciones."); }
       }
       if (p) {
         setProfile(p);
         if (p.photo_url) setPreview((await signPhotos([p.photo_url]))[p.photo_url] ?? null);
       }
-    })();
-  }, []);
+    })().catch(() => setLegalError(true));
+  }, [reloadKey]);
 
   async function save(d: ArtistForm, file: File | null) {
     if (!userId || isAdmin || !legalReady || !canRequestPublication(termsRecorded || termsAccepted, publicationAccepted)) return false;
@@ -163,7 +166,7 @@ function MyProfile() {
           </div>
         )}
 
-        {!legalReady ? <p className="mt-6 text-muted-foreground">Cargando autorizaciones…</p> : !termsRecorded ? <div className="mt-8 space-y-4"><TermsAcceptance checked={termsAccepted} onChange={setTermsAccepted} /><Button onClick={acceptTerms} disabled={busy || !termsAccepted} className="btn btn-primary">Guardar aceptación</Button></div> : <>
+        {legalError ? <div className="mt-6 space-y-3"><p className="text-muted-foreground">No se pudieron cargar tus autorizaciones.</p><Button onClick={() => setReloadKey((k) => k + 1)} className="btn btn-ghost">Reintentar</Button></div> : !legalReady ? <p className="mt-6 text-muted-foreground">Cargando autorizaciones…</p> : !termsRecorded ? <div className="mt-8 space-y-4"><TermsAcceptance checked={termsAccepted} onChange={setTermsAccepted} /><Button onClick={acceptTerms} disabled={busy || !termsAccepted} className="btn btn-primary">Guardar aceptación</Button></div> : <>
           <ArtistProfileForm initial={profile} initialPreview={preview} hasPhoto={!!profile?.photo_url} busy={busy}
             legalContent={<PublicationAcceptance checked={publicationAccepted} onChange={setPublicationAccepted} />}
             submitDisabled={!publicationAccepted}
